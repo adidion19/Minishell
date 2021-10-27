@@ -1,0 +1,47 @@
+
+type set for a complete env
+
+a line is divided in sections
+
+each section is delimited by a pipe, or by the end of the line
+
+for each section, we have to define :
+	- the input
+	- the command - is it a homemade command ? or do we have to look in the path. I will not worry about that for now. just store the name of the command as a string
+	- the options
+	- the output - ? probably not needed
+	- where to send the output
+
+for example : cat test.txt | wc -l
+	it has 2 sections
+
+	the first section has : 
+		input : "test.txt" as a string
+		command : cat
+		options : no option
+		output : the result of the command cat 
+		where to send : to the next section
+
+	the second section had :
+		input : what we received from the previous section
+		command : wc
+		options : l
+		output : the result of the command wc
+		where to send : the terminal
+
+do we store the sections as a linked list ?
+do we store the sections as an array ?
+
+probably better as an array so it's easier to free
+
+
+array of struct ! --> we need to know how many element we need at first
+
+the parser receives a string.
+it decides how many sections are needed
+it allocate the right size
+then for each section, the parser fill the section struct
+at the end the parser return an allocated struct array
+the array is null terminated
+
+make a function to free the allocated array. do not forget to free each string inside of struct
