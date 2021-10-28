@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/10/28 13:56:25 by adidion          ###   ########.fr       */
+/*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
+/*   Updated: 2021/10/28 13:21:02 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_H
 
-int	main(void)
-{
-	char	*line;
-	int		i;
+# define MINISHELL_H
 
-	while (1)
-	{
-		line = readline("\033[1m\033[36m prompt \x1b[0m");
-//		line = readline("prompt ");
-		//if (line)
-		//	printf(BLUE);
-		//	printf("%s", line);
-		//	printf(RESET);
-		if (line && *line)
-		{
-			i = add_history(line);
-			//printf("%d\n", i);
-		}
-		free(line);
-	}
-	return (0);
-}
+# include <stdio.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# define BLUE "\033[1m\033[36m"
+# define RESET   "\x1b[0m"
+
+#endif
