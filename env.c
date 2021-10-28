@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:48:13 by adidion           #+#    #+#             */
-/*   Updated: 2021/10/28 15:54:56 by adidion          ###   ########.fr       */
+/*   Updated: 2021/10/28 16:15:39 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,31 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	ft_env(char **env)
+int	ft_env(char **env)
 {
-	int	i;
+	int		i;
+	char	*pwd;
+	char	*oldpwd;
 
 	i = -1;
 	while (env[++i])
 	{
 		if (ft_strncmp("PWD", env[i], 3) == 0)
-			printf("PWD=%s\n", getenv("PWD"));
+		{
+			pwd = getenv("PWD");
+			if (!pwd)
+				return (1);
+			printf("PWD=%s\n", pwd);
+		}
 		else if (ft_strncmp("OLDPWD", env[i], 6) == 0)
+		{
+			oldpwd = getenv("OLDPWD");
+			if (!oldpwd)
+				return (1);
 			printf("OLDPWD=%s\n", getenv("OLDPWD"));
+		}
 		else
 			printf("%s\n", env[i]);
 	}
+	return (0);
 }
