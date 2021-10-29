@@ -6,16 +6,24 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:00:02 by adidion           #+#    #+#             */
-/*   Updated: 2021/10/28 16:05:26 by adidion          ###   ########.fr       */
+/*   Updated: 2021/10/29 16:24:21 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(void)
+/*
+	si bool == 0, pas d'arguments apres pwd
+	si bool == 1, des arguments invalides
+	si bool == 2, arguments valides qu'on ne doit pas gerer (-P, -L)
+*/
+
+int	ft_pwd(int bool)
 {
 	char	*pwd;
 
+	if (bool == 1)
+		return (1);
 	pwd = getenv("PWD");
 	if (!pwd)
 		return (1);

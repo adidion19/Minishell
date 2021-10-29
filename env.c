@@ -6,11 +6,15 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:48:13 by adidion           #+#    #+#             */
-/*   Updated: 2021/10/28 16:15:39 by adidion          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:47:07 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+besoin d'envoyer le le char **env du main
+*/
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
