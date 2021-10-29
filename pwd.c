@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:00:02 by adidion           #+#    #+#             */
-/*   Updated: 2021/10/29 16:24:21 by adidion          ###   ########.fr       */
+/*   Updated: 2021/10/29 16:55:07 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 /*
 	si bool == 0, pas d'arguments apres pwd
 	si bool == 1, des arguments invalides
-	si bool == 2, arguments valides qu'on ne doit pas gerer (-P, -L)
+	
+	si ce sont arguments valides qu'on ne doit pas gerer (-P, -L),
+	il faut envoyer le tout dans une autre fct, pas ici
 */
 
 int	ft_pwd(int bool)
