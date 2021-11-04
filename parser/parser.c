@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/04 17:44:54 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/04 18:38:20 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,31 @@ void	update_quote_state(char c, t_quote_state *state)
 	}
 }
 
+char	*copy_next_word(char *from, char **adrs_of_original_ptr)
+{
+	if (!from || *from != ' ')
+		//SYNTAX ERROR ! We have a < that is followed by garbage value
+	while (*from == ' ')
+		from++;
+	// we can have something like << or <> so still need to understand how to handle that
+
+	// the idea is to allocate and copy what follows the '<' and substitute it with var and getenv if necessary
+	// then update the adrs_of_original_ptr so that the main loop can continue
+}
+
 void	extract_input(t_pipe_list *node, char *from, char *to)
 {
-	
+	t_quote_state	quote;
+
+//	node->input_fd = DEFAULT_VALUE; // input_str can remain NULL
+	ft_memset(&quote, 0, sizeof(quote));
+	while (from && to && from < to) // pointer increases when we browse the str
+	{
+		update_quote_state(*from, &quote);
+		if (*from == '<' && quote.global_quote == 0)
+			node->input_str = copy_next_word(from + 1, &from);
+		from++;
+	}
 }
 
 void	extract_output(t_pipe_list *node, char *from, char *to)
@@ -57,7 +79,7 @@ t_pipe_list	*add_pipe_section(t_pipe_list *list, char *from, char *to)
 	t_pipe_list	*ret;
 	t_pipe_list	*temp;
 
-	ret = malloc(sizeof(t_pipe_list));
+	ret = ft_calloc(sizeof(t_pipe_list));
 	if (!ret)
 		return (NULL);
 	extract_input(ret, from, to);
@@ -109,17 +131,20 @@ t_pipe_list	*parser(char *line)
 int	main(int argc, char **argv, char **envp)
 {
 
-	
-	int	i = 0;
+
+
+//	printf("%s\n", getenv("COUCOUU"));
+	// getenv returns a null pointer when it didnt find the matching variable
+/* 	int	i = 0;
 	while (envp[i])
 	{
 		printf("%s\n", envp[i]);
 		i++;
-	}
+	} */
 	if (argc > 1)
 	{
 		printf("\n%s\n\n", argv[1]);
-		parser(argv[1]);
+//		parser(argv[1]);
 	}
 	return (0);
 }

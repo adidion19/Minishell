@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 14:36:04 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/04 18:13:14 by artmende         ###   ########.fr       */
+/*   Created: 2021/11/04 18:12:35 by artmende          #+#    #+#             */
+/*   Updated: 2021/11/04 18:15:19 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
-void	*ft_memset(void *ptr, int c, size_t size)
+void	*ft_calloc(size_t nmemb)
 {
-	while (ptr && size)
-	{
-		((char *)ptr)[size - 1] = c;
-		size--;
-	}
-	return (ptr);
+	void	*ret;
+
+	ret = malloc(sizeof(nmemb));
+	if (!ret)
+		return (NULL);
+	else
+		return(ft_memset(ret, 0, nmemb));
 }
