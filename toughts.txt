@@ -45,3 +45,49 @@ at the end the parser return an allocated struct array
 the array is null terminated
 
 make a function to free the allocated array. do not forget to free each string inside of struct
+
+export ARG=$(~/generate_random_string_of_number/a.out 100)
+echo $ARG
+
+
+
+
+
+
+ echo $ARG;  ./push_swap $ARG | wc -l
+
+
+parser takes a string (the line) and returns a null terminated array of struct
+
+
+
+start at the beginning of str.
+
+look only until the pipe
+
+first extract the command name.
+
+then look at the 
+
+
+a different function for each thing !
+
+find output (the last > , or the default next pipe)
+find input (the last < , or the default previoud pipe)
+populate the args array
+
+consider the env variables
+consider the "" and ''
+any quote type cancels the other type inside itself
+have a state variable for quote type.
+if var is 0 when we find a quote, -> +1 
+if var is not 0 when we find a quote -> -1
+if we find a quote and the var for the other type is not null, we don't change its state var
+
+still need to manage substitutions (env variables)
+
+
+
+
+
+
