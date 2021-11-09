@@ -6,11 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:18:56 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 14:54:40 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 15:02:57 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*ft_strrev(char *str)
 {

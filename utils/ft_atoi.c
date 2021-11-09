@@ -6,11 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:05:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 14:50:21 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 15:02:50 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	ft_isspace(char c)
 {
