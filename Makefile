@@ -6,7 +6,7 @@
 #    By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/09 14:41:13 by ybrutout         ###   ########.fr        #
+#    Updated: 2021/11/09 14:47:16 by ybrutout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRC =	minishell.c\
 		command/pwd.c\
 		ft_atoi.c\
 		ft_itoa.c\
+		utils/utils.c\
+		utils/utils_b.c\
+		error/error.c\
 
 OBJ = ${SRC:c=o}
 

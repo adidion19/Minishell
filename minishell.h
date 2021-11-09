@@ -6,7 +6,7 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 14:35:43 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/09 14:47:32 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <unistd.h>
 
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+int		ft_cd(char *path, char **pwd, char **oldpwd);
 
 /*
 **	UTILS (COMPLET)
@@ -35,6 +37,7 @@ char	*ft_strcpy_after(char *src, char *after);
 **	UTILS_B
 */
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(const char *src);
 
 /*
 **	ERROR
