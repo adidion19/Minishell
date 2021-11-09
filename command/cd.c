@@ -6,11 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:01:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 14:16:32 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 16:15:48 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 /*
 **	update du oldpwd
@@ -24,6 +24,7 @@ char	*ft_update_oldpwd(char *pwd, char *oldpwd_2)
 	oldpwd = ft_strdup(pwd);
 	if (!oldpwd)
 		exit(EXIT_FAILURE);
+	free(oldpwd_2);
 	return (oldpwd);
 }
 
@@ -39,6 +40,7 @@ char	*ft_update_pwd(char *path, char *pwd_2)
 	pwd = ft_strdup(path);
 	if (!pwd)
 		exit(EXIT_FAILURE);
+	free(pwd_2);
 	return (pwd);
 }
 

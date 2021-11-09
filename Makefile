@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/09 15:01:26 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/09 16:16:11 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,7 @@ RL_FLAGS    =   -L/usr/include  -lreadline
 SRC =	minishell.c\
 		command/env.c\
 		command/pwd.c\
-		ft_atoi.c\
-		ft_itoa.c\
+		command/cd.c\
 		utils/utils.c\
 		utils/utils_b.c\
 		error/error.c\

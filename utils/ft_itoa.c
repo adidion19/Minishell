@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:18:56 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 15:02:57 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 16:17:14 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ int	len_of_int(int n)
 	return (count);
 }
 
-unsigned int	a_value_of_itoa(unsigned int a, int n)
+unsigned int	a_value_of_itoa(int n)
 {
+	unsigned int	a;
+
 	if (n >= 0)
 		a = n;
 	else
@@ -76,7 +78,7 @@ char	*ft_itoa(int n)
 		return (0);
 	if (n < 0)
 		bool_ = 0;
-	a = a_value_of_itoa(a, n);
+	a = a_value_of_itoa(n);
 	while (a >= 10)
 	{
 		ans[i++] = a % 10 + 48;

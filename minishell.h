@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 14:59:57 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 16:17:36 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
-
-int				ft_pwd(int bool);
-int				ft_env(char **env);
-int				ft_atoi(const char *str);
-char			*ft_itoa(int n);
-int				ft_cd(char *path, char **pwd, char **oldpwd);
 
 /*
 **	FT_ATOI
@@ -41,7 +35,7 @@ int				ft_atoi(const char *str);
 
 char			*ft_strrev(char *str);
 int				len_of_int(int n);
-unsigned int	a_value_of_itoa(unsigned int a, int n);
+unsigned int	a_value_of_itoa(int n);
 char			*ft_itoa(int n);
 
 /*
@@ -80,5 +74,9 @@ int				ft_pwd(char **env);
 
 /* ENV */
 int				ft_env(char **env);
+
+/* CD */
+
+int				ft_cd(char *path, char **pwd, char **oldpwd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:00:02 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 15:00:13 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 16:08:33 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	ft_pwd(char **env)
 		{
 			pwd = ft_strcpy_after(env[i], "PWD=");
 			if (!pwd)
-				return (0);
+				return (1);
 			printf("%s\n", pwd);
 			free(pwd);
 			break ;
 		}
 	}
-	return (1);
+	return (0);
 }
