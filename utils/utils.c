@@ -6,7 +6,7 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/09 12:55:52 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/09 13:39:38 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,37 @@ char	*ft_strncpy(char *src, char *dst, int nb)
 		dst[i] = src[i];
 	dst[i] = '\0';
 	return (dst);
+}
+
+char	*ft_strcpy_after(char *src, char *after)
+{
+	size_t	len_af;
+	size_t	len_src;
+	size_t	i;
+	char	*dst;
+
+	if (!src || !after)
+		return (NULL);
+	len_af = ft_strlen(after);
+	len_src = ft_strlen(src) - len_af;
+	i = -1;
+	dst = malloc(sizeof (char) * (len_src + 1));
+	if (!dst)
+		return (NULL);
+	while (++i < len_src)
+		dst[i] = src[len_af + i];
+	dst[i] = '\0';
+	return (dst);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s1 || !s2 || n == 0)
+		return (0);
+	while (s1[i] == s2[i] && i < n - 1 && s1[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
