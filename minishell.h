@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/10/29 16:18:34 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 12:59:37 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,17 @@ int		ft_pwd(int bool);
 int		ft_env(char **env);
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+
+/*
+	UTILS
+*/
+size_t	len_lst(char **lst);
+size_t	ft_strlen(char *str);
+char	*ft_strncpy(char *src, char *dst, int nb);
+
+/*
+	ERROR
+*/
+char	**free_env(char **env, int nb);
 
 #endif
