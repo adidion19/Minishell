@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/09 14:11:09 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:00:37 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **	return '1' si tout a fonctionné aussi non ça retourne '0'
 */
 
-int		env_replace(char **new_env, char *type, char *replace)
+int	env_replace(char **new_env, char *type, char *replace)
 {
 	size_t	len_type;
 	size_t	len_replace;
@@ -110,25 +110,22 @@ char	**init_env(char **env)
 int		main(int argc, char **argv, char **env)
 {
 	char	**new_env;
-	char	*pwd;
-	int		i;
+	//char	*pwd;
+	//int		i;
 	int		len;
-	int		ret;
+	//int		ret;
 
 	if (argc == 1)
 	{
 		printf("argv == %s\n", argv[0]);
 		new_env = init_env(env);
-		i = -1;
-		while (new_env[++i])
-			printf("%s\n", new_env[i]);
-		pwd = env_find_the("LANG=", new_env);
+		//ft_env(new_env);
+		/*pwd = env_find_the("LANG=", new_env);
 		printf("pwd == %s\n", pwd);
 		ret = env_replace(new_env, "PWD=", "coucou");
-		i = -1;
-		while (new_env[++i])
-			printf("%s\n", new_env[i]);
+		ft_env(new_env);
 		printf("ret == %d\n", ret);
+		ft_pwd(new_env);
 		len = len_lst(new_env);
 		free_env(new_env, len + 1);
 	}
