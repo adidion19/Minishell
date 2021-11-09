@@ -6,7 +6,7 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 14:03:03 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/09 14:35:43 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-int		ft_pwd(int bool);
-int		ft_env(char **env);
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
 
@@ -49,5 +47,15 @@ char	**free_env(char **env, int nb);
 int		env_replace(char **new_env, char *type, char *replace);
 char	*env_find_the(char *search, char **src);
 char	**init_env(char **env);
+
+/*
+**-------------------------------------COMMAND---------------------------------
+*/
+
+/* PWD */
+int		ft_pwd(char **env);
+
+/* ENV */
+int		ft_env(char **env);
 
 #endif

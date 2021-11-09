@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
+#    By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/10/29 16:18:16 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/09 14:41:13 by ybrutout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ RPATH = /Users/$(USER)/.brew/opt/readline/
 RL_FLAGS    =   -L/usr/include  -lreadline
 
 SRC =	minishell.c\
-		env.c\
-		pwd.c\
+		command/env.c\
+		command/pwd.c\
 		ft_atoi.c\
 		ft_itoa.c\
 
