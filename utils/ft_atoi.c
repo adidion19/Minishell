@@ -6,13 +6,13 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:05:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/10/29 16:06:06 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 15:02:50 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static int	ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if (c == '\n' || c == ' ' || c == '\t'
 		|| c == '\v' || c == '\f' || c == '\r')
@@ -20,7 +20,15 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-static long	ft_strtol(const char *str)
+long	ft_return_of_strtol(int neg)
+{
+	if (neg > 0)
+		return (-1);
+	else
+		return (0);
+}
+
+long	ft_strtol(const char *str)
 {
 	unsigned long long	i;
 	long long			ans;
@@ -44,7 +52,7 @@ static long	ft_strtol(const char *str)
 		j++;
 	}
 	if (ans < 0 || j > 19)
-		return (ans = (neg > 0) ? -1 : 0);
+		return (ft_return_of_strtol(neg));
 	ans = ans * neg;
 	return ((long)ans);
 }

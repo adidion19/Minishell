@@ -6,13 +6,13 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:18:56 by adidion           #+#    #+#             */
-/*   Updated: 2021/10/29 16:19:26 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/09 16:17:14 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static char	*ft_strrev(char *str)
+char	*ft_strrev(char *str)
 {
 	int		i;
 	int		len;
@@ -34,9 +34,9 @@ static char	*ft_strrev(char *str)
 	return (str);
 }
 
-static int	len_of_int(int n)
+int	len_of_int(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n < 0)
@@ -53,6 +53,17 @@ static int	len_of_int(int n)
 	return (count);
 }
 
+unsigned int	a_value_of_itoa(int n)
+{
+	unsigned int	a;
+
+	if (n >= 0)
+		a = n;
+	else
+		a = -n;
+	return (a);
+}
+
 char	*ft_itoa(int n)
 {
 	char			*ans;
@@ -62,11 +73,12 @@ char	*ft_itoa(int n)
 
 	bool_ = 1;
 	i = 0;
-	if (!(ans = (char*)malloc(sizeof(char) * (len_of_int(n) + 1))))
+	ans = (char *)malloc(sizeof(char) * (len_of_int(n) + 1));
+	if (ans)
 		return (0);
 	if (n < 0)
 		bool_ = 0;
-	a = (n >= 0) ? n : -n;
+	a = a_value_of_itoa(n);
 	while (a >= 10)
 	{
 		ans[i++] = a % 10 + 48;
