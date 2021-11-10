@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/09 15:00:37 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/10 14:11:42 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	**init_env(char **env)
 		if (len < 0)
 			return (free_env(new_env, i + 1));
 		new_env[i] = malloc(sizeof(char) * (len + 1));
-		if (!new_env)
+		if (!new_env[i])
 			return (free_env(new_env, i + 1));
 		new_env[i] = ft_strncpy(env[i], new_env[i], len);
 		if (!new_env[i])
@@ -105,29 +105,3 @@ char	**init_env(char **env)
 	}
 	return (new_env);
 }
-
-/*
-int		main(int argc, char **argv, char **env)
-{
-	char	**new_env;
-	//char	*pwd;
-	//int		i;
-	int		len;
-	//int		ret;
-
-	if (argc == 1)
-	{
-		printf("argv == %s\n", argv[0]);
-		new_env = init_env(env);
-		//ft_env(new_env);
-		/*pwd = env_find_the("LANG=", new_env);
-		printf("pwd == %s\n", pwd);
-		ret = env_replace(new_env, "PWD=", "coucou");
-		ft_env(new_env);
-		printf("ret == %d\n", ret);
-		ft_pwd(new_env);
-		len = len_lst(new_env);
-		free_env(new_env, len + 1);
-	}
-	return (0);
-}*/

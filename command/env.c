@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:48:13 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 17:18:11 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/10 15:36:57 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,28 @@
 /*
 **	imprime le tableau d'environnement en entier.
 **	/!\ ne surtout pas envoyer env ici si il est suivi d'arguments (que ce soit
-		fichier valides ou non)
+**		fichier valides ou non)
 */
 
-int	ft_env(char **env)
+int	ft_env(t_lst_cmd *cmd, char **env)
 {
 	int		i;
+	int		len;
 
 	if (!env)
 		return (1);
-	i = -1;
-	while (env[++i])
-		printf("%s\n", env[i]);
+	if (cmd->arg[1])
+	{
+		write(1, "too much arguments for this command\n", 36);
+		return (1);
+	}
+	i = 0;
+	len = len_lst(env);
+	while (i < len)
+	{
+		write(1, env[i], ft_strlen(env[i]));
+		write(1, "\n", 1);
+		i++;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/10 10:51:38 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/10 13:18:39 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
+
+typedef struct	s_lst_cmd
+{
+	char				*command;
+	char				**arg;
+	char				*inf;
+	char				*outf;
+	int					infd;
+	int					outfd;
+	struct s_lst_cmd	*next;
+} t_lst_cmd;
+
+typedef struct s_minishell
+{
+	t_lst_cmd	*start;
+	char		**env;
+}	t_minishell;
+
 
 /*
 **	FT_ATOI
@@ -73,7 +91,7 @@ char			**init_env(char **env);
 int				ft_pwd(char **env);
 
 /* ENV */
-int				ft_env(char **env);
+int				ft_env(t_lst_cmd *cmd, char **env);
 
 /* CD */
 
