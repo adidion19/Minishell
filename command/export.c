@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/12 10:42:57 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/12 11:50:43 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	how_much_equal(char **arg)
 {
-	int count;
+	int	count;
 	int	i;
 	int	j;
 
@@ -23,7 +23,7 @@ int	how_much_equal(char **arg)
 	while (arg[++i])
 	{
 		j = -1;
-		while(arg[i][++j] && arg[i][j] != '=')
+		while (arg[i][++j] && arg[i][j] != '=')
 		{
 			if (arg[i][j] == '=')
 			{
