@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/09 16:16:11 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/12 11:28:34 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,16 @@ SRC =	minishell.c\
 		command/env.c\
 		command/pwd.c\
 		command/cd.c\
+		command/echo.c\
+		command/exit.c\
+		command/other_command.c\
 		utils/utils.c\
 		utils/utils_b.c\
 		error/error.c\
 		utils/ft_atoi.c\
 		utils/ft_itoa.c\
+		utils/ft_split.c\
+		init_env.c
 
 OBJ = ${SRC:c=o}
 

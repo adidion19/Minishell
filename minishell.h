@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/10 13:18:39 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:30:34 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <readline/history.h>
 # include <unistd.h>
 
-typedef struct	s_lst_cmd
+typedef struct s_lst_cmd
 {
 	char				*command;
 	char				**arg;
@@ -29,14 +29,13 @@ typedef struct	s_lst_cmd
 	int					infd;
 	int					outfd;
 	struct s_lst_cmd	*next;
-} t_lst_cmd;
+}	t_lst_cmd;
 
 typedef struct s_minishell
 {
 	t_lst_cmd	*start;
 	char		**env;
 }	t_minishell;
-
 
 /*
 **	FT_ATOI
@@ -70,6 +69,13 @@ char			*ft_strcpy_after(char *src, char *after);
 */
 char			*ft_strjoin(char *s1, char *s2);
 char			*ft_strdup(const char *src);
+char			*ft_strjoin_2(char *s1, char *s2, int k);
+
+/*
+**	FT_SPLIT
+*/
+
+char			**ft_split(char const *s, char c);
 
 /*
 **	ERROR
@@ -96,5 +102,13 @@ int				ft_env(t_lst_cmd *cmd, char **env);
 /* CD */
 
 int				ft_cd(char *path, char **pwd, char **oldpwd);
+
+/* EXIT */
+
+int				ft_exit(char **arg);
+
+/* ECHO */
+
+int				ft_echo(char **arg, char **env, int bool);
 
 #endif

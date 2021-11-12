@@ -6,11 +6,48 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:53:57 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/09 14:28:41 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/12 11:29:58 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	ft_freee(int k, char *s1, char *s2)
+{
+	if (k == 3 || k == 1)
+		free(s1);
+	if (k == 3 || k == 2)
+		free(s2);
+}
+
+char	*ft_strjoin_2(char *s1, char *s2, int k)
+{
+	int		i;
+	int		j;
+	int		len1;
+	int		len2;
+	char	*str;
+
+	i = -1;
+	if (!s1)
+		return (ft_strdup((char *)s2));
+	if (!s2)
+		return (ft_strdup((char *)s1));
+	len1 = ft_strlen((char *)s1);
+	len2 = ft_strlen((char *)s2);
+	str = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!str)
+		return (0);
+	while (s1[++i])
+		str[i] = s1[i];
+	j = i;
+	i = -1;
+	while (s2[++i])
+		str[j++] = s2[i];
+	str[j] = '\0';
+	ft_freee(k, s1, s2);
+	return (str);
+}
 
 char	*ft_strdup(const char *src)
 {

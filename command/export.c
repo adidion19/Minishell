@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/10 16:15:33 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/12 10:42:57 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 	i = -1;
 	while
 }
+
 /*faire en sort que ca boucle pour rajouter les valeurs a ajouter a l'environnement */
 
 int	main(int argc, char **argv, char **env)
@@ -78,4 +79,3 @@ int	main(int argc, char **argv, char **env)
 	}
 	return (0);
 }
-
