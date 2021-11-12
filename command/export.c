@@ -6,11 +6,60 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/12 17:07:37 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/12 17:36:53 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+char	*my_env_strncpy(char *src, char *dst, int len)
+{
+	int	i;
+	int	j;
+
+	if (!src || !dst)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < len && src[j])
+	{
+		if (src[j] == "'" || src[j] == '"')
+		{
+			j++;
+			continue;
+		}
+		dst[i] = src[j];
+		i++;
+		j++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+size_t	env_strlen(char *str)
+{
+	size_t	count;
+	int		i;
+
+	count = 0;
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '"' || str[i] == "'")
+			continue;
+		count++;
+	}
+	return (count);
+}
+
+/*
+fonction strlen_env terminer mainteannt la mettre a la place des autres strlen
+vérifier que chaque endoirt j'ai besoin de changer " ou '
+a faire :
+	-	gestion de la mémoire quand on change d'env
+	-	il ne peut pas avoir de caractere speciaux dans le nom de la valeur
+	-	faire la gestion des différentes erreures.
+*/
 
 int	check_the_value(char *str, char **env)
 {
@@ -163,11 +212,11 @@ int	main(int argc, char **argv, char **env)
 	{
 		printf("%s\n\n",argv[0]);
 		cmd = malloc(sizeof(t_lst_cmd) * 1);
-		cmd->arg = malloc(sizeof (char *) * 5); //si je mets 5 arguments (donc malloc de 6) ca segfault
+		cmd->arg = malloc(sizeof (char *) * 3); //si je mets 5 arguments (donc malloc de 6) ca segfault
 		cmd->arg[0] = "export";
-		cmd->arg[1] = "ZSH=coucou";
-		cmd->arg[2] = "A=a";
-		cmd->arg[3] = " A=holla";
+		cmd->arg[1] = "A=''";
+		cmd->arg[2] = NULL;
+		cmd->arg[3] = NULL;
 		cmd->arg[4] = NULL;
 		cmd->command = "export";
 		cmd->inf = NULL;

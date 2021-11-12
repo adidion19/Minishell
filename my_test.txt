@@ -13,3 +13,12 @@ export C=c B=b C=l
 export " C=c"
 export "D C=c"
 export "D C=c" B=b
+
+---------------------------a gérer---------------------------
+export A=''
+export 'A'=bonjour
+export ' A'=bonjour
+export "A=a"=C
+export "A"=a
+export "A"=a
+
