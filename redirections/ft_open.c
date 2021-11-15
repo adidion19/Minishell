@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 16:30:03 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/15 17:41:42 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,49 @@ void	ft_putstr_fd(char *s, int fd)
 }
 
 /*
+**	a envoyer ici si la redirection est <
+**	/!\ TRES IMPORTANT : apres avoir appele open_inf
+	, il faut appeler close_inf!!
+**	return : le fd si open reussit, sinon -1 -> return a verif en appel
+**	! a tester quand on aura le parsing fait pour cette partie
+*/
+
+int	ft_open_inf(t_lst_cmd cmd)
+{
+	int	fd;
+	int	error;
+
+	errno = 0;
+	fd = open(cmd.inf, O_RDONLY);
+	error = errno;
+	if (fd == -1)
+	{
+		if (error == EISDIR)
+			printf("minishell: %s: Is a directory\n", cmd.inf);
+		if (error == ENAMETOOLONG)
+			printf("minishell: %s: File name too long\n", cmd.inf);
+		else
+			printf("minishell: %s: Permission denied\n", cmd.inf);
+		return (-1);
+	}
+	dup2(fd, 0);
+	return (fd);
+}
+
+int	ft_close_inf(int fd)
+{
+	dup2(0, fd);
+	if (close(fd) == -1)
+		return (-1);
+	return (0);
+}
+
+/*
 **	si bool == 1 : redirection >
 **	si bool == 0 : redirection >>
 ** /!\ TRES IMPORTANT : apres avoir appele open_mode
 	, il faut appeler close mode !!
-**	return : le fd si open ressuit, sinon -1 -> return a verif en appel
+**	return : le fd si open reussit, sinon -1 -> return a verif en appel
 */
 
 int	ft_open_mode(t_lst_cmd cmd, int bool)
