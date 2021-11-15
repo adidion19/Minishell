@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 15:31:34 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/15 16:29:50 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/history.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
 
 typedef struct s_lst_cmd
 {

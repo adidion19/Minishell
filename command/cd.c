@@ -6,12 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:01:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/12 12:09:17 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/15 16:29:48 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <errno.h>
 
 /*
 **	update du oldpwd

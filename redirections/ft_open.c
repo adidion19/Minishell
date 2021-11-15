@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 15:24:19 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/15 16:30:03 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,22 @@ void	ft_putstr_fd(char *s, int fd)
 int	ft_open_mode(t_lst_cmd cmd, int bool)
 {
 	int	fd;
+	int	error;
 
+	errno = 0;
 	if (bool == 1)
-		fd = open(cmd.outf, O_RDWR | O_TRUNC | O_CREAT, 00777);
+		fd = open(cmd.outf, O_WRONLY | O_TRUNC);
 	if (bool == 0)
-		fd = open(cmd.outf, O_RDWR | O_APPEND | O_CREAT, 00777);
+		fd = open(cmd.outf, O_WRONLY | O_APPEND);
+	error = errno;
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error\nFile doesn't exist, or you don't have the ", 0);
-		ft_putstr_fd("right accesses to it\n", 0);
+		if (error == EISDIR)
+			printf("minishell: %s: Is a directory\n", cmd.outf);
+		if (error == ENAMETOOLONG)
+			printf("minishell: %s: File name too long\n", cmd.outf);
+		else
+			printf("minishell: %s: Permission denied\n", cmd.outf);
 		return (-1);
 	}
 	dup2(fd, 1);
