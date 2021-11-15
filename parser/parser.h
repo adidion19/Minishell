@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/04 18:15:23 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:44:26 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ typedef struct s_quote_state
 	int	double_quote;
 	int	global_quote;
 }	t_quote_state;
-
-
-void	*ft_memset(void *ptr, int c, size_t size);
-void	*ft_calloc(size_t nmemb);
 
 /* typedef struct s_instruction
 {

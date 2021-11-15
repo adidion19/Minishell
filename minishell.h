@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/12 11:30:34 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/15 11:53:03 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ char			*ft_strcpy_after(char *src, char *after);
 char			*ft_strjoin(char *s1, char *s2);
 char			*ft_strdup(const char *src);
 char			*ft_strjoin_2(char *s1, char *s2, int k);
+
+/*
+**	UTILS_C
+*/
+void	*ft_calloc(size_t nmemb);
+void	*ft_memset(void *ptr, int c, size_t size);
 
 /*
 **	FT_SPLIT
