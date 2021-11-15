@@ -6,13 +6,13 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/12 17:36:53 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:02:38 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*my_env_strncpy(char *src, char *dst, int len)
+char	*my_env_strncpy(char *src, char *dst, int len, int start)
 {
 	int	i;
 	int	j;
@@ -21,14 +21,14 @@ char	*my_env_strncpy(char *src, char *dst, int len)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i < len && src[j])
+	while (i < len && src[start + j])
 	{
-		if (src[j] == "'" || src[j] == '"')
+		if (src[start + j] == '\'' || src[start + j] == '"')
 		{
 			j++;
 			continue;
 		}
-		dst[i] = src[j];
+		dst[i] = src[start + j];
 		i++;
 		j++;
 	}
@@ -36,16 +36,16 @@ char	*my_env_strncpy(char *src, char *dst, int len)
 	return (dst);
 }
 
-size_t	env_strlen(char *str)
+size_t	env_strlen(char *str, int i)
 {
 	size_t	count;
-	int		i;
+	//int		i;
 
 	count = 0;
 	i = -1;
 	while (str[++i])
 	{
-		if (str[i] == '"' || str[i] == "'")
+		if (str[i] == '"' || str[i] == '\'')
 			continue;
 		count++;
 	}
@@ -61,12 +61,33 @@ a faire :
 	-	faire la gestion des différentes erreures.
 */
 
-int	check_the_value(char *str, char **env)
+/*
+	La fonction retourne
+		-	1 si c'est une valeur a ajouter
+		-	-1 si il y a une erreur
+		-	0 si il n'y a pas d'egal
+		-	la longueur du nom de la variable a remplacer
+*/
+/*char	*check_the_variable(char *str)
+{
+	int		i;
+	char	*variable;
+
+	i = -1;
+	variable = NULL;
+	while(str[++i])
+	{
+		if (str[i] == ' ')
+			return(variable);
+		if ()
+	}
+}*/
+
+int	check_the_value(char *str, char **env, char **tab)
 {
 	int 	i;
 	int		j;
 	int		equal;
-	char	*tmp;
 
 	i = -1;
 	equal = -1;
@@ -80,27 +101,26 @@ int	check_the_value(char *str, char **env)
 		if (str[i] == ' ')
 			return (-1);
 	}
-	if (str[i] == '=' && (i == 0 || str[i - 1] == ' '))
+	if (str[i] == '=' && i == 0)
 		return (-1);
 	if (equal == -1)
 		return (0);
-	tmp = malloc(sizeof(char) * (i + 2));
-	tmp[i + 1] = '\0';
-	tmp = ft_strncpy(str, tmp, i + 2);
+	tab[0] = malloc(sizeof(char) * (i + 2));
+	tab[0] = my_env_strncpy(str, tab[0], i+ 1, 0);
+	tab[1] = malloc(sizeof(char) * env_strlen(str, i + 1));
+	tab[1] = my_env_strncpy(str, tab[1], env_strlen(str, i + 1), i + 1);
 	j = -1;
 	while (env[++j])
 	{
-		if (!ft_strncmp(tmp, env[j], i + 1))
+		if (!ft_strncmp(tab[0], env[j], i + 1))
 		{
-			free(tmp);
 			return (i + 1);
 		}
 	}
-	free(tmp);
 	return (1);
 }
 
-int	env_change(char *str, char ***env, int len_value)
+int	env_change(char *str, char *str2, char ***env, int len_value)
 {
 	char 	*nw_str;
 	char	*old_str;
@@ -109,11 +129,10 @@ int	env_change(char *str, char ***env, int len_value)
 	int		i;
 
 	len = ft_strlen(str);
-	nw_str = malloc(sizeof(char) * (len + 1));
+	nw_str = ft_strjoin(str, str2);
 	if (!nw_str)
 		return (1);
 	tmp = *env;
-	nw_str = ft_strncpy(str, nw_str, len);
 	i = -1;
 	while(tmp[++i])
 	{
@@ -128,7 +147,7 @@ int	env_change(char *str, char ***env, int len_value)
 	return (0);
 }
 
-int	env_add(char *str, char ***env)
+int	env_add(char *str, char *str2, char ***env)
 {
 	size_t	lenenv;
 	char	**new_env;
@@ -149,10 +168,9 @@ int	env_add(char *str, char ***env)
 			return (1);
 		ft_strncpy(tmp[i], new_env[i], ft_strlen(tmp[i]));
 	}
-	new_env[i] = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	new_env[i] = ft_strjoin(str, str2);
 	if (!new_env[i])
 		return (1);
-	ft_strncpy(str, new_env[i], ft_strlen(str));
 	*env = new_env;
 	return (0);
 }
@@ -162,8 +180,8 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 	int		i;
 	int		ret;
 	int		status;
+	char	**value;
 	char	**old_env;
-	int		j;//test
 
 	i = 0;
 	if (!cmd->arg[1])
@@ -172,9 +190,11 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 		return (0);
 	}
 	status = 0;
+	value = malloc(sizeof(char*) * 3);
+	value[2] = NULL;
 	while (cmd->arg[++i])
 	{
-		ret = check_the_value(cmd->arg[i], *env);
+		ret = check_the_value(cmd->arg[i], *env, value);
 		if (ret <= 0)
 		{
 			if (ret < 0)
@@ -184,18 +204,18 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 		old_env = *env;
 		if (ret > 1)
 		{
-			if (env_change(cmd->arg[i], env, ret))
+			if (env_change(value[0], value[1], env, ret))
 				return (1);
 		}
 		if (ret == 1)
 		{
-			if (env_add(cmd->arg[i], env))
-			{
+			if (env_add(value[0], value[1], env))
 				return (1);
-			}
 		}
-		j = -1;
+		free(value[0]);
+		free(value[1]);
 	}
+	free(value);
 	return (status);
 }
 
@@ -207,6 +227,7 @@ int	main(int argc, char **argv, char **env)
 	char		**nw_env;
 	int			ret;
 	int			i;
+	int			test;//test
 
 	if (argc > 0)
 	{
@@ -219,15 +240,14 @@ int	main(int argc, char **argv, char **env)
 		cmd->arg[3] = NULL;
 		cmd->arg[4] = NULL;
 		cmd->command = "export";
-		cmd->inf = NULL;
 		cmd->infd = 0;
-		cmd->outf = NULL;
 		cmd->outfd = 0;
 		cmd->next = NULL;
 		nw_env = init_env(env);
 		ret = ft_export(cmd, &nw_env);
 		i = -1;
-		while (nw_env[++i])
+		test = len_lst(env);
+		while (++i <= test)
 			printf("%s\n", nw_env[i]);
 		printf("ret == %d\n", ret);
 	}
