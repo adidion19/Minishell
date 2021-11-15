@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/04 18:38:20 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:56:36 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ char	*copy_next_word(char *from, char **adrs_of_original_ptr)
 	// then update the adrs_of_original_ptr so that the main loop can continue
 }
 
-void	extract_input(t_pipe_list *node, char *from, char *to)
+void	extract_input(t_lst_cmd *node, char *from, char *to)
 {
+	// for now it will remain 0
+/* 
 	t_quote_state	quote;
 
 //	node->input_fd = DEFAULT_VALUE; // input_str can remain NULL
@@ -59,29 +61,40 @@ void	extract_input(t_pipe_list *node, char *from, char *to)
 	{
 		update_quote_state(*from, &quote);
 		if (*from == '<' && quote.global_quote == 0)
-			node->input_str = copy_next_word(from + 1, &from);
+			node->inf = copy_next_word(from + 1, &from);
 		from++;
 	}
+ */
+
 }
 
-void	extract_output(t_pipe_list *node, char *from, char *to)
+void	extract_output(t_lst_cmd *node, char *from, char *to)
 {
 
 }
 
-void	extract_string_array(t_pipe_list *node, char *from, char *to)
+void	extract_string_array(t_lst_cmd *node, char *from, char *to)
 {
-	
+	// syntax is : CMD + ARG1 + ARG2 + ... + ARGN
+	// at this point there are no redirection left in the line we read
+	// 1. browse the string and add a new node in a word linked list for each new word
+	// 2. Callocate the array for enough words
+	// 3. copy all words inside of the array
+	// 4. free the word linked list, but not the words themselves
+
+	t_quote_state	quote;
+
+	ft_memset(&quote, 0, sizeof(quote));
 }
 
-t_pipe_list	*add_pipe_section(t_pipe_list *list, char *from, char *to)
+t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *from, char *to)
 {
-	t_pipe_list	*ret;
-	t_pipe_list	*temp;
+	t_lst_cmd	*ret;
+	t_lst_cmd	*temp;
 
-	ret = ft_calloc(sizeof(t_pipe_list));
+	ret = ft_calloc(sizeof(t_lst_cmd));
 	if (!ret)
-		return (NULL);
+		return (list); // in case allocation fail, we still have to return previous nodes to be able to free them
 	extract_input(ret, from, to);
 	extract_output(ret, from, to);
 	extract_string_array(ret, from, to);
@@ -96,9 +109,9 @@ t_pipe_list	*add_pipe_section(t_pipe_list *list, char *from, char *to)
 	return (list);
 }
 
-t_pipe_list	*parser(char *line)
+t_lst_cmd	*parser(char *line)
 {
-	t_pipe_list		*ret;
+	t_lst_cmd		*ret;
 	t_quote_state	quote;
 	char			*cursor;
 
