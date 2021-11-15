@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/12 11:30:34 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/15 11:23:17 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@
 typedef struct s_lst_cmd
 {
 	char				*command;
-	char				**arg;
-	char				*inf;
-	char				*outf;
+	char				**arg; //arg[0] = nom de la commande
 	int					infd;
 	int					outfd;
 	struct s_lst_cmd	*next;

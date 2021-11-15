@@ -21,4 +21,5 @@ export ' A'=bonjour
 export "A=a"=C
 export "A"=a
 export "A"=a
+export coucou | echo $?
 
