@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 15:28:22 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/15 15:31:34 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ typedef struct s_minishell
 	t_lst_cmd	*start;
 	char		**env;
 }	t_minishell;
-
-typedef struct s_quote_state
-{
-	int	simple_quote;
-	int	double_quote;
-	int	global_quote;
-}	t_quote_state;
 
 /*
 **	FT_ATOI
