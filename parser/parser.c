@@ -6,36 +6,12 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/15 14:56:36 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:58:25 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
-
-void	update_quote_state(char c, t_quote_state *state)
-{
-	if (c == '\'')
-	{
-		if (state->global_quote == 0)
-		{
-			state->simple_quote = 1;
-			state->global_quote = 1;
-		}
-		else if (state->simple_quote != 0)
-			ft_memset(state, 0, sizeof(t_quote_state));
-	}
-	if (c == '"')
-	{
-		if (state->global_quote == 0)
-		{
-			state->double_quote = 1;
-			state->global_quote = 1;
-		}
-		else if (state->double_quote != 0)
-			ft_memset(state, 0, sizeof(t_quote_state));
-	}
-}
 
 char	*copy_next_word(char *from, char **adrs_of_original_ptr)
 {
@@ -72,6 +48,21 @@ void	extract_output(t_lst_cmd *node, char *from, char *to)
 {
 
 }
+char	*get_end_of_word(char *from, char *to)
+{
+	t_quote_state	quote;
+
+	ft_memset(&quote, 0, sizeof(quote));
+	// find the end of the word (can be a space, or can be "to")
+	while (from && to && from < to)
+	{
+		update_quote_state(*from, &quote);
+		if (quote.global_quote == 0 && ft_isspace(*from) == 1)
+			break ;
+		from++;
+	}
+	return (from);
+}
 
 void	extract_string_array(t_lst_cmd *node, char *from, char *to)
 {
@@ -82,9 +73,29 @@ void	extract_string_array(t_lst_cmd *node, char *from, char *to)
 	// 3. copy all words inside of the array
 	// 4. free the word linked list, but not the words themselves
 
-	t_quote_state	quote;
+	char			*end_of_word;
+	t_words_list	*words_list;
 
-	ft_memset(&quote, 0, sizeof(quote));
+	words_list = 0;
+	while (from && to && from < to)
+	{
+		// first pass all space that would come before the word
+		while (from < to && ft_isspace(*from))
+			from++;
+		end_of_word = get_end_of_word(from, to);
+		words_list = add_word_to_list(words_list, from, end_of_word);
+		from = end_of_word;
+	}
+	// at this point the linked list exist and contains all the words.
+
+	// we calloc for lstsize + 1 strings, and we copy all string in the array in order
+	node->arg = ft_calloc(sizeof(char *) * (1 + ft_lstsize_words(words_list)));
+	if (!node->arg)
+		return ((void)(free_word_list(words_list, 1))); // if we can't allocate the array, we free the whole list including the words
+	copy_args_from_word_list(node->arg, words_list);
+
+	// free the linked list
+	free_word_list(words_list, 0);
 }
 
 t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *from, char *to)
@@ -98,7 +109,8 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *from, char *to)
 	extract_input(ret, from, to);
 	extract_output(ret, from, to);
 	extract_string_array(ret, from, to);
-	ret->next = 0;
+	ret->next = 0; // no need, it's already 0 by default
+	// what if one extract fails ?
 	if (!list)
 		return (ret);
 	temp = list;
