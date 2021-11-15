@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 14:25:51 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:28:22 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 typedef struct s_lst_cmd
 {
@@ -81,8 +82,8 @@ char			*ft_strjoin_2(char *s1, char *s2, int k);
 /*
 **	UTILS_C
 */
-void	*ft_calloc(size_t nmemb);
-void	*ft_memset(void *ptr, int c, size_t size);
+void			*ft_calloc(size_t nmemb);
+void			*ft_memset(void *ptr, int c, size_t size);
 
 /*
 **	FT_SPLIT
@@ -123,5 +124,15 @@ int				ft_exit(char **arg);
 /* ECHO */
 
 int				ft_echo(char **arg, char **env, int bool);
+
+/*
+** ------------------------------------REDIRECTION-----------------------------
+*/
+
+/* FT_OPEN */
+
+int				ft_open_mode(t_lst_cmd cmd, int bool);
+int				ft_close_mode(int fd);
+void			ft_putstr_fd(char *s, int fd);
 
 #endif

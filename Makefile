@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/12 11:28:34 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/15 15:28:57 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC =	minishell.c\
 		utils/ft_atoi.c\
 		utils/ft_itoa.c\
 		utils/ft_split.c\
-		init_env.c
+		init_env.c\
+		redirections/ft_open.c\
 
 OBJ = ${SRC:c=o}
 
