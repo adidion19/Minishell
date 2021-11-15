@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/04 18:38:20 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/15 14:25:30 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*copy_next_word(char *from, char **adrs_of_original_ptr)
 	// then update the adrs_of_original_ptr so that the main loop can continue
 }
 
-void	extract_input(t_pipe_list *node, char *from, char *to)
+void	extract_input(t_lst_cmd *node, char *from, char *to)
 {
 	t_quote_state	quote;
 
@@ -59,27 +59,27 @@ void	extract_input(t_pipe_list *node, char *from, char *to)
 	{
 		update_quote_state(*from, &quote);
 		if (*from == '<' && quote.global_quote == 0)
-			node->input_str = copy_next_word(from + 1, &from);
+			node->inf = copy_next_word(from + 1, &from);
 		from++;
 	}
 }
 
-void	extract_output(t_pipe_list *node, char *from, char *to)
+void	extract_output(t_lst_cmd *node, char *from, char *to)
 {
 
 }
 
-void	extract_string_array(t_pipe_list *node, char *from, char *to)
+void	extract_string_array(t_lst_cmd *node, char *from, char *to)
 {
 	
 }
 
-t_pipe_list	*add_pipe_section(t_pipe_list *list, char *from, char *to)
+t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *from, char *to)
 {
-	t_pipe_list	*ret;
-	t_pipe_list	*temp;
+	t_lst_cmd	*ret;
+	t_lst_cmd	*temp;
 
-	ret = ft_calloc(sizeof(t_pipe_list));
+	ret = ft_calloc(sizeof(t_lst_cmd));
 	if (!ret)
 		return (NULL);
 	extract_input(ret, from, to);
@@ -96,9 +96,9 @@ t_pipe_list	*add_pipe_section(t_pipe_list *list, char *from, char *to)
 	return (list);
 }
 
-t_pipe_list	*parser(char *line)
+t_lst_cmd	*parser(char *line)
 {
-	t_pipe_list		*ret;
+	t_lst_cmd		*ret;
 	t_quote_state	quote;
 	char			*cursor;
 
