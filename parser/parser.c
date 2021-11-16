@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/15 16:58:25 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:54:08 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*copy_next_word(char *from, char **adrs_of_original_ptr)
 	// then update the adrs_of_original_ptr so that the main loop can continue
 }
 
-void	extract_input(t_lst_cmd *node, char *from, char *to)
+void	extract_input(t_lst_cmd *node, char *str)
 {
 	// for now it will remain 0
 /* 
@@ -44,61 +44,15 @@ void	extract_input(t_lst_cmd *node, char *from, char *to)
 
 }
 
-void	extract_output(t_lst_cmd *node, char *from, char *to)
+void	extract_output(t_lst_cmd *node, char *str)
 {
 
 }
-char	*get_end_of_word(char *from, char *to)
-{
-	t_quote_state	quote;
 
-	ft_memset(&quote, 0, sizeof(quote));
-	// find the end of the word (can be a space, or can be "to")
-	while (from && to && from < to)
-	{
-		update_quote_state(*from, &quote);
-		if (quote.global_quote == 0 && ft_isspace(*from) == 1)
-			break ;
-		from++;
-	}
-	return (from);
-}
 
-void	extract_string_array(t_lst_cmd *node, char *from, char *to)
-{
-	// syntax is : CMD + ARG1 + ARG2 + ... + ARGN
-	// at this point there are no redirection left in the line we read
-	// 1. browse the string and add a new node in a word linked list for each new word
-	// 2. Callocate the array for enough words
-	// 3. copy all words inside of the array
-	// 4. free the word linked list, but not the words themselves
 
-	char			*end_of_word;
-	t_words_list	*words_list;
 
-	words_list = 0;
-	while (from && to && from < to)
-	{
-		// first pass all space that would come before the word
-		while (from < to && ft_isspace(*from))
-			from++;
-		end_of_word = get_end_of_word(from, to);
-		words_list = add_word_to_list(words_list, from, end_of_word);
-		from = end_of_word;
-	}
-	// at this point the linked list exist and contains all the words.
-
-	// we calloc for lstsize + 1 strings, and we copy all string in the array in order
-	node->arg = ft_calloc(sizeof(char *) * (1 + ft_lstsize_words(words_list)));
-	if (!node->arg)
-		return ((void)(free_word_list(words_list, 1))); // if we can't allocate the array, we free the whole list including the words
-	copy_args_from_word_list(node->arg, words_list);
-
-	// free the linked list
-	free_word_list(words_list, 0);
-}
-
-t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *from, char *to)
+t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 {
 	t_lst_cmd	*ret;
 	t_lst_cmd	*temp;
@@ -106,11 +60,12 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *from, char *to)
 	ret = ft_calloc(sizeof(t_lst_cmd));
 	if (!ret)
 		return (list); // in case allocation fail, we still have to return previous nodes to be able to free them
-	extract_input(ret, from, to);
-	extract_output(ret, from, to);
-	extract_string_array(ret, from, to);
+	extract_input(ret, str); // can have substitution in 3 cases
+	extract_output(ret, str);
+	extract_cmd_array(ret, str);
 	ret->next = 0; // no need, it's already 0 by default
 	// what if one extract fails ?
+	free(str);
 	if (!list)
 		return (ret);
 	temp = list;
@@ -119,6 +74,70 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *from, char *to)
 	// temp points now to the last element of the list
 	temp->next = ret;
 	return (list);
+}
+
+/* 
+typedef struct s_lst_cmd
+{
+	char				*command;
+	char				**arg; //arg[0] = nom de la commande
+	char				*inf;
+	char				*outf;
+	int					infd;
+	int					outfd;
+	struct s_lst_cmd	*next;
+}	t_lst_cmd;
+ */
+
+void	free_str_array(char **array)
+{
+	int	i;
+
+	if (!array)
+		return ;
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		array[i] = 0;
+		i++;
+	}
+	free(array);
+}
+
+t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
+{
+	t_lst_cmd	*temp;
+
+	while (list)
+	{
+		free_str_array(list->command);
+		free(list->command);
+		free(list->inf);
+		free(list->outf);
+		temp = list->next;
+		free(list);
+		list = temp;
+	}
+	return (NULL);
+}
+
+char	*duplicate_part_of_str(char *from, char *to)
+{
+	int		i;
+	char	*ret;
+
+	ret = ft_calloc(sizeof(char) * ((to - from) + 1));
+	if (!ret)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (from <= to)
+	{
+		ret[i] = *from;
+		i++;
+		from++;
+	}
+	return (ret);
 }
 
 t_lst_cmd	*parser(char *line)
@@ -145,7 +164,14 @@ t_lst_cmd	*parser(char *line)
 			cursor++;
 		}
 		// here cursor points to the end of the section. can be a pipe or the end of the line
-		ret = add_pipe_section(ret, line, cursor);
+		// verify that cursor and line are not the same.
+		// if not the same, duplicate that section and call add_pipe with duplicated string
+		// do't forget to free it afterwards
+		if (cursor == line)
+			return (free_lst_cmd(ret)); // need to free the linked list
+		
+		ret = add_pipe_section(ret, duplicate_part_of_str(line, cursor));
+
 		if (*cursor) // if cursor is on a pipe symbol, we go to the next char for the next loop, otherwise we stay at 0 and we exit the loop
 			cursor++;
 		line = cursor;

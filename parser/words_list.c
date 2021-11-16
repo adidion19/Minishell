@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/15 16:56:26 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/16 14:24:04 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	copy_args_from_word_list(char **array, t_words_list *list)
 	i = 0;
 	while (list)
 	{
+		// substitute word
 		array[i] = list->word;
 		i++;
 		list = list->next;

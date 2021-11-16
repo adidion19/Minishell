@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/15 16:56:40 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:52:36 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ int				ft_lstsize_words(t_words_list *lst);
 t_words_list	*add_word_to_list(t_words_list *lst, char *from, char *to);
 void			copy_args_from_word_list(char **array, t_words_list *list);
 void			free_word_list(t_words_list *list, int flag);
+
+void			extract_cmd_array(t_lst_cmd *node, char *str);
+char			*get_end_of_word(char *str);
 
 #endif

@@ -87,6 +87,14 @@ if we find a quote and the var for the other type is not null, we don't change i
 still need to manage substitutions (env variables)
 
 
+substitutions : 
+
+in case of redirection : trim spaces before and after. if any space in between words, error
+in case VAR is at the beginning, the first word is a command, and all other words are its arguments
+in case there is a command before VAR, all words of VAR are treated as args
+
+
+
 
 
 
