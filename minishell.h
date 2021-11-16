@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 16:36:55 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/16 16:22:00 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char			**free_env(char **env, int nb);
 /*
 **	INIT_ENV
 */
-int				env_replace(char **new_env, char *type, char *replace);
+char			**env_replace(char **new_env, char *type, char *replace);
 char			*env_find_the(char *search, char **src);
 char			**init_env(char **env);
 

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:01:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 16:29:48 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/16 16:34:38 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ int	ft_cd(char *path, char **pwd, char **oldpwd)
 	int	error;
 
 	errno = 0;
-	if (!ft_strncmp("", path, 1))
+	if (!path)
 		path = "~";
+	if (!ft_strncmp("", path, 1))
+		return (0);
 	if (chdir(path) == -1)
 	{
 		error = errno;

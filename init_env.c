@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/10 14:11:42 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:22:03 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **	return '1' si tout a fonctionné aussi non ça retourne '0'
 */
 
-int	env_replace(char **new_env, char *type, char *replace)
+char	**env_replace(char **new_env, char *type, char *replace)
 {
 	size_t	len_type;
 	size_t	len_replace;
@@ -36,8 +36,8 @@ int	env_replace(char **new_env, char *type, char *replace)
 	free(new_env[i]);
 	new_env[i] = ft_strjoin(type, replace);
 	if (!new_env[i])
-		return (0);
-	return (1);
+		exit(EXIT_FAILURE);
+	return (new_env);
 }
 
 /*
