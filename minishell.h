@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/17 13:00:16 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/17 15:49:18 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_lst_cmd
 	char				*outf;
 	int					infd;
 	int					outfd;
+	int					bool;
 	struct s_lst_cmd	*next;
 }	t_lst_cmd;
 
