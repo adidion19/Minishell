@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/16 16:09:12 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:54:49 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**cpy_env(char	**nw_env, char **env)
 {
-	int i;
+	int	i;
 	int	len;
 
 	i = -1;
@@ -40,7 +40,7 @@ int	env_check_arg(char *arg, char **env)
 		if (arg[i] == ' ')
 			return (-1);
 		if (arg[i] == '=')
-			break;
+			break ;
 	}
 	if (arg[i] != '=')
 		return (0);
@@ -55,7 +55,7 @@ int	env_check_arg(char *arg, char **env)
 	return (1);
 }
 
-int		nw_env(char ***env, char *str)
+int	nw_env(char ***env, char *str)
 {
 	int		len;
 	int		lenstr;
@@ -76,7 +76,7 @@ int		nw_env(char ***env, char *str)
 	return (0);
 }
 
-int		env_change(char ***env, char *str, int	ret)
+int	env_change(char ***env, char *str, int ret)
 {
 	int		i;
 	char	*tmp;
@@ -98,7 +98,7 @@ int		env_change(char ***env, char *str, int	ret)
 	return (0);
 }
 
-int		ft_export(t_lst_cmd *cmd, char ***env)
+int	ft_export(t_lst_cmd *cmd, char ***env)
 {
 	int		i;
 	int		ret;
@@ -108,7 +108,7 @@ int		ft_export(t_lst_cmd *cmd, char ***env)
 	i = 0;
 	status = 0;
 	if (!cmd->arg[1])
-		return(ft_env(cmd, *env));
+		return (ft_env(*cmd, *env));
 	while (cmd->arg[++i])
 	{
 		ret = env_check_arg(cmd->arg[i], *env);

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/16 16:43:03 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/17 11:22:27 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	ft_its_cd(t_lst_cmd cmd, char ***env)
 					return (ft_send_to_cd(cmd, env, 1));
 				else
 				{
-					printf("minishell: cd: %s: invalid option\n", cmd.arg[1]);
-					printf("cd: usage: cd [-L|-P] [dir]\n");
+					printf("minishell: cd: %s: No handeled", cmd.arg[1]);
+					printf("options\n");
 					return (1);
 				}
 			}

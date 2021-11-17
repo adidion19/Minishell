@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/15 15:28:57 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/17 13:05:16 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,15 @@ SRC =	minishell.c\
 		command/cd.c\
 		command/echo.c\
 		command/exit.c\
+		command/export.c\
 		command/other_command.c\
+		command/ft_choose_command.c\
+		command/ft_its_cd.c\
+		command/ft_its_echo.c\
+		command/ft_its_env.c\
+		command/ft_its_exit.c\
+		command/ft_its_export.c\
+		command/ft_its_pwd.c\
 		utils/utils.c\
 		utils/utils_b.c\
 		error/error.c\

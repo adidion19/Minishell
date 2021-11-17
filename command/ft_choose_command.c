@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/16 16:48:32 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/17 13:03:15 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	ft_choose_command(t_lst_cmd cmd, char ***env)
 	if (!cmd.command)
 		return (0);
 	r = ft_its_cd(cmd, env);
-	r = ft_its_echo(cmd, r);
-	r = ft_its_env(cmd, r);
+	r = ft_its_echo(cmd, r, *env);
+	r = ft_its_env(cmd, r, *env);
 	r = ft_its_exit(cmd, r);
-	r = ft_its_export(cmd, r);
-	r = ft_its_pwd(cmd, r);
+	r = ft_its_export(cmd, r, env);
+	r = ft_its_pwd(cmd, r, *env);
 	if (r != 257)
-		return (ft_other_command(cmd, env));
+		return (ft_other_command(cmd, *env));
 	return (r);
 }
