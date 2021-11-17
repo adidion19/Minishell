@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 17:41:42 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/17 13:54:46 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	ft_close_inf(int fd)
 }
 
 /*
-**	si bool == 1 : redirection >
-**	si bool == 0 : redirection >>
+**	si bool == 0 : redirection >
+**	si bool == 1 : redirection >>
 ** /!\ TRES IMPORTANT : apres avoir appele open_mode
 	, il faut appeler close mode !!
 **	return : le fd si open reussit, sinon -1 -> return a verif en appel
@@ -76,9 +76,9 @@ int	ft_open_mode(t_lst_cmd cmd, int bool)
 	int	error;
 
 	errno = 0;
-	if (bool == 1)
-		fd = open(cmd.outf, O_WRONLY | O_TRUNC);
 	if (bool == 0)
+		fd = open(cmd.outf, O_WRONLY | O_TRUNC);
+	if (bool == 1)
 		fd = open(cmd.outf, O_WRONLY | O_APPEND);
 	error = errno;
 	if (fd == -1)
