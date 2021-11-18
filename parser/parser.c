@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/17 18:06:26 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/18 15:34:14 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 		exit(EXIT_FAILURE);
 	// create linked list that contains all words
 	words_list = create_words_list(str);
+	
 	extract_input(ret, str); // can have substitution in 3 cases
 	extract_output(ret, str);
 	extract_cmd_array(ret, str);
@@ -211,7 +212,7 @@ t_lst_cmd	*parser(char *line)
 		// if not the same, duplicate that section and call add_pipe with duplicated string
 		// do't forget to free it afterwards
 		if (cursor == line)
-			return (free_lst_cmd(ret)); // need to free the linked list
+			return (free_lst_cmd(ret)); // need to free the linked list probably need to write some error message at that time
 		
 		ret = add_pipe_section(ret, duplicate_part_of_str(line, cursor));
 

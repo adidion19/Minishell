@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/15 11:52:59 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:58:11 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,16 @@ void	*ft_memset(void *ptr, int c, size_t size)
 	}
 	return (ptr);
 }
+
+int		is_char_in_str(char c, char *str)
+{
+	while (str && *str)
+	{
+		if (*str == c)
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+
