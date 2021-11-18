@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: yannahbrutout <yannahbrutout@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/17 17:26:16 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:26:16 by yannahbruto      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char			*ft_strjoin_2(char *s1, char *s2, int k);
 */
 void			*ft_calloc(size_t nmemb);
 void			*ft_memset(void *ptr, int c, size_t size);
+void			free_tab_char(char **tab, int nb);
 
 /*
 **	FT_SPLIT

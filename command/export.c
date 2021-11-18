@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: yannahbrutout <yannahbrutout@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/17 12:54:49 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/18 14:26:20 by yannahbruto      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 		{
 			if (nw_env(env, cmd->arg[i]))
 				return (1);
+			free_tab_char(oldenv, -1);
 		}
 		else
 			if (env_change(env, cmd->arg[i], ret))
@@ -131,7 +132,23 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 	return (status);
 }
 
-/*
+char *initstr(char *str)
+{
+	char	*tmp;
+	int		len;
+	int		i;
+
+	if (!str)
+		return (NULL);
+	len = ft_strlen(str);
+	tmp = malloc(sizeof(char) * (len + 1));
+	tmp[len] = '\0';
+	i = -1;
+	while (++i < len)
+		tmp[i] = str[i];
+	return (tmp);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char 		**envcpy;
@@ -161,8 +178,9 @@ int	main(int argc, char **argv, char **env)
 	ret = ft_export(cmd, &envcpy);
 	cmd->arg[1] = NULL;
 	write(1, "\n\n--------------------------\n", 29);
-	ft_env(cmd, envcpy);
+	ft_env(*cmd, envcpy);
 	write(1, "\n", 1);
 	printf("ret == %d\n", ret);
+	system("leaks a.out");
 	return (0);
-}*/
+}

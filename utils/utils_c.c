@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_c.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: yannahbrutout <yannahbrutout@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/15 11:52:59 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:46:57 by yannahbruto      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,22 @@ void	*ft_memset(void *ptr, int c, size_t size)
 		size--;
 	}
 	return (ptr);
+}
+
+void	free_tab_char(char **tab, int nb)
+{
+	int	i;
+
+	i = -1;
+	if (nb < 0)
+		nb = (len_lst(tab)) + 1;
+	if (nb > 0)
+	{
+		while (nb > 1)
+		{
+			free(tab[++i]);
+			nb--;
+		}
+		free(tab);
+	}
 }
