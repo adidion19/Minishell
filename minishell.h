@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/18 14:03:37 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:06:09 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char			*ft_strjoin_2(char *s1, char *s2, int k);
 void			*ft_calloc(size_t nmemb);
 void			*ft_memset(void *ptr, int c, size_t size);
 int				is_char_in_str(char c, char *str);
+void			free_tab_char(char **tab, int nb);
 
 /*
 **	FT_SPLIT

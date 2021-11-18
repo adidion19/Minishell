@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/18 14:58:11 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:05:35 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,20 @@ int		is_char_in_str(char c, char *str)
 }
 
 
+void	free_tab_char(char **tab, int nb)
+{
+	int	i;
+
+	i = -1;
+	if (nb < 0)
+		nb = (len_lst(tab)) + 1;
+	if (nb > 0)
+	{
+		while (nb > 1)
+		{
+			free(tab[++i]);
+			nb--;
+		}
+		free(tab);
+	}
+}
