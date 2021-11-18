@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:32:34 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/03 17:59:59 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:41:05 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <stdlib.h>
 
 #define READ_LENGTH 100000
-
+/* 
 int	main(int argc, char **argv)
 {
 	printf("Here is data from stdin :\n");
@@ -39,3 +39,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+ */

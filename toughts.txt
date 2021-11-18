@@ -93,9 +93,29 @@ in case of redirection : trim spaces before and after. if any space in between w
 in case VAR is at the beginning, the first word is a command, and all other words are its arguments
 in case there is a command before VAR, all words of VAR are treated as args
 
+there are words : 
+words can be interpreted as a command or as an arg. 
+that's actually the same thing
+
+words are groups of letters separated by spaces.
+a variable substitution is always a word
+something inside quotes in always a word.
+
+there are markers : 
+markers give special meaning to words following them
+
+we have those markers : < > >> |
+
+marker inside quotes or inside a substitution variable will be treated as a word
+
+inside a pipe section there can be only one command.
+it's the first WORD. that's the command.
+the position is the only thing that differentiate a command than an arg
+the command is the arg[0] that's it
 
 
 
+gcc *.c ../utils/*.c
 
 
 

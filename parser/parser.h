@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/16 16:52:36 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/17 17:31:38 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ void			free_word_list(t_words_list *list, int flag);
 
 void			extract_cmd_array(t_lst_cmd *node, char *str);
 char			*get_end_of_word(char *str);
+
+t_words_list	*create_words_list(char *str);
 
 #endif

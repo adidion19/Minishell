@@ -6,13 +6,15 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/16 16:54:08 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/17 18:06:26 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
+
+/*  // this one probably no need
 char	*copy_next_word(char *from, char **adrs_of_original_ptr)
 {
 	if (!from || *from != ' ')
@@ -24,15 +26,42 @@ char	*copy_next_word(char *from, char **adrs_of_original_ptr)
 	// the idea is to allocate and copy what follows the '<' and substitute it with var and getenv if necessary
 	// then update the adrs_of_original_ptr so that the main loop can continue
 }
+ */
+
+char	*add_infile(t_lst_cmd *node, char *str)
+{
+	if (*str == '<')
+	{
+		// double redirection to the left
+	}
+	while (ft_isspace(*str))
+		str++;
+	
+	return (0); ///////// remove that
+}
+
 
 void	extract_input(t_lst_cmd *node, char *str)
 {
-	// for now it will remain 0
-/* 
 	t_quote_state	quote;
 
-//	node->input_fd = DEFAULT_VALUE; // input_str can remain NULL
 	ft_memset(&quote, 0, sizeof(quote));
+	while (*str)
+	{
+		update_quote_state(*str, &quote);
+		if (*str == '<' && quote.global_quote == 0)
+			str = add_infile(node, str + 1);
+	}
+
+
+
+
+
+/* 
+
+
+//	node->input_fd = DEFAULT_VALUE; // input_str can remain NULL
+
 	while (from && to && from < to) // pointer increases when we browse the str
 	{
 		update_quote_state(*from, &quote);
@@ -49,17 +78,31 @@ void	extract_output(t_lst_cmd *node, char *str)
 
 }
 
+/* 
+	First we create the words list.
+	While doing that, we do substitution and we group the quoted things together
+	substitution can result in more than one word
+	quoted stuff can be merged with letters before or after it to form 1 word
+
+	< > signs can appear in quote or in substitution var
+
+	After the list is made, we 
 
 
+
+ */
 
 t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 {
-	t_lst_cmd	*ret;
-	t_lst_cmd	*temp;
+	t_lst_cmd		*ret;
+	t_lst_cmd		*temp;
+	t_words_list	*words_list;
 
 	ret = ft_calloc(sizeof(t_lst_cmd));
 	if (!ret)
-		return (list); // in case allocation fail, we still have to return previous nodes to be able to free them
+		exit(EXIT_FAILURE);
+	// create linked list that contains all words
+	words_list = create_words_list(str);
 	extract_input(ret, str); // can have substitution in 3 cases
 	extract_output(ret, str);
 	extract_cmd_array(ret, str);
@@ -111,7 +154,7 @@ t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
 
 	while (list)
 	{
-		free_str_array(list->command);
+		free_str_array(list->arg);
 		free(list->command);
 		free(list->inf);
 		free(list->outf);
@@ -192,10 +235,33 @@ int	main(int argc, char **argv, char **envp)
 		printf("%s\n", envp[i]);
 		i++;
 	} */
+
+/* 	
 	if (argc > 1)
 	{
-		printf("\n%s\n\n", argv[1]);
-//		parser(argv[1]);
+		t_words_list	*list;
+
+		list = 0;
+
+		list = create_words_list(argv[1]);
+
+		t_words_list	*temp = list;
+
+		while (list)
+		{
+			printf("%s\n", list->word);
+			list = list->next;
+		}
+		printf("\nStarting cleaning the list\n");
+
+		free_word_list(temp, 1);
+
+		printf("%s\n", getenv("YOUPLABOUM"));
 	}
+
+ */
+
+
+	
 	return (0);
 }
