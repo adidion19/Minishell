@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 10:13:12 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 16:57:27 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		is_there_unquoted_dollar(char *str)
 	ft_memset(&quote, 0, sizeof(quote));
 	while (str && *str)
 	{
-		update_quote_state(*str, &quote);
+		update_quote_state(str, &quote);
 		if (*str == '$' && quote.simple_quote == 0 && *(str + 1)
 			&& !ft_isspace(*str + 1))
 		{
@@ -96,7 +96,7 @@ char	*expand_variables_in_single_word(char *word)
 		i = 0;
 		while (word[i] && !(word[i] == '$' && quote.simple_quote == 0 && word[i + 1] && !ft_isspace(word[i + 1]))) // browse until we find a $ to expand
 		{
-			update_quote_state(word[i], &quote);
+			update_quote_state(&word[i], &quote);
 			i++;
 		} // i is the number of char to copy
 		ret = malagain(ret, word, i); // we add i char from word to ret
@@ -112,6 +112,8 @@ void	expand_variables_in_words_list(t_words_list *list)
 {
 	t_words_list	*temp_list;
 	char			*temp_word;
+
+	printf("I was called\n");
 
 	temp_list = list;
 	while (temp_list)
@@ -137,6 +139,8 @@ t_words_list	*create_words_list(char *str)
 	char			*end_of_word;
 	t_words_list	*words_list;
 
+	char	*cursor;
+
 	words_list = 0;
 	while (*str)
 	{
@@ -144,12 +148,17 @@ t_words_list	*create_words_list(char *str)
 		while (ft_isspace(*str))
 			str++;
 		end_of_word = get_end_of_word(str);
-		words_list = add_word_to_list(words_list, str, end_of_word);
+		if (str != end_of_word)
+		{
+			words_list = add_word_to_list(words_list, duplicate_part_of_str(str, end_of_word));
+			//words_list = add_word_to_list(words_list, str, end_of_word);
+		}
 		str = end_of_word;
 	}
 	// at this point the linked list exist and contains all the words.
-	expand_variables_in_words_list(words_list);
-	remove_quotes_in_words_list(words_list);
+//	expand_variables_in_words_list(words_list);
+	// at this point all $var are expanded. quotes are still there
+//	remove_quotes_in_words_list(words_list);
 	return (words_list);
 }
 
@@ -168,24 +177,22 @@ t_words_list	*create_words_list(char *str)
 
  */
 
-t_words_list	*add_word_to_list(t_words_list *lst, char *from, char *to)
+//t_words_list	*add_word_to_list(t_words_list *lst, char *from, char *to)
+t_words_list	*add_word_to_list(t_words_list *lst, char *word)
 {
 	t_words_list	*ret;
 	t_words_list	*temp;
-	int				i;
+
+	printf("len of word to add : %zu\n", ft_strlen(word));
+
+	if (!word)
+		exit(EXIT_FAILURE);
 
 	ret = ft_calloc(sizeof(t_words_list));
 	if (!ret)
 		exit(EXIT_FAILURE);
-	ret->word = ft_calloc(sizeof(char) * (1 + (to - from)));
-	if (!ret->word)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (&from[i] <= to)
-	{
-		ret->word[i] = from[i];
-		i++;
-	}
+	ret->word = word;
+	printf("just added : %s\n", ret->word);
 	if (!lst)
 		return (ret);
 	temp = lst;

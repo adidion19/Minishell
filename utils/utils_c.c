@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 13:34:09 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 16:55:03 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_calloc(size_t nmemb)
 {
 	void	*ret;
 
-	ret = malloc(sizeof(nmemb));
+	ret = malloc(nmemb);
 	if (!ret)
 		return (NULL);
 	else
