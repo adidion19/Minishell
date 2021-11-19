@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:35:03 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/19 15:40:47 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/19 17:24:14 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	/!\ ne pas envoyer ici si d'autres options que -n
 */
 
-int	ft_verify_arg(char *arg)
+int	ft_verify_arg_2(char *arg)
 {
 	int	i;
 
@@ -36,10 +36,9 @@ int	ft_verify_arg(char *arg)
 		return (0);
 }
 
-int	ft_echo(char **arg, char **env, int bool)
+int	ft_echo(char **arg, int bool)
 {
 	int		i;
-	char	*str;
 
 	i = -1;
 	if (!arg[1])
@@ -54,8 +53,8 @@ int	ft_echo(char **arg, char **env, int bool)
 			printf(" ");
 			continue ;
 		}
-		else if (ft_verify_arg(arg[i]) == 1)
-			bool == 1;
+		else if (ft_verify_arg_2(arg[i]) == 1)
+			bool = 1;
 		else
 			printf("%s", arg[i]);
 	}

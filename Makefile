@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/17 13:05:16 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/19 17:23:35 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ SRC =	minishell.c\
 		command/ft_its_pwd.c\
 		utils/utils.c\
 		utils/utils_b.c\
+		utils/utils_c.c\
+		utils/utils_d.c\
 		error/error.c\
 		utils/ft_atoi.c\
 		utils/ft_itoa.c\

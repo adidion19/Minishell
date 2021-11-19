@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/19 13:37:06 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:21:24 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,11 @@ int				ft_exit(char **arg);
 
 /* ECHO */
 
-int				ft_echo(char **arg, char **env, int bool);
+int				ft_echo(char **arg, int bool);
 
 /* EXPORT */
 
-int				ft_export(t_lst_cmd *cmd, char ***env);
+int				ft_export(t_lst_cmd cmd, char ***env);
 
 /* OTHER_COMMAND */
 
@@ -142,7 +142,7 @@ int				ft_other_command(t_lst_cmd cmd, char **env);
 
 int				ft_choose_command(t_lst_cmd cmd, char ***env);
 int				ft_its_cd(t_lst_cmd cmd, char ***env);
-int				ft_its_echo(t_lst_cmd cmd, int r, char **env);
+int				ft_its_echo(t_lst_cmd cmd, int r);
 int				ft_its_env(t_lst_cmd cmd, int r, char **env);
 int				ft_its_exit(t_lst_cmd cmd, int r);
 int				ft_its_export(t_lst_cmd cmd, int r, char ***env);

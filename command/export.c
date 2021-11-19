@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/19 13:49:16 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/19 17:04:35 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ char *initstr(char *str)
 		tmp[i] = str[i];
 	return (tmp);
 }
-/*
+
 int	main(int argc, char **argv, char **env)
 {
 	char 		**envcpy;
