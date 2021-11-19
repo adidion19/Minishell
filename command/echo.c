@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:35:03 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/15 15:29:31 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/19 15:40:47 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,43 @@
 **	/!\ ne pas envoyer ici si d'autres options que -n
 */
 
+int	ft_verify_arg(char *arg)
+{
+	int	i;
+
+	if (ft_strlen(arg) < 2)
+		return (0);
+	i = -1;
+	if (arg[++i] != '-')
+		return (0);
+	while (arg[++i] && arg[i] == 'n')
+		;
+	if (arg[i] == '\0')
+		return (1);
+	else
+		return (0);
+}
+
 int	ft_echo(char **arg, char **env, int bool)
 {
 	int		i;
 	char	*str;
 
 	i = -1;
-	if (!arg)
+	if (!arg[1])
 	{
-		if (bool == 0)
-			write(1, "\n", 1);
+		write(1, "\n", 1);
 		return (0);
 	}
 	while (arg[++i])
 	{
-		if (i != 0)
-			printf(" ");
-		if (arg[i][0] == '$' && ft_strlen(arg[i]) > 1)
+		if (i > 0 && ft_strlen(arg[i]) == 0)
 		{
-			str = ft_strjoin(arg[i] + 1, "=");
-			printf("%s", env_find_the(str, env));
-			free(str);
+			printf(" ");
+			continue ;
 		}
+		else if (ft_verify_arg(arg[i]) == 1)
+			bool == 1;
 		else
 			printf("%s", arg[i]);
 	}

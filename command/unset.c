@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yannahbrutout <yannahbrutout@student.42    +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/11/18 16:06:50 by yannahbruto      ###   ########.fr       */
+/*   Updated: 2021/11/19 13:35:55 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_arg(char *str, char **env)
 {
 	int	i;
 	int	j;
-	int len;
+	int	len;
 
 	i = -1;
 	len = ft_strlen(str);
@@ -26,14 +26,15 @@ int	check_arg(char *str, char **env)
 		while (++j < len)
 		{
 			if (env[i][j] != str[j])
-				break;
+				break ;
 		}
 		if (j == len && env[i][j] == '=')
-			break;
+			break ;
 	}
 	if (!env[i])
 		return (0);
-	else return (1 + i);
+	else
+		return (1 + i);
 }
 
 char	**remove_variable(int ret, char ***env)
@@ -65,18 +66,18 @@ char	**remove_variable(int ret, char ***env)
 	return (tmp);
 }
 
-int	ft_unset(t_lst_cmd *cmd, char ***env)
+int	ft_unset(t_lst_cmd cmd, char ***env)
 {
 	int		ret;
 	int		i;
 	char	**oldenv;
 
-	if (!cmd->arg[1])
-		return (0);
+	if (!cmd.arg[1])
+		return (1);
 	i = 0;
-	while (cmd->arg[++i])
+	while (cmd.arg[++i])
 	{
-		ret = check_arg(cmd->arg[i], *env);
+		ret = check_arg(cmd.arg[i], *env);
 		if (!ret)
 			continue ;
 		oldenv = *env;
