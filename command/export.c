@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yannahbrutout <yannahbrutout@student.42    +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/18 14:26:20 by yannahbruto      ###   ########.fr       */
+/*   Updated: 2021/11/19 17:04:35 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	env_change(char ***env, char *str, int ret)
 	return (0);
 }
 
-int	ft_export(t_lst_cmd *cmd, char ***env)
+int	ft_export(t_lst_cmd cmd, char ***env)
 {
 	int		i;
 	int		ret;
@@ -107,11 +107,11 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 
 	i = 0;
 	status = 0;
-	if (!cmd->arg[1])
-		return (ft_env(*cmd, *env));
-	while (cmd->arg[++i])
+	if (!cmd.arg[1])
+		return (ft_env(cmd, *env));
+	while (cmd.arg[++i])
 	{
-		ret = env_check_arg(cmd->arg[i], *env);
+		ret = env_check_arg(cmd.arg[i], *env);
 		if (ret < 1)
 		{
 			if (ret < 0)
@@ -121,17 +121,17 @@ int	ft_export(t_lst_cmd *cmd, char ***env)
 		oldenv = *env;
 		if (ret == 1)
 		{
-			if (nw_env(env, cmd->arg[i]))
+			if (nw_env(env, cmd.arg[i]))
 				return (1);
 			free_tab_char(oldenv, -1);
 		}
 		else
-			if (env_change(env, cmd->arg[i], ret))
+			if (env_change(env, cmd.arg[i], ret))
 				return (1);
 	}
 	return (status);
 }
-
+/*
 char *initstr(char *str)
 {
 	char	*tmp;
@@ -184,3 +184,4 @@ int	main(int argc, char **argv, char **env)
 	system("leaks a.out");
 	return (0);
 }
+*/
