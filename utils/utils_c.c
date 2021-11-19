@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/18 19:05:35 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:45:00 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int		is_char_in_str(char c, char *str)
 	return (0);
 }
 
-
 void	free_tab_char(char **tab, int nb)
 {
 	int	i;
@@ -61,4 +60,69 @@ void	free_tab_char(char **tab, int nb)
 		}
 		free(tab);
 	}
+}
+
+/*
+**	The malagain function allocates enough memory for a copy of string "from"
+**	and "len_add" bytes of string "add". It does the copy and returns a pointer
+**	to it.
+**	It also frees the memory pointed by "from".
+**
+**	In case "from" and "add" are both null pointers, or in case "from" is a
+**	null pointer and "len_add" is zero, it still returns an allocated string
+**	with length zero.
+*/
+
+char	*malagain(char *from, char *add, int len_add)
+{
+	int		i;
+	int		len_from;
+	char	*ret;
+
+	len_from = ft_strlen(from);
+	ret = ft_calloc(sizeof(char) * (len_from + len_add + 1));
+	if (!ret)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (i < len_from)
+	{
+		ret[i] = from[i];
+		i++;
+	}
+	while (len_add && add)
+	{
+		ret[i] = *add;
+		add++;
+		i++;
+		len_add--;
+	}
+	free(from);
+	return (ret);
+}
+
+/*
+**	duplicate_part_of_str : "from" and "to" are supposed to be part of the same
+**	string and in order ("to" being after "from").
+**
+**	The pointer returned is always freeable.
+*/
+
+char	*duplicate_part_of_str(char *from, char *to)
+{
+	int		i;
+	char	*ret;
+
+	if (to < from)
+		return (NULL);
+	ret = ft_calloc(sizeof(char) * ((to - from) + 1));
+	if (!ret)
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (from <= to)
+	{
+		ret[i] = *from;
+		i++;
+		from++;
+	}
+	return (ret);
 }

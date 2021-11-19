@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yannahbrutout <yannahbrutout@student.42    +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/18 14:31:19 by yannahbruto      ###   ########.fr       */
+/*   Updated: 2021/11/19 11:26:13 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	ft_strlen(char *str)
 
 	i = 0;
 	if (!str)
-		return (-1);
+		return (0);
 	while (str[i])
 		i++;
 	return (i);

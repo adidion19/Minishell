@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/18 15:34:14 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:34:37 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,23 +166,7 @@ t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
 	return (NULL);
 }
 
-char	*duplicate_part_of_str(char *from, char *to)
-{
-	int		i;
-	char	*ret;
 
-	ret = ft_calloc(sizeof(char) * ((to - from) + 1));
-	if (!ret)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (from <= to)
-	{
-		ret[i] = *from;
-		i++;
-		from++;
-	}
-	return (ret);
-}
 
 t_lst_cmd	*parser(char *line)
 {

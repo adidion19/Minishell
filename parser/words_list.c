@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/18 18:59:41 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 10:13:12 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,7 @@ char	*get_dollar_name(char *str)
 	return (ret);
 }
 
-char	*malagain(char *from, char *add, int len)
-{
-	int		i;
-	int		len_from;
-	char	*ret;
 
-	len_from = ft_strlen(from);
-	ret = ft_calloc(sizeof(char) * (len_from + len + 1));
-	i = 0;
-	while (i < len_from)
-	{
-		ret[i] = from[i];
-		i++;
-	}
-	while (len)
-	{
-		ret[i] = *add;
-		add++;
-		i++;
-		len--;
-	}
-	free(from);
-	return (ret);
-}
 
 char	*expand_variables_in_single_word(char *word)
 { // no need to free original word
