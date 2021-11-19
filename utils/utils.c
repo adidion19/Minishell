@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/19 11:26:13 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:50:24 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	len_lst(char **lst)
 
 	i = 0;
 	if (!lst)
-		return (-1);
+		return (0);
 	while (lst[i])
 		i++;
 	return (i);
