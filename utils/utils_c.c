@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 11:45:00 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 13:34:09 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,32 +97,5 @@ char	*malagain(char *from, char *add, int len_add)
 		len_add--;
 	}
 	free(from);
-	return (ret);
-}
-
-/*
-**	duplicate_part_of_str : "from" and "to" are supposed to be part of the same
-**	string and in order ("to" being after "from").
-**
-**	The pointer returned is always freeable.
-*/
-
-char	*duplicate_part_of_str(char *from, char *to)
-{
-	int		i;
-	char	*ret;
-
-	if (to < from)
-		return (NULL);
-	ret = ft_calloc(sizeof(char) * ((to - from) + 1));
-	if (!ret)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (from <= to)
-	{
-		ret[i] = *from;
-		i++;
-		from++;
-	}
 	return (ret);
 }

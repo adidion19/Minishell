@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 11:34:37 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 13:33:09 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,38 +133,6 @@ typedef struct s_lst_cmd
 }	t_lst_cmd;
  */
 
-void	free_str_array(char **array)
-{
-	int	i;
-
-	if (!array)
-		return ;
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		array[i] = 0;
-		i++;
-	}
-	free(array);
-}
-
-t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
-{
-	t_lst_cmd	*temp;
-
-	while (list)
-	{
-		free_str_array(list->arg);
-		free(list->command);
-		free(list->inf);
-		free(list->outf);
-		temp = list->next;
-		free(list);
-		list = temp;
-	}
-	return (NULL);
-}
 
 
 
