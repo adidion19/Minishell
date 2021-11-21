@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 16:55:50 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:56:46 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,11 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	// create linked list that contains all words
 	words_list = create_words_list(str);
 	
-	extract_input(ret, str); // can have substitution in 3 cases
+	extract_input(ret, str);
 	extract_output(ret, str);
+	handle_cmd_args_in_list(words_list);
 	extract_cmd_array(ret, str);
+	create_cmd_array(ret, words_list);
 	ret->next = 0; // no need, it's already 0 by default
 	// what if one extract fails ?
 	free(str);
@@ -122,22 +124,43 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 
 
 
+
+
+/* 
+	Parser : 
+	the parser will separate a line with unquoted pipe symbol as separator.
+	for each "pipe section", a node in a cmd list will be created.
+	for each "pipe section", the section is first separated in words.
+	words are separated by unquoted spaces.
+
+	When we have the first list of words (with variables and quotes still untouched),
+	we look for infile and outfile.
+	nodes corresponding to redirection will be deleted from the word list after they are handled.
+	we have to resolve quotes and variables for only the redirections word at this stage
+	that's when we look for redirection error. (redirection word contains space for example or redirection is followed by nothing)
+
+	after the redirection stage is finished, we are left with the word list that contains
+	only cmd and args.
+	that's when we resolve all other variables and quotes.
+	variables can become more than one word, but quotes has to stay together
+
+	after quotes and variables have been resolved, we copy all words from the list
+	into the final array for this pipe section.
+ */
+
 t_lst_cmd	*parser(char *line)
 {
 	t_lst_cmd		*ret;
 	t_quote_state	quote;
 	char			*cursor;
 
-	if (!line)
+	if (!line || !verify_pipe_conditions(line))
 		return (NULL);
 	ft_memset(&quote, 0, sizeof(quote));
 	ret = 0;
 	cursor = line;
 	while (*line)
 	{
-		// we keep browsing as long as we didnt find a | outside of quote
-		// if we are in quote, we just browse
-		// if we are not in quote, we look for |
 		while (*cursor)
 		{
 			update_quote_state(cursor, &quote);
@@ -146,14 +169,7 @@ t_lst_cmd	*parser(char *line)
 			cursor++;
 		}
 		// here cursor points to the end of the section. can be a pipe or the end of the line
-		// verify that cursor and line are not the same.
-		// if not the same, duplicate that section and call add_pipe with duplicated string
-		// do't forget to free it afterwards
-		if (cursor == line)
-			return (free_lst_cmd(ret)); // need to free the linked list probably need to write some error message at that time
-		
-		ret = add_pipe_section(ret, duplicate_part_of_str(line, cursor));
-
+		ret = add_pipe_section(ret, duplicate_part_of_str(line, cursor - 1)); // we don't send the pipe symbol itself, or the \0
 		if (*cursor) // if cursor is on a pipe symbol, we go to the next char for the next loop, otherwise we stay at 0 and we exit the loop
 			cursor++;
 		line = cursor;

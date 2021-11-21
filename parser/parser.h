@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 15:45:25 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:20:18 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,19 @@ void			copy_args_from_word_list(char **array, t_words_list *list);
 void			free_word_list(t_words_list *list, int flag);
 
 void			extract_cmd_array(t_lst_cmd *node, char *str);
-char			*get_end_of_word(char *str);
+
 
 t_words_list	*create_words_list(char *str);
+
+/*
+	verify_pipe_conditions.c
+*/
+int				verify_pipe_conditions(char *line);
+int				have_only_spaces(char *from, char *to);
+
+/*
+	get_end_of_word.c
+*/
+char			*get_end_of_word(char *str);
 
 #endif

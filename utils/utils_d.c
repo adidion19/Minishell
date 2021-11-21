@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:33:20 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 17:01:08 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:41:57 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /*
 **	duplicate_part_of_str : "from" and "to" are supposed to be part of the same
 **	string and in order ("to" being after "from").
+**
+**	If "from" and "to" are the same, that single char will be copied anyway.
 **
 **	The pointer returned is always freeable.
 */
@@ -26,7 +28,7 @@ char	*duplicate_part_of_str(char *from, char *to)
 
 	if (to < from)
 		return (NULL);
-	ret = ft_calloc(sizeof(char) * ((to - from) + 1));
+	ret = ft_calloc(sizeof(char) * ((to - from) + 2));
 	if (!ret)
 		exit(EXIT_FAILURE);
 	i = 0;
