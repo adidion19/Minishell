@@ -6,7 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/21 14:54:07 by adidion          ###   ########.fr       */
+=======
+/*   Updated: 2021/11/19 16:55:03 by artmende         ###   ########.fr       */
+>>>>>>> 95daa39575b5cb02cb772d871fa3c79693e55c22
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +20,7 @@ void	*ft_calloc(size_t nmemb)
 {
 	void	*ret;
 
-	ret = malloc(sizeof(nmemb));
+	ret = malloc(nmemb);
 	if (!ret)
 		return (NULL);
 	else

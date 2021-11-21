@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/17 17:31:38 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 15:45:25 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef struct s_quote_state
 	int	global_quote;
 }	t_quote_state;
 
-void			update_quote_state(char c, t_quote_state *state);
+void			update_quote_state(char *str, t_quote_state *state);
 int				ft_lstsize_words(t_words_list *lst);
-t_words_list	*add_word_to_list(t_words_list *lst, char *from, char *to);
+t_words_list	*add_word_to_list(t_words_list *lst, char *word);
 void			copy_args_from_word_list(char **array, t_words_list *list);
 void			free_word_list(t_words_list *list, int flag);
 

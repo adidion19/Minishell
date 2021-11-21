@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:11:18 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/16 16:53:27 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 15:46:11 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	extract_cmd_array(t_lst_cmd *node, char *str)
 		while (ft_isspace(*str))
 			str++;
 		end_of_word = get_end_of_word(str);
-		words_list = add_word_to_list(words_list, str, end_of_word);
+//		words_list = add_word_to_list(words_list, str, end_of_word);
 		str = end_of_word;
 	}
 	// at this point the linked list exist and contains all the words.
@@ -55,7 +55,7 @@ char	*get_end_of_word(char *str)
 	// find the end of the word (can be a space, or can be "to")
 	while (*str)
 	{
-		update_quote_state(*str, &quote);
+		update_quote_state(str, &quote);
 		if (quote.global_quote == 0 && ft_isspace(*str) == 1)
 			break ;
 		str++;

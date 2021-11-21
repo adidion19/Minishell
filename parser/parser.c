@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 13:33:09 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/19 16:55:50 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	extract_input(t_lst_cmd *node, char *str)
 	ft_memset(&quote, 0, sizeof(quote));
 	while (*str)
 	{
-		update_quote_state(*str, &quote);
+		update_quote_state(str, &quote);
 		if (*str == '<' && quote.global_quote == 0)
 			str = add_infile(node, str + 1);
 	}
@@ -120,20 +120,6 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	return (list);
 }
 
-/* 
-typedef struct s_lst_cmd
-{
-	char				*command;
-	char				**arg; //arg[0] = nom de la commande
-	char				*inf;
-	char				*outf;
-	int					infd;
-	int					outfd;
-	struct s_lst_cmd	*next;
-}	t_lst_cmd;
- */
-
-
 
 
 t_lst_cmd	*parser(char *line)
@@ -154,7 +140,7 @@ t_lst_cmd	*parser(char *line)
 		// if we are not in quote, we look for |
 		while (*cursor)
 		{
-			update_quote_state(*cursor, &quote);
+			update_quote_state(cursor, &quote);
 			if (*cursor == '|' && quote.global_quote == 0)
 				break ;
 			cursor++;
@@ -189,7 +175,7 @@ int	main(int argc, char **argv, char **envp)
 		i++;
 	} */
 
-/* 	
+	printf("$PWD\n");
 	if (argc > 1)
 	{
 		t_words_list	*list;
@@ -202,7 +188,7 @@ int	main(int argc, char **argv, char **envp)
 
 		while (list)
 		{
-			printf("%s\n", list->word);
+			printf("->%s\n", list->word);
 			list = list->next;
 		}
 		printf("\nStarting cleaning the list\n");
@@ -212,7 +198,7 @@ int	main(int argc, char **argv, char **envp)
 		printf("%s\n", getenv("YOUPLABOUM"));
 	}
 
- */
+
 
 
 	
