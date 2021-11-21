@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:01:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/16 16:34:38 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/21 12:08:49 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,23 @@ char	*ft_update_pwd(char *path, char *pwd_2)
 	return (pwd);
 }
 
-/*
-**	cas d'erreurs
-**	je dois encore gerer si le path existe mais que ce n'est pas un dir
-*/
+void	ft_error_cd(char *path)
+{
+	write(2, "minishell: cd: ", 15);
+	write(2, path, ft_strlen(path));
+}
 
 int	ft_error(char *path, int error)
 {
+	ft_error_cd(path);
 	if (error == ENOENT)
-		printf("minishell: cd: %s: No such file or directory\n", path);
+		write(2, ": No such file or directory\n", 29);
 	if (error == ENOTDIR)
-		printf("minishell: cd: %s: Not a directory\n", path);
+		write(2, ": Not a directory\n", 19);
 	if (error == ENAMETOOLONG)
-		printf("minishell: cd: %s: File name too long\n", path);
-	if (error == EACCES)
-		printf("minishell: cd: %s: Permission denied\n", path);
+		write(2, ": File name too long\n", 22);
+	else
+		write(2, ": Permission denied\n", 21);
 	return (1);
 }
 

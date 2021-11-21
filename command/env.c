@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yannahbrutout <yannahbrutout@student.42    +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:48:13 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/18 14:51:57 by yannahbruto      ###   ########.fr       */
+/*   Updated: 2021/11/21 12:10:33 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_env(t_lst_cmd cmd, char **env)
 		return (1);
 	if (cmd.arg[1])
 	{
-		write(1, "too much arguments for this command\n", 36);
-		//return (1);
+		write(2, "too much arguments for this command\n", 36);
+		return (1);
 	}
 	i = 0;
 	len = len_lst(env);

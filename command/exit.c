@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:39:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/10 14:01:04 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/21 13:32:40 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ void	ft_t_exit(int num, int bool, char *arg)
 {
 	printf("exit\n");
 	if (bool)
-		printf("bash: exit: %s: numeric argument required\n", arg);
+	{
+		write(2, "bash: exit: ", 12);
+		write(2, arg, ft_strlen(arg));
+		write(2, ": numeric argument required\n", 29);
+	}
 	exit(num);
 }
 
@@ -51,7 +55,7 @@ int	ft_arg_len(char **arg)
 		;
 	if (i > 1)
 	{
-		printf("exit: too many arguments");
+		write(2, "minishell: exit: too many arguments\n", 37);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/19 17:45:16 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/21 14:54:29 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,38 @@
 /*
 faudra degager cette fonction, c'etait pour des tests
 */
+
+static void	ft_putchar(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+void	ft_putnbr_fd(int nb, int fd)
+{
+	unsigned int	a;
+
+	if (nb < 0)
+	{
+		write(fd, "-", 1);
+		a = -nb;
+	}
+	else
+		a = nb;
+	if (a >= 10)
+	{
+		ft_putnbr_fd(a / 10, fd);
+		ft_putchar(a % 10 + '0', fd);
+	}
+	else
+		ft_putchar(a + '0', fd);
+}
+
+void	ft_error_shlvl(int result)
+{
+	write(2, "minishell: warning: shell level (", 33);
+	ft_putnbr_fd(result, 2);
+	write(2, ") too high, resetting to 1\n", 28);
+}
 
 char	**ft_minishell_lvl(char **env, int ac, char **av)
 {
@@ -35,8 +67,7 @@ char	**ft_minishell_lvl(char **env, int ac, char **av)
 	result++;
 	if (result >= 1000)
 	{
-		printf("minishell:");
-		printf(" warning: shell level (%d) too high, resetting to 1\n", result);
+		ft_error_shlvl(result);
 		result = 1;
 	}
 	free(env[i]);

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/17 13:54:46 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/21 14:53:39 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ int	ft_open_mode(t_lst_cmd cmd, int bool)
 	error = errno;
 	if (fd == -1)
 	{
+		write(2, "minishell: ", 11);
+		write(2, cmd.outf, ft_strlen(cmd.outf));
 		if (error == EISDIR)
-			printf("minishell: %s: Is a directory\n", cmd.outf);
+			write(2, ": Is a directory\n", 18);
 		if (error == ENAMETOOLONG)
-			printf("minishell: %s: File name too long\n", cmd.outf);
+			write(2, ": File name too long\n", 22);
 		else
-			printf("minishell: %s: Permission denied\n", cmd.outf);
+			write(2, ": Permission denied\n", 21);
 		return (-1);
 	}
 	dup2(fd, 1);

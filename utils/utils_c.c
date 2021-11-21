@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_c.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/19 13:34:09 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/21 14:54:07 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_calloc(size_t nmemb)
 	if (!ret)
 		return (NULL);
 	else
-		return(ft_memset(ret, 0, nmemb));
+		return (ft_memset(ret, 0, nmemb));
 }
 
 void	*ft_memset(void *ptr, int c, size_t size)
@@ -33,7 +33,7 @@ void	*ft_memset(void *ptr, int c, size_t size)
 	return (ptr);
 }
 
-int		is_char_in_str(char c, char *str)
+int	is_char_in_str(char c, char *str)
 {
 	while (str && *str)
 	{

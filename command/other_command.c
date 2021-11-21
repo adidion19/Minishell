@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/12 11:30:03 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/21 14:14:00 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	ft_error_other_command(char *cmd, int bool)
 {
+	write(2, "minishell: ", 11);
+	write(2, cmd, ft_strlen(cmd));
 	if (bool == 1)
-		printf("minishell : %s: No such file or directory\n", cmd);
+		write(2, ": No such file or directory\n", 29);
 	if (bool == 0)
-		printf("minishell: %s: command not found", cmd);
+		write(2, ": command not found\n", 21);
 	return (127);
 }
 
