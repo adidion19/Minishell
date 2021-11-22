@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:11:18 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/21 17:58:46 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:26:36 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	extract_cmd_array(t_lst_cmd *node, char *str)
 	// we calloc for lstsize + 1 strings, and we copy all string in the array in order
 	node->arg = ft_calloc(sizeof(char *) * (1 + ft_lstsize_words(words_list)));
 	if (!node->arg)
-		return ((void)(free_word_list(words_list, 1))); // if we can't allocate the array, we free the whole list including the words
+		return ((void)(free_words_list(words_list, 1))); // if we can't allocate the array, we free the whole list including the words
 	copy_args_from_word_list(node->arg, words_list);
 
 	// free the linked list
-	free_word_list(words_list, 0);
+	free_words_list(words_list, 0);
 }
 
 

@@ -117,5 +117,5 @@ the command is the arg[0] that's it
 
 gcc *.c ../utils/*.c
 
-
+./a.out "           <k >>      > 1>>abc 2d<ef 3>ghi 4j<<kl  5mno 6pqr"
 
