@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:01:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 12:08:49 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/21 16:13:44 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	ft_error(char *path, int error)
 	ft_error_cd(path);
 	if (error == ENOENT)
 		write(2, ": No such file or directory\n", 29);
-	if (error == ENOTDIR)
+	else if (error == ENOTDIR)
 		write(2, ": Not a directory\n", 19);
-	if (error == ENAMETOOLONG)
+	else if (error == ENAMETOOLONG)
 		write(2, ": File name too long\n", 22);
 	else
 		write(2, ": Permission denied\n", 21);
