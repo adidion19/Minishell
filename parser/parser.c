@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/21 17:56:46 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:41:48 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,13 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	// create linked list that contains all words
 	words_list = create_words_list(str);
 	
+	words_list = get_input_output(ret, words_list);
+
 	extract_input(ret, str);
 	extract_output(ret, str);
-	handle_cmd_args_in_list(words_list);
+//	handle_cmd_args_in_list(words_list);
 	extract_cmd_array(ret, str);
-	create_cmd_array(ret, words_list);
+//	create_cmd_array(ret, words_list);
 	ret->next = 0; // no need, it's already 0 by default
 	// what if one extract fails ?
 	free(str);
@@ -191,6 +193,9 @@ int	main(int argc, char **argv, char **envp)
 		i++;
 	} */
 
+
+
+
 	printf("$PWD\n");
 	if (argc > 1)
 	{
@@ -202,14 +207,58 @@ int	main(int argc, char **argv, char **envp)
 
 		t_words_list	*temp = list;
 
-		while (list)
+		while (temp)
 		{
-			printf("->%s\n", list->word);
-			list = list->next;
+			printf("-> %s\n", temp->word);
+			temp = temp->next;
 		}
+
+	split_words_with_redirection_symbols(list);
+
+temp = list;
+
+	printf("\n\n");
+		while (temp)
+		{
+			printf("-> %s\n", temp->word);
+			temp = temp->next;
+		}
+
+/* 
+
+		printf("deleting element starting with 4 and 3... ");
+
+		temp = list;
+		while (temp)
+		{
+			if (temp->word[0] == '4')
+				break ;
+			temp = temp->next;
+		}
+		list = delete_node_words_list(list, temp);
+
+		temp = list;
+		while (temp)
+		{
+			if (temp->word[0] == '3')
+				break ;
+			temp = temp->next;
+		}
+		list = delete_node_words_list(list, temp);
+
+		printf("done !\n");
+
+		temp = list;
+		while (temp)
+		{
+			printf("->%s\n", temp->word);
+			temp = temp->next;
+		}
+ */
+
 		printf("\nStarting cleaning the list\n");
 
-		free_word_list(temp, 1);
+//		free_words_list(list, 1);
 
 		printf("%s\n", getenv("YOUPLABOUM"));
 	}
