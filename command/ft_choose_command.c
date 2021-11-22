@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/19 17:38:44 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/22 13:04:59 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,19 @@ int	ft_choose_command(t_lst_cmd cmd, char ***env)
 	r = ft_its_exit(cmd, r);
 	r = ft_its_export(cmd, r, env);
 	r = ft_its_pwd(cmd, r, *env);
-	//r = ft_its_unset(cmd, r, cmd);
-	if (r != 257)
+	r = ft_its_unset(cmd, r, cmd);
+	if (r == 257)
 		return (ft_other_command(cmd, *env));
 	return (r);
 }
+/*
+int main(int ac, char **av, char **envv)
+{
+	t_lst_cmd cmd;
+
+	cmd.command = av[1];
+	cmd.arg = av + 1;
+	envv = init_env(envv);
+	return (ft_choose_command(cmd, &envv));
+}
+*/
