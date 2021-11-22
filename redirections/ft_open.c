@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 14:53:39 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/22 17:38:43 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int	ft_open_mode(t_lst_cmd cmd, int bool)
 
 	errno = 0;
 	if (bool == 0)
-		fd = open(cmd.outf, O_WRONLY | O_TRUNC);
+		fd = open(cmd.outf, O_WRONLY | O_TRUNC | O_CREAT, 00644);
 	if (bool == 1)
-		fd = open(cmd.outf, O_WRONLY | O_APPEND);
+		fd = open(cmd.outf, O_WRONLY | O_APPEND | O_CREAT, 00644);
 	error = errno;
 	if (fd == -1)
 	{

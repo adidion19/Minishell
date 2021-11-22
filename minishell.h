@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 14:57:37 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/22 16:35:40 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <limits.h>
 
 typedef struct s_lst_cmd
 {
@@ -120,7 +121,7 @@ int				ft_env(t_lst_cmd cmd, char **env);
 
 /* CD */
 
-int				ft_cd(char *path, char **pwd, char **oldpwd);
+int				ft_cd(char *path, char **pwd, char **oldpwd, char **env);
 
 /* EXIT */
 
@@ -133,6 +134,10 @@ int				ft_echo(char **arg, int bool);
 /* EXPORT */
 
 int				ft_export(t_lst_cmd cmd, char ***env);
+
+/* UNSET */
+
+int				ft_unset(t_lst_cmd cmd, char ***env);
 
 /* OTHER_COMMAND */
 
@@ -147,6 +152,7 @@ int				ft_its_env(t_lst_cmd cmd, int r, char **env);
 int				ft_its_exit(t_lst_cmd cmd, int r);
 int				ft_its_export(t_lst_cmd cmd, int r, char ***env);
 int				ft_its_pwd(t_lst_cmd cmd, int r, char **env);
+int				ft_its_unset(t_lst_cmd cmd, int r, char ***env);
 
 /*
 ** ------------------------------------REDIRECTION-----------------------------
@@ -157,5 +163,15 @@ int				ft_its_pwd(t_lst_cmd cmd, int r, char **env);
 int				ft_open_mode(t_lst_cmd cmd, int bool);
 int				ft_close_mode(int fd);
 void			ft_putstr_fd(char *s, int fd);
+int				ft_close_inf(int fd);
+int				ft_open_inf(t_lst_cmd cmd);
+
+/*
+**--------------------------------------PIPE------------------------------------
+*/
+
+/* FT_VERIFY_REDI */
+
+int				ft_verify_redi(t_lst_cmd cmd, char **env);
 
 #endif

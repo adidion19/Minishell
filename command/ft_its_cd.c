@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 13:38:58 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/22 16:09:15 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ft_send_to_cd(t_lst_cmd cmd, char ***env, int bool)
 	pwd = env_find_the("PWD=", *env);
 	old_pwd = env_find_the("OLDPWD=", *env);
 	if (bool == 1)
-		r = ft_cd(cmd.arg[1], &pwd, &old_pwd);
+		r = ft_cd(cmd.arg[1], &pwd, &old_pwd, *env);
 	else
-		r = ft_cd(NULL, &pwd, &old_pwd);
+		r = ft_cd(NULL, &pwd, &old_pwd, *env);
 	*env = env_replace(*env, "PWD=", pwd);
 	*env = env_replace(*env, "OLDPWD=", old_pwd);
 	return (r);

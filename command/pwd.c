@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:00:02 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 17:31:20 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/22 15:58:52 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,11 @@
 int	ft_pwd(char **env)
 {
 	int		i;
-	char	*pwd;
+	char	pwd[PATH_MAX];
 
 	i = -1;
-	while (env[++i])
-	{
-		if (ft_strncmp("PWD=", env[i], 4) == 0)
-		{
-			pwd = ft_strcpy_after(env[i], "PWD=");
-			if (!pwd)
-				return (1);
-			printf("%s\n", pwd);
-			free(pwd);
-			break ;
-		}
-	}
+	if (!getcwd(pwd, PATH_MAX))
+		return (1);
+	printf("%s\n", pwd);
 	return (0);
 }
