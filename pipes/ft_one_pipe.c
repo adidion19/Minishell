@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:30:23 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 10:51:14 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 16:17:35 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_one_pipe(t_lst_cmd *cmd, char **env)
 	int	status;
 	int	r;
 
+	r = 0;
 	if (pipe(fd) == -1)
 		return (127);
 	pid1 = fork();

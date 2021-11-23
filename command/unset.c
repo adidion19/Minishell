@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/11/22 13:06:34 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:30:19 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,43 +86,5 @@ int	ft_unset(t_lst_cmd cmd, char ***env)
 			return (1);
 		free_tab_char(oldenv, -1);
 	}
-	//write(1, "hey\n", 4);
-	//cmd->arg[1] = NULL;
-	//ft_env(*cmd, *env);
 	return (0);
 }
-/*
-int	main(int argc, char **argv, char **env)
-{
-	char 		**envcpy;
-	t_lst_cmd	*cmd;
-	if (argc == 2)
-		printf("argv == %s\n", argv[0]);
-	envcpy = init_env(env);
-	cmd = malloc(sizeof(t_lst_cmd));
-	cmd->command = NULL;
-	cmd->inf = NULL;
-	cmd->outf = NULL;
-	cmd->outfd = 0;
-	cmd->infd = 0;
-	cmd->arg = malloc(sizeof(char *) * 10);
-	cmd->arg[0] = "unset";
-	cmd->arg[1] = "A";
-	cmd->arg[2] = "coucou";
-	cmd->arg[3] = NULL;
-	cmd->arg[4] = NULL;
-	cmd->arg[5] = NULL;
-	cmd->arg[6] = NULL;
-	cmd->arg[7] = NULL;
-	cmd->arg[8] = NULL;
-	cmd->arg[9] = NULL;
-	int ret = 0;
-
-	ret = ft_unset(cmd, &envcpy);
-	cmd->arg[1] = NULL;
-	write(1, "\n\n--------------------------\n", 29);
-	ft_env(*cmd, envcpy);
-	write(1, "\n", 1);
-	printf("ret == %d\n", ret);
-	return (0);
-}*/

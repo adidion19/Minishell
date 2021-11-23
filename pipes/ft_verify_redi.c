@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:37:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/22 16:36:03 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 16:21:07 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_verify_redi(t_lst_cmd cmd, char **env)
 	int	fd_outfile;
 	int	r;
 
+	fd_infile = -1;
+	fd_outfile = -1;
 	if (cmd.inf)
 		fd_infile = ft_open_inf(cmd);
 	if (cmd.outf)
