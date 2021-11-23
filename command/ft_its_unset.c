@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_its_unset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:04:11 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/22 13:07:37 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 13:43:32 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	ft_its_unset(t_lst_cmd cmd, int r, char ***env)
 	if (ft_strlen(cmd.command) == 5)
 	{
 		if (ft_strncmp(cmd.command, "unset", 5) == 0)
-		{
 			return (ft_unset(cmd, env));
-		}
 	}
 	return (257);
 }
