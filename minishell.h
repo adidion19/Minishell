@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/22 14:22:00 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:31:41 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_lst_cmd
 	char				*outf;
 	int					infd;
 	int					outfd;
-	int					bool; // 1 means append mode
+	int					append; // 1 means append mode
 	struct s_lst_cmd	*next;
 }	t_lst_cmd;
 
