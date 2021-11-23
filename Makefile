@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
+#    By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/19 17:23:35 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/23 11:34:55 by ybrutout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror -I includes/
 
 RPATH = /Users/$(USER)/.brew/opt/readline/
 
-RL_FLAGS    =   -L/usr/include  -lreadline
+RL_FLAGS    =   -L/usr/include  -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include
 
 SRC =	minishell.c\
 		command/env.c\
