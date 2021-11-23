@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 15:55:40 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:39:10 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,34 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 	int		i;
 	char	**path;
 	int		access;
+	pid_t	pid;
+	int		exit_status;
 
 	i = -1;
 	access = 0;
-	if (!env)
-		return (ft_error_other_command(cmd.command, 1));
-	path = ft_find_path(env);
-	if (!path)
-		return (ft_error_other_command(cmd.command, 1));
-	while (path[++i])
+	pid = fork();
+	if (pid < 0)
+		return (0);
+	if (pid == 0)
 	{
-		path[i] = ft_strjoin_2(path[i], "/", 0);
-		path[i] = ft_strjoin_2(path[i], cmd.arg[0], 1);
-		if (execve(path[i], cmd.arg, env) == -1)
-			access++;
+		if (!env)
+			return (ft_error_other_command(cmd.command, 1));
+		path = ft_find_path(env);
+		if (!path)
+			return (ft_error_other_command(cmd.command, 1));
+		while (path[++i])
+		{
+			path[i] = ft_strjoin_2(path[i], "/", 0);
+			path[i] = ft_strjoin_2(path[i], cmd.arg[0], 1);
+			if (execve(path[i], cmd.arg, env) == -1)
+				access++;
+		}
+		ft_free_path(path);
 	}
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		exit_status = WEXITSTATUS(status);
 	if (i == access)
 		return (ft_error_other_command(cmd.command, 0));
-	return (0);
-	ft_free_path(path);
+	return (exit_status);
 }

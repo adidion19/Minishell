@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 13:54:21 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:42:10 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ char			**init_env(char **env);
 */
 
 /* PWD */
-int				ft_pwd(char **env);
+int				ft_pwd(void);
 
 /* ENV */
 int				ft_env(t_lst_cmd cmd, char **env);
@@ -155,7 +155,7 @@ int				ft_its_echo(t_lst_cmd cmd, int r);
 int				ft_its_env(t_lst_cmd cmd, int r, char **env);
 int				ft_its_exit(t_lst_cmd cmd, int r);
 int				ft_its_export(t_lst_cmd cmd, int r, char ***env);
-int				ft_its_pwd(t_lst_cmd cmd, int r, char **env);
+int				ft_its_pwd(t_lst_cmd cmd, int r);
 int				ft_its_unset(t_lst_cmd cmd, int r, char ***env);
 
 /*

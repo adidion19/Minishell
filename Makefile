@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+         #
+#    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/23 12:17:57 by ybrutout         ###   ########.fr        #
+#    Updated: 2021/11/23 15:48:21 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC =	minishell.c\
 		command/echo.c\
 		command/exit.c\
 		command/export.c\
+		command/unset.c\
 		command/other_command.c\
 		command/ft_choose_command.c\
 		command/ft_its_cd.c\
@@ -35,6 +36,7 @@ SRC =	minishell.c\
 		command/ft_its_exit.c\
 		command/ft_its_export.c\
 		command/ft_its_pwd.c\
+		command/its_unset\
 		utils/utils.c\
 		utils/utils_b.c\
 		utils/utils_c.c\

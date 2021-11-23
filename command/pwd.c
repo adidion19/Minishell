@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:09:14 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/23 12:09:18 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:41:37 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 	autre chose : pwd: too many arguments -> exit(1)
 */
 
-int	ft_pwd(char **env)
+int	ft_pwd(void)
 {
 	int		i;
 	char	pwd[PATH_MAX];
