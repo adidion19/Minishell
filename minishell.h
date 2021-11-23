@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 15:26:51 by ybrutout         ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2021/11/23 16:19:01 by adidion          ###   ########.fr       */
+=======
+/*   Updated: 2021/11/23 16:34:49 by artmende         ###   ########.fr       */
+>>>>>>> ec05b954940369487803b4d249b34a2e9d3a5c00
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +27,8 @@
 # include <errno.h>
 # include <limits.h>
 # include <termios.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct s_lst_cmd
 {
@@ -32,7 +38,7 @@ typedef struct s_lst_cmd
 	char				*outf;
 	int					infd;
 	int					outfd;
-	int					bool; // 1 means append mode
+	int					append; // 1 means append mode
 	struct s_lst_cmd	*next;
 }	t_lst_cmd;
 
@@ -119,7 +125,7 @@ char			**init_env(char **env);
 */
 
 /* PWD */
-int				ft_pwd(char **env);
+int				ft_pwd(void);
 
 /* ENV */
 int				ft_env(t_lst_cmd cmd, char **env);
@@ -156,7 +162,7 @@ int				ft_its_echo(t_lst_cmd cmd, int r);
 int				ft_its_env(t_lst_cmd cmd, int r, char **env);
 int				ft_its_exit(t_lst_cmd cmd, int r);
 int				ft_its_export(t_lst_cmd cmd, int r, char ***env);
-int				ft_its_pwd(t_lst_cmd cmd, int r, char **env);
+int				ft_its_pwd(t_lst_cmd cmd, int r);
 int				ft_its_unset(t_lst_cmd cmd, int r, char ***env);
 
 /*
@@ -179,6 +185,14 @@ int				ft_open_inf(t_lst_cmd cmd);
 
 int				ft_verify_redi(t_lst_cmd cmd, char **env);
 
+/* FT_ONE_PIPE */
+
+int				ft_one_pipe(t_lst_cmd *cmd, char **env);
+
+/* FT_MULTIPLE_PIPE */
+
+int				ft_multiple_pipe(t_lst_cmd *cmd, char **env, int size);
+
 /*
 **-------------------------------------SIGNAL-----------------------------------
 */
@@ -189,6 +203,6 @@ void			set_signal(void);
 void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
 
-void   			rl_replace_line(const char *text, int clear_undo);
+void			rl_replace_line(const char *text, int clear_undo);
 
 #endif

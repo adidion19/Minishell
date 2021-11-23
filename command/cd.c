@@ -6,7 +6,7 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:08:33 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/23 16:09:12 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/23 17:01:14 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_update_oldpwd(char *pwd, char *oldpwd_2)
 ** ! il faudra peut etre free des trucs, a voir plus tard
 */
 
-char	*ft_update_pwd(char *path, char *pwd_2)
+char	*ft_update_pwd(char *pwd_2)
 {
 	char	*pwd;
 	char	buff[PATH_MAX];
@@ -90,6 +90,6 @@ int	ft_cd(char *path, char **pwd, char **oldpwd, char **env)
 		return (ft_error(path, error));
 	}
 	*oldpwd = ft_update_oldpwd(*pwd, *oldpwd);
-	*pwd = ft_update_pwd(path, *pwd);
+	*pwd = ft_update_pwd(*pwd);
 	return (0);
 }

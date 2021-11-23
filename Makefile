@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+         #
+#    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/23 15:25:11 by ybrutout         ###   ########.fr        #
+#    Updated: 2021/11/23 16:45:48 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ CFLAGS = -Wall -Wextra -Werror -I includes/
 
 RPATH = /Users/$(USER)/.brew/opt/readline/
 
-RL_FLAGS    =   -L/usr/include  -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include
+RL_FLAGS=	-L/usr/include  -lreadline\
+			-L /Users/$(USER)/.brew/opt/readline/lib\
+			-I/Users/$(USER)/.brew/opt/readline/include
 
 SRC =	minishell.c\
 		command/env.c\
@@ -35,19 +37,23 @@ SRC =	minishell.c\
 		command/ft_its_exit.c\
 		command/ft_its_export.c\
 		command/ft_its_pwd.c\
-		command/ft_its_unset.c \
-		command/unset.c \
+		command/ft_its_unset.c\
+		command/unset.c\
+		pipes/ft_one_pipe.c\
+		pipes/ft_pick_pipe.c\
+		pipes/ft_verify_redi.c\
+		error/error.c\
 		utils/utils.c\
 		utils/utils_b.c\
 		utils/utils_c.c\
 		utils/utils_d.c\
-		error/error.c\
 		utils/ft_atoi.c\
 		utils/ft_itoa.c\
 		utils/ft_split.c\
 		init_env.c\
 		redirections/ft_open.c\
-		signal/signal.c \
+		signal/signal.c\
+		#pipes/ft_multiple_pipe.c\#
 
 OBJ = ${SRC:c=o}
 

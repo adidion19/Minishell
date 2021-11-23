@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:56:51 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 10:52:36 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 16:27:42 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_pick_pipe(t_lst_cmd *cmd, char **env)
 		return (ft_verify_redi(*cmd, env));
 	if (ft_lstsize(cmd) == 2)
 		return (ft_one_pipe(cmd, env));
-	else
-		return (ft_multiple_pipe(cmd, env, ft_lstsize(cmd)));
+	//else
+	//	return (ft_multiple_pipe(cmd, env, ft_lstsize(cmd)));
+	return (1);
 }

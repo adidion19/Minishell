@@ -6,7 +6,7 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 13:43:06 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/23 17:01:05 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,24 @@ int	ft_choose_command(t_lst_cmd cmd, char ***env)
 	r = ft_its_env(cmd, r, *env);
 	r = ft_its_exit(cmd, r);
 	r = ft_its_export(cmd, r, env);
-	r = ft_its_pwd(cmd, r, *env);
+	r = ft_its_pwd(cmd, r);
 	r = ft_its_unset(cmd, r, env);
 	if (r == 257)
 		return (ft_other_command(cmd, *env));
 	return (r);
 }
 
-/*int main(int ac, char **av, char **envv)
+/*
+int	main(int ac, char **av, char **envv)
 {
-	t_lst_cmd cmd;
+	t_lst_cmd	cmd;
 
 	if (ac < 0)
 		write(1, "probleme\n", 9);
 	cmd.command = av[1];
 	cmd.arg = av + 1;
 	cmd.inf = NULL;
-	//cmd.outf = av[1];
 	envv = init_env(envv);
-	return (ft_verify_redi(cmd, envv));
-}*/
+	printf("%d\n", ft_verify_redi(cmd, envv));
+}
+*/
