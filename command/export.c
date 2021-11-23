@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/19 17:04:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:46:13 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,8 @@ int	ft_export(t_lst_cmd cmd, char ***env)
 	while (cmd.arg[++i])
 	{
 		ret = env_check_arg(cmd.arg[i], *env);
-		if (ret < 1)
-		{
-			if (ret < 0)
-				status = 1;
-			continue ;
-		}
+		if (ret < 0)
+			status = 1;
 		oldenv = *env;
 		if (ret == 1)
 		{
@@ -125,63 +121,9 @@ int	ft_export(t_lst_cmd cmd, char ***env)
 				return (1);
 			free_tab_char(oldenv, -1);
 		}
-		else
+		else if (ret > 1)
 			if (env_change(env, cmd.arg[i], ret))
 				return (1);
 	}
 	return (status);
 }
-/*
-char *initstr(char *str)
-{
-	char	*tmp;
-	int		len;
-	int		i;
-
-	if (!str)
-		return (NULL);
-	len = ft_strlen(str);
-	tmp = malloc(sizeof(char) * (len + 1));
-	tmp[len] = '\0';
-	i = -1;
-	while (++i < len)
-		tmp[i] = str[i];
-	return (tmp);
-}
-
-int	main(int argc, char **argv, char **env)
-{
-	char 		**envcpy;
-	t_lst_cmd	*cmd;
-	if (argc == 2)
-		printf("argv == %s\n", argv[0]);
-	envcpy = init_env(env);
-	cmd = malloc(sizeof(t_lst_cmd));
-	cmd->command = NULL;
-	cmd->inf = NULL;
-	cmd->outf = NULL;
-	cmd->outfd = 0;
-	cmd->infd = 0;
-	cmd->arg = malloc(sizeof(char *) * 10);
-	cmd->arg[0] = "export";
-	cmd->arg[1] = "A+=c";
-	cmd->arg[2] = "coucou=12";
-	cmd->arg[3] = NULL;
-	cmd->arg[4] = NULL;
-	cmd->arg[5] = NULL;
-	cmd->arg[6] = NULL;
-	cmd->arg[7] = NULL;
-	cmd->arg[8] = NULL;
-	cmd->arg[9] = NULL;
-	int ret = 0;
-
-	ret = ft_export(cmd, &envcpy);
-	cmd->arg[1] = NULL;
-	write(1, "\n\n--------------------------\n", 29);
-	ft_env(*cmd, envcpy);
-	write(1, "\n", 1);
-	printf("ret == %d\n", ret);
-	system("leaks a.out");
-	return (0);
-}
-*/
