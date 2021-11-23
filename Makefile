@@ -6,7 +6,7 @@
 #    By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/23 12:17:57 by ybrutout         ###   ########.fr        #
+#    Updated: 2021/11/23 15:25:11 by ybrutout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ SRC =	minishell.c\
 		command/ft_its_exit.c\
 		command/ft_its_export.c\
 		command/ft_its_pwd.c\
+		command/ft_its_unset.c \
+		command/unset.c \
 		utils/utils.c\
 		utils/utils_b.c\
 		utils/utils_c.c\
@@ -45,7 +47,7 @@ SRC =	minishell.c\
 		utils/ft_split.c\
 		init_env.c\
 		redirections/ft_open.c\
-		signal\signal.c
+		signal/signal.c \
 
 OBJ = ${SRC:c=o}
 
