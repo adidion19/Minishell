@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 15:39:10 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:53:18 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 	int		access;
 	pid_t	pid;
 	int		exit_status;
+	int		status;
 
 	i = -1;
 	access = 0;

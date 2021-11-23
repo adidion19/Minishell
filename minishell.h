@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 15:42:10 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:53:01 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <limits.h>
-
-int		status;
+# include <termios.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct s_lst_cmd
 {
@@ -37,11 +38,13 @@ typedef struct s_lst_cmd
 	struct s_lst_cmd	*next;
 }	t_lst_cmd;
 
-typedef struct s_minishell
+typedef struct s_global
 {
 	t_lst_cmd	*start;
-	char		**env;
-}	t_minishell;
+	int			status;
+}	t_global;
+
+t_global	g_global;
 
 /*
 **	FT_ATOI
@@ -185,7 +188,9 @@ int				ft_verify_redi(t_lst_cmd cmd, char **env);
 /*	SIGNAL	*/
 
 void			set_signal(void);
-void			ctrl_d(int signum);
+void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
+
+void   			rl_replace_line(const char *text, int clear_undo);
 
 #endif
