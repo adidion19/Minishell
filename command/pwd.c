@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/28 16:00:02 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 17:31:20 by adidion          ###   ########.fr       */
+/*   Created: 2021/11/23 12:09:14 by ybrutout          #+#    #+#             */
+/*   Updated: 2021/11/23 15:41:37 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,14 @@
 	autre chose : pwd: too many arguments -> exit(1)
 */
 
-int	ft_pwd(char **env)
+int	ft_pwd(void)
 {
 	int		i;
-	char	*pwd;
+	char	pwd[PATH_MAX];
 
 	i = -1;
-	while (env[++i])
-	{
-		if (ft_strncmp("PWD=", env[i], 4) == 0)
-		{
-			pwd = ft_strcpy_after(env[i], "PWD=");
-			if (!pwd)
-				return (1);
-			printf("%s\n", pwd);
-			free(pwd);
-			break ;
-		}
-	}
+	if (!getcwd(pwd, PATH_MAX))
+		return (1);
+	printf("%s\n", pwd);
 	return (0);
 }

@@ -6,7 +6,11 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/19 17:23:35 by adidion          ###   ########.fr        #
+<<<<<<< HEAD
+#    Updated: 2021/11/23 15:48:21 by adidion          ###   ########.fr        #
+=======
+#    Updated: 2021/11/23 15:25:11 by ybrutout         ###   ########.fr        #
+>>>>>>> 1550219e35eca9d297372a32ebd724e8b32560cc
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +22,7 @@ CFLAGS = -Wall -Wextra -Werror -I includes/
 
 RPATH = /Users/$(USER)/.brew/opt/readline/
 
-RL_FLAGS    =   -L/usr/include  -lreadline
+RL_FLAGS    =   -L/usr/include  -lreadline -L /Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include
 
 SRC =	minishell.c\
 		command/env.c\
@@ -27,6 +31,7 @@ SRC =	minishell.c\
 		command/echo.c\
 		command/exit.c\
 		command/export.c\
+		command/unset.c\
 		command/other_command.c\
 		command/ft_choose_command.c\
 		command/ft_its_cd.c\
@@ -35,6 +40,12 @@ SRC =	minishell.c\
 		command/ft_its_exit.c\
 		command/ft_its_export.c\
 		command/ft_its_pwd.c\
+<<<<<<< HEAD
+		command/its_unset\
+=======
+		command/ft_its_unset.c \
+		command/unset.c \
+>>>>>>> 1550219e35eca9d297372a32ebd724e8b32560cc
 		utils/utils.c\
 		utils/utils_b.c\
 		utils/utils_c.c\
@@ -45,6 +56,7 @@ SRC =	minishell.c\
 		utils/ft_split.c\
 		init_env.c\
 		redirections/ft_open.c\
+		signal/signal.c \
 
 OBJ = ${SRC:c=o}
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 17:01:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 16:13:44 by adidion          ###   ########.fr       */
+/*   Created: 2021/11/23 12:08:33 by ybrutout          #+#    #+#             */
+/*   Updated: 2021/11/23 15:40:32 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ char	*ft_update_oldpwd(char *pwd, char *oldpwd_2)
 ** ! il faudra peut etre free des trucs, a voir plus tard
 */
 
-char	*ft_update_pwd(char *path, char *pwd_2)
+char	*ft_update_pwd(char *pwd_2)
 {
 	char	*pwd;
+	char	buff[PATH_MAX];
 
-	pwd = ft_strdup(path);
+	getcwd(buff, PATH_MAX);
+	pwd = ft_strdup(buff);
 	if (!pwd)
 		exit(EXIT_FAILURE);
 	free(pwd_2);
@@ -73,14 +75,14 @@ int	ft_error(char *path, int error)
 **	retourne 1 en cas d'erreur et 0 si reussi (exit status)
 */
 
-int	ft_cd(char *path, char **pwd, char **oldpwd)
+int	ft_cd(char *path, char **pwd, char **oldpwd, char **env)
 {
 	int	error;
 
 	errno = 0;
 	if (!path)
-		path = "~";
-	if (!ft_strncmp("", path, 1))
+		path = env_find_the("HOME=", env);
+	if (path[0] == '\0')
 		return (0);
 	if (chdir(path) == -1)
 	{
@@ -88,6 +90,6 @@ int	ft_cd(char *path, char **pwd, char **oldpwd)
 		return (ft_error(path, error));
 	}
 	*oldpwd = ft_update_oldpwd(*pwd, *oldpwd);
-	*pwd = ft_update_pwd(path, *pwd);
+	*pwd = ft_update_pwd(*pwd);
 	return (0);
 }

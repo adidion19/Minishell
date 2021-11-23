@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:35:03 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 17:09:59 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 10:42:20 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,27 @@ int	ft_echo(char **arg, int bool)
 {
 	int	i;
 	int	bool2;
+	int	j;
 
 	i = -1;
+	j = -50;
 	bool2 = 0;
-	if (!arg[0])
-	{
-		printf("\n");
-		return (0);
-	}
-	while (arg[++i])
+	while (arg[0] && arg[++i])
 	{
 		if (bool2 == 0 && ft_verify_arg_2(arg[i]) == 1)
+		{
+			j = i;
 			bool = 1;
+		}
 		else
 		{
 			bool2 = 1;
-			if (i != 0)
-				printf(" ");
+			if (i != 0 && i != (j + 1))
+				printf("A");
 			printf("%s", arg[i]);
 		}
 	}
-	if (bool == 0)
+	if (!arg[0] || bool == 0)
 		printf("\n");
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/21 14:54:29 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 15:22:55 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,27 @@ char	**ft_minishell_lvl(char **env, int ac, char **av)
 
 int	main(int ac, char **av, char **env)
 {
-	char	*line;
-	int		i;
+	char			*line;
+	int				i;
+	struct termios	termios_p;
 
+	tcgetattr(STDIN_FILENO, &termios_p);/* gestion de l'affichage du ctrl*/
+	termios_p.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &termios_p);
 	env = init_env(env);
 	ft_minishell_lvl(env, ac, av);
+	set_signal();
 	while (1)
 	{
+		set_signal();
 		line = readline("$> ");
-		if (line && *line)
+		if (!line)
 		{
-			i = add_history(line);
+			write(1, "exit\n", 5);
+			return (0);
 		}
+		if (line && *line)
+			i = add_history(line);
 		free(line);
 	}
 	return (0);
