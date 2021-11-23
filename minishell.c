@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/21 14:54:29 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 12:23:53 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ int	main(int ac, char **av, char **env)
 
 	env = init_env(env);
 	ft_minishell_lvl(env, ac, av);
+	set_signal();
 	while (1)
 	{
+		set_signal();
 		line = readline("$> ");
 		if (line && *line)
 		{

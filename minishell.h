@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 13:34:27 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 13:54:21 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <limits.h>
+
+int		status;
 
 typedef struct s_lst_cmd
 {
@@ -175,5 +177,15 @@ int				ft_open_inf(t_lst_cmd cmd);
 /* FT_VERIFY_REDI */
 
 int				ft_verify_redi(t_lst_cmd cmd, char **env);
+
+/*
+**-------------------------------------SIGNAL-----------------------------------
+*/
+
+/*	SIGNAL	*/
+
+void			set_signal(void);
+void			ctrl_d(int signum);
+void			ctrl_c(int signum);
 
 #endif
