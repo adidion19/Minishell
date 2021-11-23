@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/23 16:19:01 by adidion          ###   ########.fr       */
+=======
+/*   Updated: 2021/11/23 16:34:49 by artmende         ###   ########.fr       */
+>>>>>>> ec05b954940369487803b4d249b34a2e9d3a5c00
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +38,7 @@ typedef struct s_lst_cmd
 	char				*outf;
 	int					infd;
 	int					outfd;
-	int					bool; // 1 means append mode
+	int					append; // 1 means append mode
 	struct s_lst_cmd	*next;
 }	t_lst_cmd;
 

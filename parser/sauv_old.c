@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:44:15 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/21 18:26:26 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/23 11:40:06 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,15 @@ void	expand_variables_in_words_list(t_words_list *list)
 		}
 		temp_list = temp_list->next;
 	}
+}
+
+void	display_words_list(t_words_list	*list)
+{
+	printf("Displaying words_list...\n");
+	while (list)
+	{
+		printf("Word -> %s\n", list->word);
+		list = list->next;
+	}
+	printf("Done !\n");
 }

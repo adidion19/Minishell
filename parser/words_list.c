@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/22 16:59:36 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:00:14 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	have_redirection_symbol_not_alone(char	*str)
 {
-	size_t	len;
+/* 	size_t	len;
 
 	len = ft_strlen(str);
 	if (len < 2 || (!ft_strnstr(str, "<", len) && !ft_strnstr(str, ">", len)))
@@ -34,7 +34,29 @@ int	have_redirection_symbol_not_alone(char	*str)
 		if (ft_strnstr(str, ">>", len) && len > 2)
 			return (1);
 	}
-	return (0);
+	return (0); */
+
+	int		have_redirection;
+	int		have_something_else;
+	t_quote_state	quote;
+
+	have_redirection = 0;
+	have_something_else = 0;
+	ft_memset(&quote, 0, sizeof(quote));
+	while (*str)
+	{
+		update_quote_state(str, &quote);
+		if ((*str == '<' || *str == '>') && quote.global_quote == 0)
+			have_redirection = 1;
+		if (*str != '<' && *str != '>' && *str != ' ')
+			have_something_else = 1;
+		str++;
+	}
+	if (have_redirection && have_something_else)
+		return (1);
+	else
+		return (0);
+
 }
 
 t_words_list	*create_word_node(char	*word)
@@ -48,6 +70,18 @@ t_words_list	*create_word_node(char	*word)
 	return (ret);
 }
 
+
+t_words_list	*insert_splitted_word(char **from, char *to, t_words_list *node)
+{
+	if (to != *from)
+		node->next = create_word_node(duplicate_part_of_str(*from, to - 1));
+	*from = to;
+	if (node->next)
+		return (node->next);
+	return (node);
+}
+
+
 void	insert_nodes_split_word(t_words_list *list, char *word)
 {
 	// duplicate the word of the first node of the list in max 3 nodes
@@ -55,37 +89,26 @@ void	insert_nodes_split_word(t_words_list *list, char *word)
 	// one node for the group of < or >
 	// one node for whatever is left after
 
+	t_quote_state	quote;
 	t_words_list	*sav_next;
 	t_words_list	*temp;
 	char			*cursor;
 
+	ft_memset(&quote, 0, sizeof(quote));
 	sav_next = list->next;
 	temp = list;
 	temp->next = 0;
 	cursor = word;
-
-	while (*cursor && !ft_strchr("<>", *cursor))
+	while (*cursor && update_quote_state(cursor, &quote)
+		&& (quote.global_quote == 1 || !ft_strchr("<>", *cursor)))
 		cursor++;
-	if (cursor != word)
-		temp->next = create_word_node(duplicate_part_of_str(word, cursor - 1));
-	word = cursor;
-	if (temp->next)
-		temp = temp->next;
-
+	temp = insert_splitted_word(&word, cursor, temp);
 	while (*cursor && ft_strchr("<>", *cursor))
 		cursor++;
-	if (cursor != word)
-		temp->next = create_word_node(duplicate_part_of_str(word, cursor - 1));
-	word = cursor;
-	if (temp->next)
-		temp = temp->next;
-
+	temp = insert_splitted_word(&word, cursor, temp);
 	while (*cursor)
 		cursor++;
-	if (cursor != word)
-		temp->next = create_word_node(duplicate_part_of_str(word, cursor - 1));
-	if (temp->next)
-		temp = temp->next;
+	temp = insert_splitted_word(&word, cursor, temp);
 	temp->next = sav_next;
 }
 
@@ -105,16 +128,18 @@ t_words_list	*split_words_with_redirection_symbols(t_words_list *list)
 	{
 		if (have_redirection_symbol_not_alone(temp->word))
 		{
+/* 			printf("\n");
+			display_words_list(list);
+			printf("\n");
+			usleep(500); */
+			
 			insert_nodes_split_word(temp, temp->word);
 			temp = delete_node_words_list(list, temp);
-			printf("CONTROL : %s\n", temp->word);
-			// temp points now to the beginning of the list
+			list = temp;
 			continue ;
 		}
 		temp = temp->next;
 	}
-	
-
 	return (list);
 }
 
@@ -141,7 +166,7 @@ t_words_list	*create_words_list(char *str)
 		str = end_of_word + 1; // end of word is the last char of the word, we want to get past that
 	}
 
-//	words_list = split_words_with_redirection_symbols(words_list);
+	words_list = split_words_with_redirection_symbols(words_list);
 	// at this point the linked list exist and contains all the words.
 //	expand_variables_in_words_list(words_list);
 	// at this point all $var are expanded. quotes are still there

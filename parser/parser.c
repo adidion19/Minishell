@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/22 16:41:48 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:49:49 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,35 +194,27 @@ int	main(int argc, char **argv, char **envp)
 	} */
 
 
+	if (argc < 2)
+		return (0);
 
 
-	printf("$PWD\n");
-	if (argc > 1)
-	{
 		t_words_list	*list;
 
 		list = 0;
 
 		list = create_words_list(argv[1]);
 
-		t_words_list	*temp = list;
-
-		while (temp)
-		{
-			printf("-> %s\n", temp->word);
-			temp = temp->next;
-		}
-
-	split_words_with_redirection_symbols(list);
-
-temp = list;
-
 	printf("\n\n");
-		while (temp)
-		{
-			printf("-> %s\n", temp->word);
-			temp = temp->next;
-		}
+
+		display_words_list(list);
+
+//	list = split_words_with_redirection_symbols(list);
+
+
+
+//	printf("\n\n");
+
+//	display_words_list(list);
 
 /* 
 
@@ -258,10 +250,10 @@ temp = list;
 
 		printf("\nStarting cleaning the list\n");
 
-//		free_words_list(list, 1);
+		free_words_list(list, 1);
 
 		printf("%s\n", getenv("YOUPLABOUM"));
-	}
+
 
 
 
