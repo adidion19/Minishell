@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:57:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/17 12:53:27 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 11:47:32 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_its_pwd(t_lst_cmd cmd, int r, char **env)
 		return (r);
 	if (ft_strlen(cmd.command) == 3)
 	{
-		if (ft_strncmp(cmd.command, "pwd", 3) == 0)
+		if (ft_strncmp_maj(cmd.command, "pwd", 3) == 0)
 		{
 			return (ft_pwd(env));
 		}

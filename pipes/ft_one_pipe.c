@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:30:23 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/19 13:47:59 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 10:51:14 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_one_pipe(t_lst_cmd *cmd, char **env)
 	{
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[1]);
-		r = ft_verify_redi(cmd->next, env);
+		r = ft_verify_redi(*cmd->next, env);
 		close(fd[0]);
 	}
 	waitpid(pid1, &status, 0);

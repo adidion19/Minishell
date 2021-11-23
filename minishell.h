@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/22 18:03:21 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 10:46:37 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char			*duplicate_part_of_str(char *from, char *to);
 void			free_array_of_string(char **array);
 t_lst_cmd		*free_lst_cmd(t_lst_cmd *list); // returns a null pointer
 char			*ft_strnstr(char *str, char *to_find, size_t len);
+int				ft_strncmp_maj(const char *s1, const char *s2, size_t n);
 
 /*
 **	FT_SPLIT

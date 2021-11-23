@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:33:20 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/22 14:21:41 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/23 11:15:28 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,19 @@ char	*ft_strnstr(char *str, char *to_find, size_t len)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_strncmp_maj(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	if (!s1 || !s2 || n > ft_strlen((char *)s1))
+		return (-1);
+	while ((s1[i] == s2[i] || s1[i] + (unsigned char)32
+			== s2[i]) && i < n && s1[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
