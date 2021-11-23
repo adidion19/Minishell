@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 15:42:36 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 16:10:33 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	ft_choose_command(t_lst_cmd cmd, char ***env)
 	return (r);
 }
 
+/*
 int	main(int ac, char **av, char **envv)
 {
 	t_lst_cmd	cmd;
@@ -47,3 +48,4 @@ int	main(int ac, char **av, char **envv)
 	envv = init_env(envv);
 	printf("%d\n", ft_verify_redi(cmd, envv));
 }
+*/

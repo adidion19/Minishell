@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 15:53:01 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/23 16:19:01 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,14 @@ int				ft_open_inf(t_lst_cmd cmd);
 
 int				ft_verify_redi(t_lst_cmd cmd, char **env);
 
+/* FT_ONE_PIPE */
+
+int				ft_one_pipe(t_lst_cmd *cmd, char **env);
+
+/* FT_MULTIPLE_PIPE */
+
+int				ft_multiple_pipe(t_lst_cmd *cmd, char **env, int size);
+
 /*
 **-------------------------------------SIGNAL-----------------------------------
 */
@@ -191,6 +199,6 @@ void			set_signal(void);
 void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
 
-void   			rl_replace_line(const char *text, int clear_undo);
+void			rl_replace_line(const char *text, int clear_undo);
 
 #endif
