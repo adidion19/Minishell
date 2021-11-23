@@ -6,7 +6,7 @@
 /*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/23 15:46:13 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:31:32 by ybrutout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ int	nw_env(char ***env, char *str)
 	int		len;
 	int		lenstr;
 	char	**nw_env;
+	char	**oldenv;
 
 	len = len_lst(*env);
+	oldenv = *env;
 	nw_env = malloc(sizeof(char *) * (len + 2));
 	nw_env[len + 1] = NULL;
 	nw_env = cpy_env(nw_env, *env);
@@ -73,6 +75,7 @@ int	nw_env(char ***env, char *str)
 		return (-1);
 	nw_env[len] = ft_strncpy(str, nw_env[len], len);
 	*env = nw_env;
+	free_tab_char(oldenv, -1);
 	return (0);
 }
 
@@ -114,13 +117,9 @@ int	ft_export(t_lst_cmd cmd, char ***env)
 		ret = env_check_arg(cmd.arg[i], *env);
 		if (ret < 0)
 			status = 1;
-		oldenv = *env;
 		if (ret == 1)
-		{
 			if (nw_env(env, cmd.arg[i]))
 				return (1);
-			free_tab_char(oldenv, -1);
-		}
 		else if (ret > 1)
 			if (env_change(env, cmd.arg[i], ret))
 				return (1);
