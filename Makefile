@@ -6,7 +6,7 @@
 #    By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/23 11:34:55 by ybrutout         ###   ########.fr        #
+#    Updated: 2021/11/23 12:17:57 by ybrutout         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC =	minishell.c\
 		utils/ft_split.c\
 		init_env.c\
 		redirections/ft_open.c\
+		signal\signal.c
 
 OBJ = ${SRC:c=o}
 
