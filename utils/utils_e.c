@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_its_unset.c                                     :+:      :+:    :+:   */
+/*   utils_e.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 13:04:11 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 13:43:32 by ybrutout         ###   ########.fr       */
+/*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
+/*   Updated: 2021/11/24 16:39:03 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_its_unset(t_lst_cmd cmd, int r, char ***env)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (r != 257)
-		return (r);
-	if (ft_strlen(cmd.command) == 5)
+	int	i;
+
+	if (!s1 && !s2)
+		return (0);
+	if ((!s1 && s2) || (s1 && !s2))
+		return (1);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != 0)
 	{
-		if (ft_strncmp(cmd.command, "unset", 5) == 0)
-			return (ft_unset(cmd, env));
+		i++;
 	}
-	return (257);
+	return (s1[i] - s2[i]);
 }

@@ -6,7 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/24 17:57:05 by adidion          ###   ########.fr       */
+=======
+/*   Updated: 2021/11/24 16:31:57 by artmende         ###   ########.fr       */
+>>>>>>> df4f42798f8fb5044cbd07fc17a2d09656a6cf30
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +101,11 @@ void			free_array_of_string(char **array);
 t_lst_cmd		*free_lst_cmd(t_lst_cmd *list); // returns a null pointer
 char			*ft_strnstr(char *str, char *to_find, size_t len);
 int				ft_strncmp_maj(const char *s1, const char *s2, size_t n);
+
+/*
+**	UTILS_E
+*/
+int				ft_strcmp(char *s1, char *s2);
 
 /*
 **	FT_SPLIT

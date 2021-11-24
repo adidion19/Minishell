@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:45:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/21 17:51:50 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:12:40 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	verify_pipe_conditions(char *line)
 			if (have_only_spaces(last_pipe_symbol, line)
 				|| have_only_spaces(line, 0))
 			{
-				write(2, "minishell: syntax error", 23);
-				return (0);
+				return (display_syntax_error(*line));
 			}
 			last_pipe_symbol = line;
 		}
