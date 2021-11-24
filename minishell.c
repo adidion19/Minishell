@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/23 15:22:55 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:19:56 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	**ft_minishell_lvl(char **env, int ac, char **av)
 	}
 	result = ft_atoi(env[i] + 6);
 	if (result < 0)
-		result = -1;
+		result = 0;
 	result++;
 	if (result >= 1000)
 	{

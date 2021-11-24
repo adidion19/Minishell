@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/23 16:19:01 by adidion          ###   ########.fr       */
-=======
-/*   Updated: 2021/11/23 16:34:49 by artmende         ###   ########.fr       */
->>>>>>> ec05b954940369487803b4d249b34a2e9d3a5c00
+/*   Updated: 2021/11/24 17:57:05 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +172,10 @@ int				ft_close_mode(int fd);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_close_inf(int fd);
 int				ft_open_inf(t_lst_cmd cmd);
+
+/* FT_HEREDOC */
+
+int				ft_heredoc(t_lst_cmd cmd, char **env);
 
 /*
 **--------------------------------------PIPE------------------------------------
