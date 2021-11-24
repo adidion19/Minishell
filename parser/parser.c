@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/23 15:49:49 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/24 15:00:38 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ t_lst_cmd	*parser(char *line)
 	t_quote_state	quote;
 	char			*cursor;
 
-	if (!line || !verify_pipe_conditions(line))
+	if (!line || !verify_pipe_conditions(line) || !verify_redirections(line))
 		return (NULL);
 	ft_memset(&quote, 0, sizeof(quote));
 	ret = 0;
@@ -197,7 +197,8 @@ int	main(int argc, char **argv, char **envp)
 	if (argc < 2)
 		return (0);
 
-
+		if (!verify_redirections(argv[1]))
+			return (0);
 		t_words_list	*list;
 
 		list = 0;

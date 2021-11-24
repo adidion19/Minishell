@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/23 16:58:39 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:42:12 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 	incorrect redirection symbol (like <> or >>>)
 
 	CHECK FOR ERRORS FIRST
+	that's done before parsing begins
 
 	dollar variable are separated into words before redirection
 	quoted stuff are taken as a single word (single filename)
@@ -43,24 +44,24 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 	temp = words_lst;
 	while (temp)
 	{
-		if (ft_strlen(temp->word) == 1 && temp->word[0] == '>')
+		if (!ft_strcmp(temp->word, ">"))
 		{
-			temp = add_output_no_append();
+//			temp = add_output_no_append();
 			words_lst = temp;
 		}
-		else if (ft_strlen(temp->word) == 2 && ft_strnstr(temp->word, ">>", 2))
+		else if (!ft_strcmp(temp->word, ">>"))
 		{
-			temp = add_output_append();
+//			temp = add_output_append();
 			words_lst = temp;
 		}
-		else if (ft_strlen(temp->word) == 1 && temp->word[0] == '<')
+		else if (!ft_strcmp(temp->word, "<"))
 		{
-			temp = add_input(); // reassign words_lst inside of that function
+//			temp = add_input(); // reassign words_lst inside of that function
 			words_lst = temp;
 		}
-		else if (ft_strlen(temp->word) == 2 && ft_strnstr(temp->word, "<<", 2))
+		else if (!ft_strcmp(temp->word, "<<"))
 		{
-			temp = add_heredoc();
+//			temp = add_heredoc();
 			words_lst = temp;
 		}
 		// need to verify that we don't have something like <<< or <>< 

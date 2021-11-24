@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:44:15 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/23 11:40:06 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:11:48 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,4 +144,12 @@ void	display_words_list(t_words_list	*list)
 		list = list->next;
 	}
 	printf("Done !\n");
+}
+
+int	display_syntax_error(char c)
+{
+	write(2, "minishell: syntax error near unexpected token `", 47);
+	write(2, &c, 1);
+	write(2, "'\n", 2);
+	return (0);
 }

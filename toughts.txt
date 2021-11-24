@@ -120,3 +120,7 @@ gcc *.c ../utils/*.c
 ./a.out "           <k >>      > 1>>abc 2d<ef 3>ghi 4j<<kl  5mno 6pqr"
 ./a.out "<  <g<yopo<rufh>>lolilol>lolk>jkj         <k >>      > 1>>ab>c 2d<ef 3>ghi 4j<<kl  5mno 6pqr"
 ./a.out "<  <g<yopo<rufh>>lolilol>lolk>jkj         <k >>  '    > 1>>ab>c 2d' <ef 3>ghi' 4j<<kl  5mno 6pqr >>><<<>>> '<  <'<< >> ><u'><>"
+
+
+check all line for parsing error first
+
