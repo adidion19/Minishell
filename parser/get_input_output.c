@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/24 16:42:12 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/24 18:11:30 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,34 @@
 	quoted stuff are taken as a single word (single filename)
  */
 
+t_words_list	*add_output_no_append(t_lst_cmd *cmd_node, t_words_list *node, 
+	t_words_list **words_lst)
+{
+	// need to receive the node, to access its next, and free both himself and the next
+	// need to receive the list, to free nodes inside of it, and modify it --> double pointer here !
+	// need to receive the cmd_node 
+
+	cmd_node->outf = resolve_dollar_quote(node->next->word);
+	cmd_node->append = 0;
+	create_outfile(cmd_node);
+	*words_lst = delete_node_words_list(*words_lst, node->next);
+	*words_lst = delete_node_words_list(*words_lst, node);
+	return (*words_lst);
+}
+
+t_words_list	*add_output_append(t_lst_cmd *cmd_node, t_words_list *node, 
+	t_words_list **words_lst)
+{
+	cmd_node->outf = resolve_dollar_quote(node->next->word);
+	cmd_node->append = 1;
+	create_outfile(cmd_node);
+	*words_lst = delete_node_words_list(*words_lst, node->next);
+	*words_lst = delete_node_words_list(*words_lst, node);
+	return (*words_lst);
+}
+
+
+
 t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 {
 	t_words_list	*temp;
@@ -45,15 +73,9 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 	while (temp)
 	{
 		if (!ft_strcmp(temp->word, ">"))
-		{
-//			temp = add_output_no_append();
-			words_lst = temp;
-		}
+			temp = add_output_no_append(cmd_node, temp, &words_lst); // words_lst is updated inside the function
 		else if (!ft_strcmp(temp->word, ">>"))
-		{
-//			temp = add_output_append();
-			words_lst = temp;
-		}
+			temp = add_output_append(cmd_node, temp, &words_lst);
 		else if (!ft_strcmp(temp->word, "<"))
 		{
 //			temp = add_input(); // reassign words_lst inside of that function
@@ -64,10 +86,6 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 //			temp = add_heredoc();
 			words_lst = temp;
 		}
-		// need to verify that we don't have something like <<< or <>< 
-		// have unquoted < or > + (have mixed or have length more than 2)
-		// actually if still have unquoted < or > here it means error
-		// otherwise it would have been catched above
 		else
 			temp = temp->next;
 	}

@@ -124,3 +124,7 @@ gcc *.c ../utils/*.c
 
 check all line for parsing error first
 
+
+if a redirection fail, stop the parsing for that specific pipe section, but continue for the next ones
+the command of that specific pipe section is not executed
+
