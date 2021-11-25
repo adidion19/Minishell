@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/25 10:47:51 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/25 11:38:29 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ char	*resolve_redir_name(t_lst_cmd *cmd_node, char *word)
 // then concatenate with the rest if there is something else
 // after removing quotes, thats the final file name
 
+//	possible errors :
+//	unquoted var that contains more than one word
+//	unquoted var that starts with spaces and var is preceded by something
+//	unquoted var that finishes with spaces and is followed by something
 
 }
 
