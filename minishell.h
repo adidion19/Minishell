@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/25 10:14:54 by adidion          ###   ########.fr       */
+=======
+/*   Updated: 2021/11/25 11:23:02 by artmende         ###   ########.fr       */
+>>>>>>> 5d48e6892c4257ab9ed9fcf6c685a416445746ed
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +36,11 @@ typedef struct s_lst_cmd
 	char				**arg; //arg[0] = nom de la commande
 	char				*inf;
 	char				*outf;
-	int					infd;
-	int					outfd;
+	int					infd; // probably not needed
+	int					outfd; // probably not needed
 	int					append; // 1 means append mode
+	int					heredoc; // 1 means that inf is not a file, but the keyword for heredoc
+	int					delete_this_node;
 	struct s_lst_cmd	*next;
 }	t_lst_cmd;
 
