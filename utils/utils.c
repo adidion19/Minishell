@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/19 11:50:24 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/25 10:17:23 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	if (n == 0)
-		return (0);
+		return (-1);
 	if (!s1 || !s2 || n > ft_strlen((char *)s1))
 		return (-1);
 	while (s1[i] == s2[i] && i < n - 1 && s1[i])
