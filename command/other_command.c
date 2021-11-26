@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 15:53:18 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:19:34 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 	i = -1;
 	access = 0;
 	pid = fork();
-	if (pid < 0)
+	if (pid != 0)
 		return (0);
-	if (pid == 0)
+	else
 	{
+		if (execve(cmd.arg[0], cmd.arg, env) == -1)
+				access++;
 		if (!env)
 			return (ft_error_other_command(cmd.command, 1));
 		path = ft_find_path(env);
@@ -81,11 +83,11 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 				access++;
 		}
 		ft_free_path(path);
-	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		exit_status = WEXITSTATUS(status);
-	if (i == access)
+	if (i + 1 == access)
 		return (ft_error_other_command(cmd.command, 0));
 	return (exit_status);
+	}
 }
