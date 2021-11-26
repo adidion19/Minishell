@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/26 16:42:37 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:12:14 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	It makes an allocated copy of str without including the two chars c1 and c2.
 
-	c1 and c2 are pointers. They are the addresses of two char in the original
+	c1 and c2 are pointers. They are the addresses of two chars in the original
 	string.
 	c1 or c2 or both can be null pointer. In that case, it will simply duplicate
 	the original string.
@@ -97,18 +97,16 @@ char	*ft_strtrim(char const *s1, char const *set)
 char	*remove_pair_of_char_from_str(char *str, char *c1, char *c2)
 {
 	char	*ret;
-	char	*str_sav;
 	int		len;
 	int		i;
 
 	len = ft_strlen(str);
 	if (!len)
-		return (str);
+		return (NULL);
 	ret = ft_calloc(sizeof(char) * (1 + len));
 	if (!ret)
 		exit(EXIT_FAILURE);
 	i = 0;
-	str_sav = str;
 	while (*str)
 	{
 		if (str == c1 || str == c2)
