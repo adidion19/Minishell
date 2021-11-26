@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/26 13:37:01 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:35:09 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ int	ft_heredoc(t_lst_cmd cmd, char **env)
 		while (ft_strncmp(line, cmd.inf, ft_strlen(cmd.inf))
 			|| ft_strlen(line) != ft_strlen(cmd.inf))
 		{
+			free(line);
 			write(fd[1], line, ft_strlen(line));
 			if (line != NULL)
 				write(fd[1], "\n", 1);
 			line = readline("> ");
 		}
+		free(line);
 		close(fd[1]);
 		close(fd[0]);
 		exit(EXIT_SUCCESS);
