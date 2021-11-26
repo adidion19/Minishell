@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/11/23 15:30:19 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/11/26 13:39:25 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	ft_error_unset(char *arg)
+{
+	write(2, "minishell: unset: '", 20);
+	write(2, arg, ft_strlen(arg));
+	write(2, "': not a valid identifier\n", 26);
+	return (-1);
+}
 
 int	check_arg(char *str, char **env)
 {
@@ -20,6 +28,19 @@ int	check_arg(char *str, char **env)
 
 	i = -1;
 	len = ft_strlen(str);
+	if (!str[0])
+		return (ft_error_unset(str));
+	if (!((str[0] >= 'a' && str[0] <= 'z') || (str[0] >= 'A' && str[0] <= 'Z')
+			|| str[0] == '_'))
+		return (ft_error_unset(str));
+	while (str[++i])
+	{
+		if (!((str[i] >= 'a' && str[i] <= 'z')
+				|| (str[i] >= 'A' && str[i] <= 'Z')
+				|| (str[i] >= '0' && str[i] <= '9') || str[i] == '_'))
+			return (ft_error_unset(str));
+	}
+	i = -1;
 	while (env[++i])
 	{
 		j = -1;
@@ -73,13 +94,15 @@ int	ft_unset(t_lst_cmd cmd, char ***env)
 	char	**oldenv;
 
 	if (!cmd.arg[1])
-		return (1);
+		return (0);
 	i = 0;
 	while (cmd.arg[++i])
 	{
 		ret = check_arg(cmd.arg[i], *env);
 		if (!ret)
 			continue ;
+		if (ret == -1)
+			return (1);
 		oldenv = *env;
 		*env = remove_variable(ret - 1, env);
 		if (!*env)

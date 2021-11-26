@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/26 11:41:56 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/26 11:54:51 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	env_check_arg(char *arg, char **env)
 	i = -1;
 	if (!arg[0])
 		return (ft_error_export(arg));
-	if (!((arg[0] >= 'a' && arg[0] <= 'z') || (arg[0] >= 'A' && arg[0] <= 'Z')))
+	if (!((arg[0] >= 'a' && arg[0] <= 'z') || (arg[0] >= 'A' && arg[0] <= 'Z')
+			|| arg[0] == '_'))
 		return (ft_error_export(arg));
 	while (arg[++i])
 	{
@@ -53,7 +54,7 @@ int	env_check_arg(char *arg, char **env)
 			break ;
 		if (!((arg[i] >= 'a' && arg[i] <= 'z')
 				|| (arg[i] >= 'A' && arg[i] <= 'Z')
-				|| (arg[i] >= '0' && arg[i] <= '9')))
+				|| (arg[i] >= '0' && arg[i] <= '9') || arg[i] == '_'))
 			return (ft_error_export(arg));
 	}
 	if (arg[i] != '=')
