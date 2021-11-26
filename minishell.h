@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/26 10:58:38 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/26 16:34:45 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int				ft_strncmp_maj(const char *s1, const char *s2, size_t n);
 **	UTILS_E
 */
 int				ft_strcmp(char *s1, char *s2);
+char			*ft_strtrim(char const *s1, char const *set);
+char			*remove_pair_of_char_from_str(char *str, char *c1, char *c2);
 
 /*
 **	FT_SPLIT

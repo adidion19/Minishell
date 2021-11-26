@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:44:15 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/24 14:11:48 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:44:21 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,20 @@ char	*get_dollar_name(char *str)
 }
 
 
+char	*get_var_content(char *var_name, t_quote_state quote)
+{
+	char	*raw_value;
+
+	raw_value = getenv(var_name);
+	if (ft_strlen(raw_value) == 0)
+		return (NULL);
+	if (quote.double_quote)
+		return (ft_strdup(raw_value));
+	else
+		return (ft_strtrim(raw_value, "\t\n\r\v\f "));
+		// need to protect return values ?
+}
+
 
 char	*expand_variables_in_single_word(char *word)
 { // no need to free original word
@@ -87,6 +101,7 @@ char	*expand_variables_in_single_word(char *word)
 	int				i;
 	char			*ret;
 	char			*var_name;
+	char			*var_content;
 	t_quote_state	quote;
 	
 	ft_memset(&quote, 0, sizeof(quote));
@@ -102,9 +117,11 @@ char	*expand_variables_in_single_word(char *word)
 		} // i is the number of char to copy
 		ret = malagain(ret, word, i); // we add i char from word to ret
 		var_name = get_dollar_name(&word[i]);
-		ret = malagain(ret, getenv(var_name), ft_strlen(getenv(var_name))); // if the variable doesnt exist, getenv is null pointer
-		free(var_name);
+		var_content = get_var_content(var_name, quote);
+		ret = malagain(ret, var_content, ft_strlen(var_content)); // if the variable doesnt exist, getenv is null pointer
 		word = &word[i] + ft_strlen(var_name) + 1; // we go directly to after the variable name. we start from the $ (&word[i]) and we add the length of var + 1 (for the $)
+		free(var_name);
+		free(var_content);
 	}
 	return (ret);
 }
@@ -152,4 +169,31 @@ int	display_syntax_error(char c)
 	write(2, &c, 1);
 	write(2, "'\n", 2);
 	return (0);
+}
+
+
+
+char	*remove_quotes_from_word(char *word)
+{
+	int		i;
+	char	*scnd_quote;
+	char	*temp;
+
+	i = 0;
+	while (word && word[i])
+	{
+		if (word[i] == '\'' || word[i] == '"')
+		{
+			scnd_quote = ft_strchr(&word[i + 1], word[i]);
+			if (scnd_quote)
+			{
+				temp = remove_pair_of_char_from_str(word, &word[i], scnd_quote);
+				free(word);
+				word = temp;
+				i = -1;
+			}
+		}
+		i++;
+	}
+	return (word);
 }
