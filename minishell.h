@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/25 10:14:54 by adidion          ###   ########.fr       */
-=======
-/*   Updated: 2021/11/25 11:23:02 by artmende         ###   ########.fr       */
->>>>>>> 5d48e6892c4257ab9ed9fcf6c685a416445746ed
+/*   Updated: 2021/11/26 10:58:38 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +148,7 @@ int				ft_echo(char **arg, int bool);
 /* EXPORT */
 
 int				ft_export(t_lst_cmd cmd, char ***env);
+int				export_no_arg(char **env);
 
 /* UNSET */
 

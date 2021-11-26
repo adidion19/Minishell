@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/25 13:54:08 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/26 11:41:56 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,32 @@ char	**cpy_env(char	**nw_env, char **env)
 	return (nw_env);
 }
 
+int	ft_error_export(char *arg)
+{
+	write(2, "minishell: export: '", 20);
+	write(2, arg, ft_strlen(arg));
+	write(2, "': not a valid identifier\n", 26);
+	return (-1);
+}
+
 int	env_check_arg(char *arg, char **env)
 {
 	int	i;
 	int	j;
 
 	i = -1;
+	if (!arg[0])
+		return (ft_error_export(arg));
+	if (!((arg[0] >= 'a' && arg[0] <= 'z') || (arg[0] >= 'A' && arg[0] <= 'Z')))
+		return (ft_error_export(arg));
 	while (arg[++i])
 	{
-		if (arg[i] == ' ')
-			return (-1);
 		if (arg[i] == '=')
 			break ;
+		if (!((arg[i] >= 'a' && arg[i] <= 'z')
+				|| (arg[i] >= 'A' && arg[i] <= 'Z')
+				|| (arg[i] >= '0' && arg[i] <= '9')))
+			return (ft_error_export(arg));
 	}
 	if (arg[i] != '=')
 		return (0);
@@ -110,7 +124,7 @@ int	ft_export(t_lst_cmd cmd, char ***env)
 	i = 0;
 	status = 0;
 	if (!cmd.arg[1])
-		return (ft_env(cmd, *env));
+		return (export_no_arg(*env));
 	while (cmd.arg[++i])
 	{
 		ret = env_check_arg(cmd.arg[i], *env);
