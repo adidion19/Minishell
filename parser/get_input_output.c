@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/26 16:47:28 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:59:02 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ char	*resolve_redir_name(t_lst_cmd *cmd_node, char *word)
 	char	*ret;
 
 	// check for error here
+
+	if (!verify_redir_var(cmd_node, word)) // put to_delete to 1
+		return (NULL);
 
 	ret = expand_variables_in_single_word(word);
 	ret = remove_quotes_from_word(ret);
@@ -122,6 +125,7 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 		}
 		else if (!ft_strcmp(temp->word, "<<"))
 		{
+			// variables are not expanded in heredoc word
 //			temp = add_heredoc();
 			words_lst = temp;
 		}

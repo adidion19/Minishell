@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:44:15 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/26 16:44:21 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:45:13 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,86 +45,11 @@ int		is_there_unquoted_dollar(char *str)
 	return (0);
 }
 
-char	*get_dollar_name(char *str)
-{
-	char	*cursor;
-	char	*ret;
-	int		i;
-
-	str++;
-	cursor = str;
-	while (*cursor)
-	{
-		if (*cursor == '\'' || *cursor == '"' || ft_isspace(*cursor))
-			break ;
-		cursor++;
-	}
-	ret = ft_calloc(sizeof(char) * (cursor - str));
-	if (!ret)
-		exit(EXIT_FAILURE);
-	i = 0;
-	while (str < cursor)
-	{
-		ret[i] = *str;
-		i++;
-		str++;
-	}
-	return (ret);
-}
 
 
-char	*get_var_content(char *var_name, t_quote_state quote)
-{
-	char	*raw_value;
-
-	raw_value = getenv(var_name);
-	if (ft_strlen(raw_value) == 0)
-		return (NULL);
-	if (quote.double_quote)
-		return (ft_strdup(raw_value));
-	else
-		return (ft_strtrim(raw_value, "\t\n\r\v\f "));
-		// need to protect return values ?
-}
 
 
-char	*expand_variables_in_single_word(char *word)
-{ // no need to free original word
-	// go until the first unquoted dollar
-	// str join all until there
-	// find the end of variable name
-	// str join what was before with getenv var
-	// go until the next unquoted dollar
-	// etc etc
-	// don't forget to free each time
 
-	int				i;
-	char			*ret;
-	char			*var_name;
-	char			*var_content;
-	t_quote_state	quote;
-	
-	ft_memset(&quote, 0, sizeof(quote));
-	ret = 0;
-	i = 0;
-	while (word && word[i])
-	{
-		i = 0;
-		while (word[i] && !(word[i] == '$' && quote.simple_quote == 0 && word[i + 1] && !ft_isspace(word[i + 1]))) // browse until we find a $ to expand
-		{
-			update_quote_state(&word[i], &quote);
-			i++;
-		} // i is the number of char to copy
-		ret = malagain(ret, word, i); // we add i char from word to ret
-		var_name = get_dollar_name(&word[i]);
-		var_content = get_var_content(var_name, quote);
-		ret = malagain(ret, var_content, ft_strlen(var_content)); // if the variable doesnt exist, getenv is null pointer
-		word = &word[i] + ft_strlen(var_name) + 1; // we go directly to after the variable name. we start from the $ (&word[i]) and we add the length of var + 1 (for the $)
-		free(var_name);
-		free(var_content);
-	}
-	return (ret);
-}
 
 void	expand_variables_in_words_list(t_words_list *list)
 {
@@ -171,6 +96,13 @@ int	display_syntax_error(char c)
 	return (0);
 }
 
+int	display_ambiguous_redirect(char *var_name)
+{
+	write(2, "minishell: $", 12);
+	write(2, var_name, ft_strlen(var_name));
+	write(2, ": ambiguous redirect\n", 21);
+	return (0);
+}
 
 
 char	*remove_quotes_from_word(char *word)
