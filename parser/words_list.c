@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/23 16:00:14 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/28 16:13:17 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ int	ft_lstsize_words(t_words_list *lst)
 **	free_words_list : if flag is non null, the words themselves are freed too.
 */
 
-void	free_words_list(t_words_list *list, int flag)
+int	free_words_list(t_words_list *list, int flag)
 {
 	t_words_list	*temp;
 	
@@ -253,4 +253,5 @@ void	free_words_list(t_words_list *list, int flag)
 		free(list);
 		list = temp;
 	}
+	return (1);
 }

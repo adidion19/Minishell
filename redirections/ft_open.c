@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 13:42:12 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/28 16:39:55 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_close_inf(int fd)
 **	return : le fd si open reussit, sinon -1 -> return a verif en appel
 */
 
-int	ft_open_mode(t_lst_cmd cmd, int bool)
+int	ft_open_outf(t_lst_cmd cmd, int bool)
 {
 	int	fd;
 	int	error;
@@ -85,12 +85,8 @@ int	ft_open_mode(t_lst_cmd cmd, int bool)
 	{
 		write(2, "minishell: ", 11);
 		write(2, cmd.outf, ft_strlen(cmd.outf));
-		if (error == EISDIR)
-			write(2, ": Is a directory\n", 18);
-		if (error == ENAMETOOLONG)
-			write(2, ": File name too long\n", 22);
-		else
-			write(2, ": Permission denied\n", 21);
+		write (2, ": ", 2);
+		write(2, strerror(error), ft_strlen(strerror(error)));
 		return (-1);
 	}
 	dup2(fd, 1);

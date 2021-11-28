@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/27 18:05:56 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/28 19:02:19 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int				ft_strncmp_maj(const char *s1, const char *s2, size_t n);
 */
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
-char			*remove_pair_of_char_from_str(char *str, char *c1, char *c2);
+char			*remove_chars_from_str(char *str, void **ptrarray);
 
 /*
 **	UTILS_F
@@ -113,6 +113,8 @@ char			*remove_pair_of_char_from_str(char *str, char *c1, char *c2);
 int				str_starts_with_space(char *str);
 int				str_ends_with_space(char *str);
 int				str_have_more_than_one_word(char *str);
+void			**add_ptr_to_ptrarray(void **ptrarray, void *ptr);
+int				is_ptr_in_ptrarray(void **ptrarray, void *ptr);
 
 /*
 **	FT_SPLIT
@@ -184,7 +186,7 @@ int				ft_its_unset(t_lst_cmd cmd, int r, char ***env);
 
 /* FT_OPEN */
 
-int				ft_open_mode(t_lst_cmd cmd, int bool);
+int				ft_open_outf(t_lst_cmd cmd, int bool);
 int				ft_close_mode(int fd);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_close_inf(int fd);

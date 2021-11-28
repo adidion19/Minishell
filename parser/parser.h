@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/27 17:45:52 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/28 18:46:37 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_words_list	*create_words_list(char *str);
 t_words_list	*add_word_to_list(t_words_list *lst, char *word);
 t_words_list	*delete_node_words_list(t_words_list *list, t_words_list *node);
 int				ft_lstsize_words(t_words_list *lst);
-void			free_words_list(t_words_list *list, int flag);
+int				free_words_list(t_words_list *list, int flag);
 
 int	have_redirection_symbol_not_alone(char	*str);
 
@@ -77,9 +77,12 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst);
 void	display_words_list(t_words_list	*list);
 
 int	display_syntax_error(char c);
-int	display_ambiguous_redirect(char *var_name);
+int	display_ambiguous_redirect(t_lst_cmd *cmd_node, char *var_name);
 
 char	*expand_variables_in_single_word(char *word);
 int	verify_redir_var(t_lst_cmd *cmd_node, char *word);
-char	*remove_quotes_from_word(char *word);
+char	*remove_quotes_from_word(char *word, int i);
+
+void	clean_cmd_node(t_lst_cmd *node);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/22 17:12:47 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/28 17:52:40 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ void	*ft_calloc(size_t nmemb)
 
 	ret = malloc(nmemb);
 	if (!ret)
-		return (NULL);
-	else
-		return (ft_memset(ret, 0, nmemb));
+		exit(EXIT_FAILURE);
+	return (ft_memset(ret, 0, nmemb));
 }
 
 void	*ft_memset(void *ptr, int c, size_t size)

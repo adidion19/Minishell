@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/27 18:05:23 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/28 19:00:19 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ static char	*malzero(void)
 	char	*s0;
 
 	s0 = malloc(sizeof(char));
-	if (s0)
-		s0[0] = 0;
+	if (!s0)
+		exit(EXIT_FAILURE);
+	s0[0] = 0;
 	return (s0);
 }
 
@@ -71,30 +72,28 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (j - i <= 0)
 		return (malzero());
 	res = malloc(sizeof(char) * (2 + (j - i)));
-	if (res)
-	{
-		while (i++ <= j)
-			res[k++] = s1[i - 1];
-		res[k] = 0;
-	}
+	if (!res)
+		exit(EXIT_FAILURE);
+	while (i++ <= j)
+		res[k++] = s1[i - 1];
+	res[k] = 0;
 	return (res);
 }
 
 /*
-	remove_pair_of_char_from_str :
+	remove_chars_from_str :
 
-	It makes an allocated copy of str without including the two chars c1 and c2.
+	It makes an allocated copy of str without including the chars whose
+	addresses are in ptrarray.
 
-	c1 and c2 are pointers. They are the addresses of two chars in the original
-	string.
-	c1 or c2 or both can be null pointer. In that case, it will simply duplicate
-	the original string.
+	ptrarray is a null terminated array of pointers. The array can be NULL, in
+	that case, the original string will simply be duplicated.
 
 	The returned string is freeable. However, the original string doesn't need
 	to be.
 */
 
-char	*remove_pair_of_char_from_str(char *str, char *c1, char *c2)
+char	*remove_chars_from_str(char *str, void **ptrarray)
 {
 	char	*ret;
 	int		len;
@@ -109,7 +108,7 @@ char	*remove_pair_of_char_from_str(char *str, char *c1, char *c2)
 	i = 0;
 	while (*str)
 	{
-		if (str == c1 || str == c2)
+		if (is_ptr_in_ptrarray(str, ptrarray))
 		{
 			str++;
 			continue ;

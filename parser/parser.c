@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/26 15:42:56 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/28 18:56:46 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,10 @@
 #include "parser.h"
 
 
-/*  // this one probably no need
-char	*copy_next_word(char *from, char **adrs_of_original_ptr)
-{
-	if (!from || *from != ' ')
-		//SYNTAX ERROR ! We have a < that is followed by garbage value
-	while (*from == ' ')
-		from++;
-	// we can have something like << or <> so still need to understand how to handle that
-
-	// the idea is to allocate and copy what follows the '<' and substitute it with var and getenv if necessary
-	// then update the adrs_of_original_ptr so that the main loop can continue
-}
- */
-
-char	*add_infile(t_lst_cmd *node, char *str)
-{
-	if (*str == '<')
-	{
-		// double redirection to the left
-	}
-	while (ft_isspace(*str))
-		str++;
-	
-	return (0); ///////// remove that
-}
-
-
-void	extract_input(t_lst_cmd *node, char *str)
-{
-	t_quote_state	quote;
-
-	ft_memset(&quote, 0, sizeof(quote));
-	while (*str)
-	{
-		update_quote_state(str, &quote);
-		if (*str == '<' && quote.global_quote == 0)
-			str = add_infile(node, str + 1);
-	}
 
 
 
 
-
-/* 
-
-
-//	node->input_fd = DEFAULT_VALUE; // input_str can remain NULL
-
-	while (from && to && from < to) // pointer increases when we browse the str
-	{
-		update_quote_state(*from, &quote);
-		if (*from == '<' && quote.global_quote == 0)
-			node->inf = copy_next_word(from + 1, &from);
-		from++;
-	}
- */
-
-}
-
-void	extract_output(t_lst_cmd *node, char *str)
-{
-
-}
 
 /* 
 	First we create the words list.
@@ -101,15 +42,16 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	ret = ft_calloc(sizeof(t_lst_cmd));
 	if (!ret)
 		exit(EXIT_FAILURE);
-	// create linked list that contains all words
 	words_list = create_words_list(str);
-	
 	words_list = get_input_output(ret, words_list);
 
-	extract_input(ret, str);
-	extract_output(ret, str);
-//	handle_cmd_args_in_list(words_list);
-	extract_cmd_array(ret, str);
+	if (ret->delete_this_node == 1)
+	{
+		free_words_list(list, 1);
+		words_list = 0;
+	}
+	handle_cmd_args_in_list(words_list);
+//	extract_cmd_array(ret, str); // what if words_list has been freed ?
 //	create_cmd_array(ret, words_list);
 	ret->next = 0; // no need, it's already 0 by default
 	// what if one extract fails ?
