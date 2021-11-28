@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_e.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/27 18:05:23 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/28 17:56:30 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set)
 		return (0);
 	i = 0;
-	j = ft_strlen(s1) - 1;
+	j = ft_strlen((char *)s1) - 1;
 	k = 0;
 	while (is_in_base(s1[i], set))
 		i++;
