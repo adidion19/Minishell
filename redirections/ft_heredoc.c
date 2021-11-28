@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/26 15:35:09 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/28 17:44:28 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,13 @@ int	ft_heredoc(t_lst_cmd cmd, char **env)
 	int		fd[2];
 	int		r;
 	int		status;
+	struct termios	termios_p;
 
+	tcgetattr(STDIN_FILENO, &termios_p);/* gestion de l'affichage du ctrl*/
+	termios_p.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &termios_p);
 	r = 0;
+	set_signal();
 	if (pipe(fd) == -1)
 		exit(EXIT_FAILURE);
 	pid1 = fork();
@@ -40,6 +45,7 @@ int	ft_heredoc(t_lst_cmd cmd, char **env)
 		while (ft_strncmp(line, cmd.inf, ft_strlen(cmd.inf))
 			|| ft_strlen(line) != ft_strlen(cmd.inf))
 		{
+			set_signal();
 			free(line);
 			write(fd[1], line, ft_strlen(line));
 			if (line != NULL)

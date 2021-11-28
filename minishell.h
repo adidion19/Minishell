@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/26 10:58:38 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/28 17:06:32 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <termios.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <string.h>
 
 typedef struct s_lst_cmd
 {
@@ -149,6 +150,8 @@ int				ft_echo(char **arg, int bool);
 
 int				ft_export(t_lst_cmd cmd, char ***env);
 int				export_no_arg(char **env);
+int				env_check_arg(char *arg, char **env);
+int				ft_error_export(char *arg);
 
 /* UNSET */
 

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/25 15:07:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/28 17:48:19 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,31 @@ int	ft_choose_command(t_lst_cmd cmd, char ***env)
 		return (ft_other_command(cmd, *env));
 	return (r);
 }
-
+/*
 int	main(int ac, char **av, char **envv)
 {
 	t_lst_cmd	cmd;
+	char		*line;
+	int i;
+	struct termios	termios_p;
 
+	tcgetattr(STDIN_FILENO, &termios_p); gestion de l'affichage du ctrl
+	termios_p.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &termios_p);
 	cmd.command = av[2];
 	cmd.arg = av + 2;
-	//cmd.inf = av[1];
+	cmd.inf = av[1];
+	line = NULL;
 	envv = init_env(envv);
-	ft_choose_command(cmd, &envv);
+	set_signal();
+	while (1)
+	{
+		set_signal();
+		free(line);
+		if (!ft_strcmp(line, "heredoc"))
+			i = ft_heredoc(cmd, envv);
+		line = readline("$> ");
+		printf("%d\n", i);
+	}
 }
+*/
