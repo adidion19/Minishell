@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/24 15:00:38 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/26 15:42:56 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ int	main(int argc, char **argv, char **envp)
 
 
 
-//	printf("%s\n", getenv("COUCOUU"));
+	printf("%s\n", getenv(0));
 	// getenv returns a null pointer when it didnt find the matching variable
 /* 	int	i = 0;
 	while (envp[i])

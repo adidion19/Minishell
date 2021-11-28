@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/25 11:38:29 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:59:02 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 
 char	*resolve_redir_name(t_lst_cmd *cmd_node, char *word)
 {
+	// abc$(var)'more word'"   $(   more var   )"def
+	// becomes : "abcvarmore word      more var   def"
+	
 	// return value is the final name of file
 	// in case of error, write in the cmd_node that this node is not to be executed
 	// word is the raw name, with still quotes and dollar symbol
@@ -53,6 +56,21 @@ char	*resolve_redir_name(t_lst_cmd *cmd_node, char *word)
 //	unquoted var that contains more than one word
 //	unquoted var that starts with spaces and var is preceded by something
 //	unquoted var that finishes with spaces and is followed by something
+
+//	if dollar var is OUTSIDE quotes, trim the spaces
+//	if dollar var is INSIDE double quotes, keep the spaces
+
+	char	*ret;
+
+	// check for error here
+
+	if (!verify_redir_var(cmd_node, word)) // put to_delete to 1
+		return (NULL);
+
+	ret = expand_variables_in_single_word(word);
+	ret = remove_quotes_from_word(ret);
+
+	return (ret);
 
 }
 
@@ -69,7 +87,7 @@ t_words_list	*add_output_no_append(t_lst_cmd *cmd_node, t_words_list *node,
 	free(cmd_node->outf); // will be 0 at first, but can be previous redir
 	cmd_node->outf = resolve_redir_name(cmd_node, node->next->word);
 	cmd_node->append = 0;
-	create_outfile(cmd_node);
+	create_outfile(cmd_node); // possible error : no right
 	*words_lst = delete_node_words_list(*words_lst, node->next);
 	*words_lst = delete_node_words_list(*words_lst, node);
 	return (*words_lst);
@@ -107,6 +125,7 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 		}
 		else if (!ft_strcmp(temp->word, "<<"))
 		{
+			// variables are not expanded in heredoc word
 //			temp = add_heredoc();
 			words_lst = temp;
 		}

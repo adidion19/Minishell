@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/28 17:06:32 by adidion          ###   ########.fr       */
+=======
+/*   Updated: 2021/11/27 18:05:56 by artmende         ###   ########.fr       */
+>>>>>>> 3f93b5ec391838e8dd17db89306c833009c573bb
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +109,15 @@ int				ft_strncmp_maj(const char *s1, const char *s2, size_t n);
 **	UTILS_E
 */
 int				ft_strcmp(char *s1, char *s2);
+char			*ft_strtrim(char const *s1, char const *set);
+char			*remove_pair_of_char_from_str(char *str, char *c1, char *c2);
+
+/*
+**	UTILS_F
+*/
+int				str_starts_with_space(char *str);
+int				str_ends_with_space(char *str);
+int				str_have_more_than_one_word(char *str);
 
 /*
 **	FT_SPLIT
