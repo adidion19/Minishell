@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/25 15:07:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/28 17:57:25 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,18 @@ int	ft_choose_command(t_lst_cmd cmd, char ***env)
 int	main(int ac, char **av, char **envv)
 {
 	t_lst_cmd	cmd;
+	char		*line;
 
 	cmd.command = av[2];
 	cmd.arg = av + 2;
-	//cmd.inf = av[1];
+	cmd.inf = av[1];
+	line = NULL;
 	envv = init_env(envv);
-	ft_choose_command(cmd, &envv);
+	while (1)
+	{
+		free(line);
+		if (!ft_strcmp(line, "heredoc"))
+			ft_heredoc(cmd, envv);
+		line = readline("$> ");
+	}
 }

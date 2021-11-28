@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 15:28:57 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/26 11:02:39 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/26 16:27:09 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ char	**ft_sort_string_tab(char **tab)
 	return (tab);
 }
 
+char	*ft_malloc_tmp(char *env)
+{
+	char	*tmp;
+
+	tmp = malloc(sizeof(char) * (ft_strlen(env) + 3));
+	if (!tmp)
+		exit(EXIT_FAILURE);
+	return (tmp);
+}
+
 void	ft_print_export(char *env)
 {
 	char	*tmp;
@@ -59,16 +69,13 @@ void	ft_print_export(char *env)
 
 	i = -1;
 	j = -1;
-	tmp = malloc(sizeof(char) * (ft_strlen(env) + 3));
-	if (!tmp)
-		exit(EXIT_FAILURE);
+	tmp = ft_malloc_tmp(env);
 	while (env[++i] && env[i] != '=')
 		tmp[++j] = env[i];
 	if (env[i])
-	{
 		tmp[++j] = '=';
+	if (env[i])
 		tmp[++j] = '"';
-	}
 	else
 	{
 		free(tmp);

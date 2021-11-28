@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/26 11:54:51 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/26 16:28:12 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,39 +35,6 @@ int	ft_error_export(char *arg)
 	write(2, arg, ft_strlen(arg));
 	write(2, "': not a valid identifier\n", 26);
 	return (-1);
-}
-
-int	env_check_arg(char *arg, char **env)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	if (!arg[0])
-		return (ft_error_export(arg));
-	if (!((arg[0] >= 'a' && arg[0] <= 'z') || (arg[0] >= 'A' && arg[0] <= 'Z')
-			|| arg[0] == '_'))
-		return (ft_error_export(arg));
-	while (arg[++i])
-	{
-		if (arg[i] == '=')
-			break ;
-		if (!((arg[i] >= 'a' && arg[i] <= 'z')
-				|| (arg[i] >= 'A' && arg[i] <= 'Z')
-				|| (arg[i] >= '0' && arg[i] <= '9') || arg[i] == '_'))
-			return (ft_error_export(arg));
-	}
-	if (arg[i] != '=')
-		return (0);
-	if (i == 0)
-		return (-1);
-	j = -1;
-	while (env[++j])
-	{
-		if (!ft_strncmp(arg, env[j], i + 1))
-			return (i + 1);
-	}
-	return (1);
 }
 
 int	nw_env(char ***env, char *str)

@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/23 16:45:48 by adidion          ###   ########.fr        #
+#    Updated: 2021/11/28 17:51:06 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRC =	minishell.c\
 		command/ft_its_pwd.c\
 		command/ft_its_unset.c\
 		command/unset.c\
+		command/export_no_arg.c\
+		command/ft_env_check_arg.c\
 		pipes/ft_one_pipe.c\
 		pipes/ft_pick_pipe.c\
 		pipes/ft_verify_redi.c\
