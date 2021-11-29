@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:33:20 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/23 11:15:28 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/29 18:06:24 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*duplicate_part_of_str(char *from, char *to)
 	if (to < from)
 		return (NULL);
 	ret = ft_calloc(sizeof(char) * ((to - from) + 2));
+	int nbtowrite = (to - from) + 2;
 	if (!ret)
 		exit(EXIT_FAILURE);
 	i = 0;
@@ -38,6 +39,9 @@ char	*duplicate_part_of_str(char *from, char *to)
 		i++;
 		from++;
 	}
+	printf("--------------duplicate_part_of_str : ret : %p\n", ret);
+	int	fd = open("file1", O_WRONLY | O_CREAT | O_TRUNC, 00644);
+	write(fd, ret, nbtowrite);
 	return (ret);
 }
 
@@ -64,7 +68,7 @@ t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
 	while (list)
 	{
 		free_array_of_string(list->arg);
-		free(list->command);
+//		free(list->command);
 		free(list->inf);
 		free(list->outf);
 		temp = list->next;

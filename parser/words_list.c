@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 15:40:44 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 18:35:27 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,6 @@ t_words_list	*split_words_with_redirection_symbols(t_words_list *list)
 	{
 		if (have_redirection_symbol_not_alone(temp->word))
 		{
-/* 			printf("\n");
-			display_words_list(list);
-			printf("\n");
-			usleep(500); */
-			
 			insert_nodes_split_word(temp, temp->word, "<>", 1);
 			temp = delete_node_words_list(list, temp);
 			list = temp;
@@ -184,10 +179,12 @@ t_words_list	*create_words_list(char *str)
 		end_of_word = get_end_of_word(str);
 		if (str <= end_of_word)
 		{
-			words_list = add_word_to_list(words_list,
+			words_list = addback_word_to_list(words_list,
 					duplicate_part_of_str(str, end_of_word));
+		printf("create_words_list : %p\n", words_list);
 		}
-		str = end_of_word + 1; // end of word is the last char of the word, we want to get past that
+		if (end_of_word) //////////////// ICI C ETAIT PAS LA
+			str = end_of_word + 1; // end of word is the last char of the word, we want to get past that
 	}
 
 	words_list = split_words_with_redirection_symbols(words_list);
@@ -200,16 +197,18 @@ t_words_list	*create_words_list(char *str)
 	return (words_list);
 }
 
-t_words_list	*add_word_to_list(t_words_list *lst, char *word)
+t_words_list	*addback_word_to_list(t_words_list *lst, char *word)
 {
 	t_words_list	*ret;
 	t_words_list	*temp;
 
+	printf("addback_word_to_list : word : %p\n", word);
 	if (!word)
 		exit(EXIT_FAILURE);
 	ret = ft_calloc(sizeof(t_words_list));
 	if (!ret)
 		exit(EXIT_FAILURE);
+	printf("addback_word_to_list : ret : %p\n", ret);
 	ret->word = word;
 	if (!lst)
 		return (ret);
