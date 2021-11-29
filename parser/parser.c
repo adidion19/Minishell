@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/28 18:56:46 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 12:20:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,26 @@
 #include "parser.h"
 
 
+void	handle_cmd_args_in_list(t_lst_cmd *node, t_words_list *words_list)
+{
+	int				i;
+	t_words_list	*temp;
 
+	i = 0;
+	if (!words_list || !node)
+		return ;
+	node->arg = ft_calloc(sizeof(char *) * (1 + ft_lstsize_words(words_list)));
+	temp = words_list;
+	while (temp)
+	{
+		// expand variables and remove quote (temp->word);
+		node->arg[i] = temp->word;
+		i++;
+		temp = temp->next;
+	}
+	node->command = node->arg[0];
+	free_words_list(words_list, 0);
+}
 
 
 
@@ -50,7 +69,7 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 		free_words_list(list, 1);
 		words_list = 0;
 	}
-	handle_cmd_args_in_list(words_list);
+	handle_cmd_args_in_list(ret, words_list);
 //	extract_cmd_array(ret, str); // what if words_list has been freed ?
 //	create_cmd_array(ret, words_list);
 	ret->next = 0; // no need, it's already 0 by default
