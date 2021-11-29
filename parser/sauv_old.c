@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:44:15 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/28 18:45:54 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:51:10 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,39 @@ int		is_there_unquoted_dollar(char *str)
 	return (0);
 }
 
+int	have_unquoted_space(char *str)
+{
+	t_quote_state	quote;
 
+	ft_memset(&quote, 0, sizeof(quote));
+	while (str && *str)
+	{
+		update_quote_state(str, &quote);
+		if (ft_isspace(*str) && quote.global_quote == 0)
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+t_words_list	*split_words_with_spaces_in_words_list(t_words_list *list)
+{
+	t_words_list	*temp;
+
+	temp = list;
+	while (temp)
+	{
+		if (have_unquoted_space(temp->word))
+		{
+			insert_nodes_split_word(temp, temp->word, "\t\n\r\v\f ", 0);
+			temp = delete_node_words_list(list, temp);
+			list = temp;
+			continue ;
+		}
+		temp = temp->next;
+	}
+	return (list);
+}
 
 
 
@@ -56,23 +88,12 @@ void	expand_variables_in_words_list(t_words_list *list)
 	t_words_list	*temp_list;
 	char			*temp_word;
 
-	printf("I was called\n");
-
 	temp_list = list;
 	while (temp_list)
 	{
-		if (is_there_unquoted_dollar(temp_list->word))
-		{
-			// browse the word until the $
-			// follow the $ until either a space or a quote sign
-			// copy all that was before the $ and copy the value and copy all that is after it
-			// free previous word and replace it with new one created
-			
-			// if the word before it was a <, it's ok because we will see after that the word contains spaces or not
-			temp_word = expand_variables_in_single_word(temp_list->word);
-			free(temp_list->word);
-			temp_list->word = temp_word;
-		}
+		temp_word = expand_variables_in_single_word(temp_list->word);
+		free(temp_list->word);
+		temp_list->word = temp_word;
 		temp_list = temp_list->next;
 	}
 }

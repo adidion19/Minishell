@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:36:46 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/28 15:04:42 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:22:56 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*get_var_content(char *var_name, t_quote_state quote)
 		return (ft_strdup(raw_value));
 	else
 		return (ft_strtrim(raw_value, "\t\n\r\v\f "));
-		// need to protect return values ?
 }
 
 char	*get_var_name(char *str)
@@ -43,6 +42,13 @@ char	*get_var_name(char *str)
 		return (ft_strdup("")); //in case we have something like >$"smthg"
 	return (duplicate_part_of_str(str, cursor - 1));
 }
+
+/*
+	expand_variables_in_single_word
+
+	Returns an allocated string with variables expanded. Original string in not
+	freed.
+*/
 
 char	*expand_variables_in_single_word(char *word)
 {

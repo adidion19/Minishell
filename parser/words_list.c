@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/28 16:13:17 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 15:40:44 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ t_words_list	*create_word_node(char	*word)
 	return (ret);
 }
 
+/*
+	insert_splitted_word :
+
+	from is updated in the parent function.
+*/
 
 t_words_list	*insert_splitted_word(char **from, char *to, t_words_list *node)
 {
@@ -81,14 +86,30 @@ t_words_list	*insert_splitted_word(char **from, char *to, t_words_list *node)
 	return (node);
 }
 
+/*
+	insert_nodes_split_word :
 
-void	insert_nodes_split_word(t_words_list *list, char *word)
+	Duplicate and split the word of the first node of the list in max 3 nodes.
+
+	One node for whatever is before the first group of char defined in sep.
+	One node for the group of separators (can be skipped if include_sep is 0).
+	One node for whatever is left after.
+
+	The original node stays where it was, with the splitted nodes added just
+	after it, and the rest of the list attached after the splitted nodes.
+
+	The pointer "word" originally points to the beginning of the original
+	string.
+	After each insertion, the pointer "word" is updated to point to the char in
+	the original string that follows what was just inserted.
+
+	The pointer temp points originally to the first node, then it is updated to
+	points to the last node inserted.
+*/
+
+void	insert_nodes_split_word(t_words_list *list, char *word, char *sep,
+	int include_sep)
 {
-	// duplicate the word of the first node of the list in max 3 nodes
-	// one node for whatever is before the first group of > or <
-	// one node for the group of < or >
-	// one node for whatever is left after
-
 	t_quote_state	quote;
 	t_words_list	*sav_next;
 	t_words_list	*temp;
@@ -100,12 +121,15 @@ void	insert_nodes_split_word(t_words_list *list, char *word)
 	temp->next = 0;
 	cursor = word;
 	while (*cursor && update_quote_state(cursor, &quote)
-		&& (quote.global_quote == 1 || !ft_strchr("<>", *cursor)))
+		&& (quote.global_quote == 1 || !ft_strchr(sep, *cursor)))
 		cursor++;
 	temp = insert_splitted_word(&word, cursor, temp);
-	while (*cursor && ft_strchr("<>", *cursor))
+	while (*cursor && ft_strchr(sep, *cursor))
 		cursor++;
-	temp = insert_splitted_word(&word, cursor, temp);
+	if (include_sep)
+		temp = insert_splitted_word(&word, cursor, temp);
+	else
+		word = cursor;
 	while (*cursor)
 		cursor++;
 	temp = insert_splitted_word(&word, cursor, temp);
@@ -133,7 +157,7 @@ t_words_list	*split_words_with_redirection_symbols(t_words_list *list)
 			printf("\n");
 			usleep(500); */
 			
-			insert_nodes_split_word(temp, temp->word);
+			insert_nodes_split_word(temp, temp->word, "<>", 1);
 			temp = delete_node_words_list(list, temp);
 			list = temp;
 			continue ;

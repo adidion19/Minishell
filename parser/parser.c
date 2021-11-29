@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 12:20:38 by user             ###   ########.fr       */
+/*   Updated: 2021/11/29 15:54:13 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ void	handle_cmd_args_in_list(t_lst_cmd *node, t_words_list *words_list)
 	temp = words_list;
 	while (temp)
 	{
-		// expand variables and remove quote (temp->word);
-		node->arg[i] = temp->word;
+		node->arg[i] = remove_quotes_from_word(temp->word, 0);
 		i++;
 		temp = temp->next;
 	}
 	node->command = node->arg[0];
-	free_words_list(words_list, 0);
+	free_words_list(words_list, 1);
 }
 
 
@@ -63,15 +62,14 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 		exit(EXIT_FAILURE);
 	words_list = create_words_list(str);
 	words_list = get_input_output(ret, words_list);
-
 	if (ret->delete_this_node == 1)
 	{
 		free_words_list(list, 1);
 		words_list = 0;
 	}
+	expand_variables_in_words_list(words_list);
+	words_list = split_words_with_spaces_in_words_list(words_list);
 	handle_cmd_args_in_list(ret, words_list);
-//	extract_cmd_array(ret, str); // what if words_list has been freed ?
-//	create_cmd_array(ret, words_list);
 	ret->next = 0; // no need, it's already 0 by default
 	// what if one extract fails ?
 	free(str);
