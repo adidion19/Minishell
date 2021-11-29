@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/28 19:06:13 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:05:52 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*remove_chars_from_str(char *str, void **ptrarray)
 	i = 0;
 	while (*str)
 	{
-		if (is_ptr_in_ptrarray(str, ptrarray))
+		if (is_ptr_in_ptrarray(ptrarray, str))
 		{
 			str++;
 			continue ;

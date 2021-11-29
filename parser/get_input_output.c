@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/28 18:49:40 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:13:18 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	open_outfile(t_lst_cmd *cmd_node)
 		write(2, cmd_node->outf, ft_strlen(cmd_node->outf));
 		write (2, ": ", 2);
 		write(2, strerror(error), ft_strlen(strerror(error)));
+		write(2, "\n", 1);
 		cmd_node->delete_this_node = 1;
 	}
 	else
@@ -51,6 +52,7 @@ void	open_infile(t_lst_cmd *cmd_node)
 		write(2, cmd_node->inf, ft_strlen(cmd_node->inf));
 		write (2, ": ", 2);
 		write(2, strerror(error), ft_strlen(strerror(error)));
+		write(2, "\n", 1);
 		cmd_node->delete_this_node = 1;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 15:54:13 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:07:47 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	words_list = get_input_output(ret, words_list);
 	if (ret->delete_this_node == 1)
 	{
-		free_words_list(list, 1);
+		free_words_list(words_list, 1);
 		words_list = 0;
 	}
 	expand_variables_in_words_list(words_list);
@@ -156,20 +156,8 @@ int	main(int argc, char **argv, char **envp)
 	if (argc < 2)
 		return (0);
 
-		if (!verify_redirections(argv[1]))
-			return (0);
-		t_words_list	*list;
-
-		list = 0;
-
-		list = create_words_list(argv[1]);
-
-	printf("\n\n");
-
-		display_words_list(list);
-
-//	list = split_words_with_redirection_symbols(list);
-
+	t_lst_cmd	*cmd_list;
+	cmd_list = parser(argv[1]);
 
 
 //	printf("\n\n");
@@ -207,13 +195,13 @@ int	main(int argc, char **argv, char **envp)
 			temp = temp->next;
 		}
  */
-
+/* 
 		printf("\nStarting cleaning the list\n");
 
 		free_words_list(list, 1);
 
 		printf("%s\n", getenv("YOUPLABOUM"));
-
+ */
 
 
 
