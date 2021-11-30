@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:36:46 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 14:22:56 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/30 16:14:12 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*get_var_content(char *var_name, t_quote_state quote)
 {
 	char	*raw_value;
 
+	if (var_name && var_name[0] == '?')
+		return(ft_itoa(g_global.status));
 	raw_value = getenv(var_name);
 	if (ft_strlen(raw_value) == 0)
 		return (ft_strdup(""));
@@ -32,9 +34,11 @@ char	*get_var_name(char *str)
 
 	str++;
 	cursor = str;
+	if (str && str[0] == '?')
+		return (ft_strdup("?"));
 	while (*cursor)
-	{
-		if (*cursor == '\'' || *cursor == '"' || ft_isspace(*cursor))
+	{ ////////////////////
+		if (*cursor == '\'' || *cursor == '"' || *cursor == '?' || ft_isspace(*cursor))
 			break ;
 		cursor++;
 	}
@@ -73,6 +77,7 @@ char	*expand_variables_in_single_word(char *word)
 		var_content = get_var_content(var_name, quote);
 		ret = malagain(ret, var_content, ft_strlen(var_content)); // if the variable doesnt exist, getenv is null pointer
 		word = &word[i] + ft_strlen(var_name) + 1; // we go directly to after the variable name. we start from the $ (&word[i]) and we add the length of var + 1 (for the $)
+		printf("got var_name : %s\n", var_name); ////////////////
 		free(var_name);
 		free(var_content);
 	}
