@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:30:23 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 16:17:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:45:15 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	ft_one_pipe(t_lst_cmd *cmd, char **env)
 		close(fd[0]);
 		ft_verify_redi(*cmd, env);
 		close(fd[1]);
+		exit(0);
 	}
+	close(fd[1]);
+	waitpid(pid1, &status, 0);
 	pid2 = fork();
 	if (pid2 < 0)
 		return (127);
@@ -42,8 +45,8 @@ int	ft_one_pipe(t_lst_cmd *cmd, char **env)
 		close(fd[1]);
 		r = ft_verify_redi(*cmd->next, env);
 		close(fd[0]);
+		exit(0);
 	}
-	waitpid(pid1, &status, 0);
 	waitpid(pid2, &status, 0);
 	return (r);
 }
