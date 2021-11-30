@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 14:09:40 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 14:31:17 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,11 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	t_lst_cmd		*temp;
 	t_words_list	*words_list;
 
-	printf("add_pipe_section : str : %p\n", str);
 	ret = ft_calloc(sizeof(t_lst_cmd));
 	if (!ret)
 		exit(EXIT_FAILURE);
-	printf("add_pipe_section : ret : %p\n", ret);
 	words_list = create_words_list(str);
-	printf("add_pipe_section : words_list : %p\n", words_list);
 	words_list = get_input_output(ret, words_list);
-	printf("add_pipe_section : words_list : %p\n", words_list);
 	if (ret->delete_this_node == 1)
 	{
 		free_words_list(words_list, 1);
@@ -73,7 +69,6 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	}
 	expand_variables_in_words_list(words_list);
 	words_list = split_words_with_spaces_in_words_list(words_list);
-	printf("add_pipe_section : words_list : %p\n", words_list);
 	handle_cmd_args_in_list(ret, words_list);
 	free(str);
 	if (!list)
@@ -133,7 +128,6 @@ t_lst_cmd	*parser(char *line)
 		}
 		// here cursor points to the end of the section. can be a pipe or the end of the line
 		ret = add_pipe_section(ret, duplicate_part_of_str(line, cursor - 1)); // we don't send the pipe symbol itself, or the \0
-		printf("parser : ret : %p\n", ret);
 		if (*cursor) // if cursor is on a pipe symbol, we go to the next char for the next loop, otherwise we stay at 0 and we exit the loop
 			cursor++;
 		line = cursor;
@@ -179,81 +173,3 @@ void	display_cmd_list(t_lst_cmd *lst)
 
 
 
-
-/*int	main(int argc, char **argv, char **envp)
-{
-
-
-
-	printf("\nline to parse : '%s'\n\n", argv[1]);
-	// getenv returns a null pointer when it didnt find the matching variable
-/* 	int	i = 0;
-	while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	} */
-
-
-/*	if (argc < 2)
-		return (0);
-
-	t_lst_cmd	*cmd_list;
-	cmd_list = parser(argv[1]);
-	display_cmd_list(cmd_list);
-	printf("\nFreeing command list...\n");
-	free_lst_cmd(cmd_list);
-	printf("done !\n");
-
-	system("leaks a.out");*/
-
-//	printf("\n\n");
-
-//	display_words_list(list);
-
-/* 
-
-		printf("deleting element starting with 4 and 3... ");
-
-		temp = list;
-		while (temp)
-		{
-			if (temp->word[0] == '4')
-				break ;
-			temp = temp->next;
-		}
-		list = delete_node_words_list(list, temp);
-
-		temp = list;
-		while (temp)
-		{
-			if (temp->word[0] == '3')
-				break ;
-			temp = temp->next;
-		}
-		list = delete_node_words_list(list, temp);
-
-		printf("done !\n");
-
-		temp = list;
-		while (temp)
-		{
-			printf("->%s\n", temp->word);
-			temp = temp->next;
-		}
- */
-/*
-		printf("\nStarting cleaning the list\n");
-
-		free_words_list(list, 1);
-
-		printf("%s\n", getenv("YOUPLABOUM"));
- */
-
-
-
-
-/*	
-	return (0);
-}
-*/

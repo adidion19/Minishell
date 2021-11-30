@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 18:35:27 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:23:28 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,6 @@ t_words_list	*create_words_list(char *str)
 		{
 			words_list = addback_word_to_list(words_list,
 					duplicate_part_of_str(str, end_of_word));
-		printf("create_words_list : %p\n", words_list);
 		}
 		if (end_of_word) //////////////// ICI C ETAIT PAS LA
 			str = end_of_word + 1; // end of word is the last char of the word, we want to get past that
@@ -202,13 +201,11 @@ t_words_list	*addback_word_to_list(t_words_list *lst, char *word)
 	t_words_list	*ret;
 	t_words_list	*temp;
 
-	printf("addback_word_to_list : word : %p\n", word);
 	if (!word)
 		exit(EXIT_FAILURE);
 	ret = ft_calloc(sizeof(t_words_list));
 	if (!ret)
 		exit(EXIT_FAILURE);
-	printf("addback_word_to_list : ret : %p\n", ret);
 	ret->word = word;
 	if (!lst)
 		return (ret);
