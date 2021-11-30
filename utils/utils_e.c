@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 16:05:52 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:59:55 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*remove_chars_from_str(char *str, void **ptrarray)
 	int		i;
 
 	len = ft_strlen(str);
-	if (!len)
+	if (!str)
 		return (NULL);
 	ret = ft_calloc(sizeof(char) * (1 + len));
 	if (!ret)
