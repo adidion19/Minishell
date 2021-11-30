@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:29:13 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 16:01:44 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/30 19:29:06 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 int	main(int argc, char **argv, char **envp)
 {
 
+//	printf("%s\n", getenv("p8"));
+//	printf("%s\n", ft_strtrim(getenv("p8"), "\t\n\r\v\f "));
 
+//	printf("%s\n", "5");
+//	printf("'%s'\n", ft_strtrim("     l p       ", "\t\n\r\v\f "));
+
+	
 
 	printf("\nline to parse : '%s'\n\n", argv[1]);
 
