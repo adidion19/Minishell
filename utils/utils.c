@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/25 10:17:23 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/28 17:53:16 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strcpy_after(char *src, char *after)
 	i = -1;
 	dst = malloc(sizeof (char) * (len_src + 1));
 	if (!dst)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	while (++i < len_src)
 		dst[i] = src[len_af + i];
 	dst[i] = '\0';

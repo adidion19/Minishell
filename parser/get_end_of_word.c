@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 18:19:01 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/27 14:33:48 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 18:35:40 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*get_end_of_word(char *str)
 	if (!str)
 		return (NULL);
 	if (*str == 0)
-		return (str);
+		return (NULL);
+//		return (str); C ETAIT CA A LA PLACE
 	ft_memset(&quote, 0, sizeof(quote));
 	while (*str)
 	{

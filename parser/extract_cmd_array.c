@@ -6,14 +6,14 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:11:18 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/22 11:26:36 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:42:23 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
-void	extract_cmd_array(t_lst_cmd *node, char *str)
+void	extract_cmd_array(t_lst_cmd *node, char *str) // to delete
 {
 	// syntax is : CMD + ARG1 + ARG2 + ... + ARGN
 	// at this point there are no redirection left in the line we read
@@ -32,7 +32,7 @@ void	extract_cmd_array(t_lst_cmd *node, char *str)
 		while (ft_isspace(*str))
 			str++;
 		end_of_word = get_end_of_word(str);
-//		words_list = add_word_to_list(words_list, str, end_of_word);
+//		words_list = addback_word_to_list(words_list, str, end_of_word);
 		str = end_of_word;
 	}
 	// at this point the linked list exist and contains all the words.

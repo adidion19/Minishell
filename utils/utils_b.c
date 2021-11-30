@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 13:53:57 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/12 11:29:58 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/28 17:52:58 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strjoin_2(char *s1, char *s2, int k)
 	len2 = ft_strlen((char *)s2);
 	str = malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!str)
-		return (0);
+		exit(EXIT_FAILURE);
 	while (s1[++i])
 		str[i] = s1[i];
 	j = i;
@@ -59,7 +59,7 @@ char	*ft_strdup(const char *src)
 		i++;
 	dest = malloc(sizeof(char) * (i + 1));
 	if (!dest)
-		return (0);
+		exit(EXIT_FAILURE);
 	i = -1;
 	while (src[++i])
 		dest[i] = src[i];
@@ -79,7 +79,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	len = ft_strlen(s1) + ft_strlen(s2);
 	new_s = malloc(sizeof(char) * (len + 1));
 	if (!new_s)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	i = -1;
 	j = -1;
 	while (s1[++i])

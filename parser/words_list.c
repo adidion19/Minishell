@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/23 16:00:14 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/29 18:35:27 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ t_words_list	*create_word_node(char	*word)
 	return (ret);
 }
 
+/*
+	insert_splitted_word :
+
+	from is updated in the parent function.
+*/
 
 t_words_list	*insert_splitted_word(char **from, char *to, t_words_list *node)
 {
@@ -81,14 +86,30 @@ t_words_list	*insert_splitted_word(char **from, char *to, t_words_list *node)
 	return (node);
 }
 
+/*
+	insert_nodes_split_word :
 
-void	insert_nodes_split_word(t_words_list *list, char *word)
+	Duplicate and split the word of the first node of the list in max 3 nodes.
+
+	One node for whatever is before the first group of char defined in sep.
+	One node for the group of separators (can be skipped if include_sep is 0).
+	One node for whatever is left after.
+
+	The original node stays where it was, with the splitted nodes added just
+	after it, and the rest of the list attached after the splitted nodes.
+
+	The pointer "word" originally points to the beginning of the original
+	string.
+	After each insertion, the pointer "word" is updated to point to the char in
+	the original string that follows what was just inserted.
+
+	The pointer temp points originally to the first node, then it is updated to
+	points to the last node inserted.
+*/
+
+void	insert_nodes_split_word(t_words_list *list, char *word, char *sep,
+	int include_sep)
 {
-	// duplicate the word of the first node of the list in max 3 nodes
-	// one node for whatever is before the first group of > or <
-	// one node for the group of < or >
-	// one node for whatever is left after
-
 	t_quote_state	quote;
 	t_words_list	*sav_next;
 	t_words_list	*temp;
@@ -100,12 +121,15 @@ void	insert_nodes_split_word(t_words_list *list, char *word)
 	temp->next = 0;
 	cursor = word;
 	while (*cursor && update_quote_state(cursor, &quote)
-		&& (quote.global_quote == 1 || !ft_strchr("<>", *cursor)))
+		&& (quote.global_quote == 1 || !ft_strchr(sep, *cursor)))
 		cursor++;
 	temp = insert_splitted_word(&word, cursor, temp);
-	while (*cursor && ft_strchr("<>", *cursor))
+	while (*cursor && ft_strchr(sep, *cursor))
 		cursor++;
-	temp = insert_splitted_word(&word, cursor, temp);
+	if (include_sep)
+		temp = insert_splitted_word(&word, cursor, temp);
+	else
+		word = cursor;
 	while (*cursor)
 		cursor++;
 	temp = insert_splitted_word(&word, cursor, temp);
@@ -128,12 +152,7 @@ t_words_list	*split_words_with_redirection_symbols(t_words_list *list)
 	{
 		if (have_redirection_symbol_not_alone(temp->word))
 		{
-/* 			printf("\n");
-			display_words_list(list);
-			printf("\n");
-			usleep(500); */
-			
-			insert_nodes_split_word(temp, temp->word);
+			insert_nodes_split_word(temp, temp->word, "<>", 1);
 			temp = delete_node_words_list(list, temp);
 			list = temp;
 			continue ;
@@ -160,10 +179,12 @@ t_words_list	*create_words_list(char *str)
 		end_of_word = get_end_of_word(str);
 		if (str <= end_of_word)
 		{
-			words_list = add_word_to_list(words_list,
+			words_list = addback_word_to_list(words_list,
 					duplicate_part_of_str(str, end_of_word));
+		printf("create_words_list : %p\n", words_list);
 		}
-		str = end_of_word + 1; // end of word is the last char of the word, we want to get past that
+		if (end_of_word) //////////////// ICI C ETAIT PAS LA
+			str = end_of_word + 1; // end of word is the last char of the word, we want to get past that
 	}
 
 	words_list = split_words_with_redirection_symbols(words_list);
@@ -176,16 +197,18 @@ t_words_list	*create_words_list(char *str)
 	return (words_list);
 }
 
-t_words_list	*add_word_to_list(t_words_list *lst, char *word)
+t_words_list	*addback_word_to_list(t_words_list *lst, char *word)
 {
 	t_words_list	*ret;
 	t_words_list	*temp;
 
+	printf("addback_word_to_list : word : %p\n", word);
 	if (!word)
 		exit(EXIT_FAILURE);
 	ret = ft_calloc(sizeof(t_words_list));
 	if (!ret)
 		exit(EXIT_FAILURE);
+	printf("addback_word_to_list : ret : %p\n", ret);
 	ret->word = word;
 	if (!lst)
 		return (ret);
@@ -241,7 +264,7 @@ int	ft_lstsize_words(t_words_list *lst)
 **	free_words_list : if flag is non null, the words themselves are freed too.
 */
 
-void	free_words_list(t_words_list *list, int flag)
+int	free_words_list(t_words_list *list, int flag)
 {
 	t_words_list	*temp;
 	
@@ -253,4 +276,5 @@ void	free_words_list(t_words_list *list, int flag)
 		free(list);
 		list = temp;
 	}
+	return (1);
 }
