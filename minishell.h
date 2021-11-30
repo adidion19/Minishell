@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/29 11:12:06 by adidion          ###   ########.fr       */
-=======
-/*   Updated: 2021/11/28 19:06:31 by artmende         ###   ########.fr       */
->>>>>>> 8fbd262ff74ea9183417b795f6a1e311cb07cc26
+/*   Updated: 2021/11/30 14:32:42 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +48,8 @@ typedef struct s_global
 }	t_global;
 
 t_global	g_global;
+
+t_lst_cmd		*parser(char *line);
 
 /*
 **	FT_ATOI
@@ -218,6 +216,10 @@ int				ft_one_pipe(t_lst_cmd *cmd, char **env);
 /* FT_MULTIPLE_PIPE */
 
 int				ft_multiple_pipe(t_lst_cmd *cmd, char **env, int size);
+
+/* FT_PICK_PIPE */
+
+int				ft_pick_pipe(t_lst_cmd *cmd, char **env);
 
 /*
 **-------------------------------------SIGNAL-----------------------------------

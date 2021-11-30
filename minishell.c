@@ -6,15 +6,12 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/28 17:47:52 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 14:52:30 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-faudra degager cette fonction, c'etait pour des tests
-*/
+#include "parser/parser.h"
 
 static void	ft_putchar(char c, int fd)
 {
@@ -80,6 +77,7 @@ int	main(int ac, char **av, char **env)
 	char			*line;
 	int				i;
 	struct termios	termios_p;
+	t_lst_cmd		*cmd;
 
 	tcgetattr(STDIN_FILENO, &termios_p);/* gestion de l'affichage du ctrl*/
 	termios_p.c_lflag &= ~ECHOCTL;
@@ -98,6 +96,8 @@ int	main(int ac, char **av, char **env)
 		}
 		if (line && *line)
 			i = add_history(line);
+		cmd = parser(line);
+		g_global.status = ft_pick_pipe(cmd, env);
 		free(line);
 	}
 	return (0);

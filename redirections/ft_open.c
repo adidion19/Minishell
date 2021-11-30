@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/29 15:40:13 by adidion          ###   ########.fr       */
-=======
-/*   Updated: 2021/11/28 16:39:55 by artmende         ###   ########.fr       */
->>>>>>> 8fbd262ff74ea9183417b795f6a1e311cb07cc26
+/*   Updated: 2021/11/30 14:57:57 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +56,7 @@ int	ft_open_inf(t_lst_cmd cmd)
 
 int	ft_close_inf(int fd)
 {
-	dup2(0, fd);
+	//dup2(0, fd);
 	if (close(fd) == -1)
 		return (-1);
 	return (0);
@@ -99,8 +95,10 @@ int	ft_open_outf(t_lst_cmd cmd, int bool)
 
 int	ft_close_mode(int fd)
 {
-	dup2(1, fd);
+	write(2, "a", 1);
+	//dup2(1, fd);
 	if (close(fd) == -1)
 		return (-1);
+	write(2, "a", 1);
 	return (0);
 }

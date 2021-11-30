@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 12:42:33 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 14:21:58 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	ft_other_command_2(t_lst_cmd cmd, char **env, int *fd)
 
 	access = 0;
 	status = 0;
+	i = 0;
 		//printf("A");
 	pid = fork();
 	if (pid < 0)
@@ -124,11 +125,9 @@ int	ft_heredoc(t_lst_cmd cmd, char **env)
 	int		fd[2];
 	int		r;
 	int		status;
-	char c;
 
 	r = -1;
 	status = 0;
-	c = EOF;
 	if (pipe(fd) == -1)
 		exit(EXIT_FAILURE);
 	line2 = NULL;

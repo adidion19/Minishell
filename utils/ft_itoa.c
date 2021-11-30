@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:18:56 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 16:17:14 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 14:52:08 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_itoa(int n)
 	bool_ = 1;
 	i = 0;
 	ans = (char *)malloc(sizeof(char) * (len_of_int(n) + 1));
-	if (ans)
+	if (!ans)
 		return (0);
 	if (n < 0)
 		bool_ = 0;

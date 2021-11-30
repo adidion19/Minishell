@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 12:09:33 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 14:33:48 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 
 	access = 0;
 	status = 0;
+	i = 0;
 		//printf("A");
 	pid = fork();
 	if (pid < 0)
@@ -100,6 +101,5 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		exit(i);
 	}
 	waitpid(pid, &status, 0);
-		write(1, "A", 1);
 	return (return_of_execve(i, status, access, cmd));
 }
