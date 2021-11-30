@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 14:57:57 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:01:02 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_open_inf(t_lst_cmd cmd)
 
 int	ft_close_inf(int fd)
 {
-	//dup2(0, fd);
+	//dup2(1, 0);
 	if (close(fd) == -1)
 		return (-1);
 	return (0);
@@ -95,10 +95,8 @@ int	ft_open_outf(t_lst_cmd cmd, int bool)
 
 int	ft_close_mode(int fd)
 {
-	write(2, "a", 1);
-	//dup2(1, fd);
+	//dup2(0, 1);
 	if (close(fd) == -1)
 		return (-1);
-	write(2, "a", 1);
 	return (0);
 }

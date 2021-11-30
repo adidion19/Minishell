@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 15:06:15 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 15:34:18 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ t_lst_cmd	*parser(char *line)
 
 
 
-/*
+
 void	display_cmd_list(t_lst_cmd *lst)
 {
 	int	pipe_nbr;
@@ -169,7 +169,7 @@ void	display_cmd_list(t_lst_cmd *lst)
 		lst = lst->next;
 	}
 }
-*/
+
 
 
 

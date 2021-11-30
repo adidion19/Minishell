@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 15:05:32 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:09:11 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,14 +176,14 @@ int				ft_other_command(t_lst_cmd cmd, char **env);
 
 /* FT_ITS */
 
-int				ft_choose_command(t_lst_cmd cmd, char ***env);
-int				ft_its_cd(t_lst_cmd cmd, char ***env);
+int				ft_choose_command(t_lst_cmd cmd, char **env);
+int				ft_its_cd(t_lst_cmd cmd, char **env);
 int				ft_its_echo(t_lst_cmd cmd, int r);
 int				ft_its_env(t_lst_cmd cmd, int r, char **env);
 int				ft_its_exit(t_lst_cmd cmd, int r);
-int				ft_its_export(t_lst_cmd cmd, int r, char ***env);
+int				ft_its_export(t_lst_cmd cmd, int r, char **env);
 int				ft_its_pwd(t_lst_cmd cmd, int r);
-int				ft_its_unset(t_lst_cmd cmd, int r, char ***env);
+int				ft_its_unset(t_lst_cmd cmd, int r, char **env);
 
 /*
 ** ------------------------------------REDIRECTION-----------------------------

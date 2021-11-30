@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:39:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/21 17:28:51 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:40:26 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_is_alnum(char *arg)
 	int	i;
 
 	i = -1;
-	while (arg[++i])
+	while (arg[++i] && arg[i])
 	{
 		if (!(arg[i] >= '0' && arg[i] <= '9'))
 			return (1);
@@ -64,10 +64,11 @@ int	ft_exit(char **arg)
 {
 	unsigned long	i;
 
-	if (arg)
-	{
+	if (!arg[0])
+		exit(0);
 		if (ft_arg_len(arg))
 			return (1);
+	write(1, "A", 1);
 		ft_verify_arg(arg[0]);
 		if (arg[0])
 		{
@@ -75,8 +76,5 @@ int	ft_exit(char **arg)
 			i = (unsigned char) i;
 			ft_t_exit(i, 0, NULL);
 		}
-	}
-	else
-		ft_t_exit(EXIT_SUCCESS, 0, NULL);
 	return (0);
 }

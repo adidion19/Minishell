@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:37:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 15:00:42 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 17:17:14 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_verify_redi(t_lst_cmd cmd, char **env)
 {
 	int	fd_infile;
 	int	fd_outfile;
-	int	r;
 	int pid;
 	int status;
 
@@ -32,13 +31,13 @@ int	ft_verify_redi(t_lst_cmd cmd, char **env)
 	if (cmd.outf)
 		fd_outfile = ft_open_outf(cmd, cmd.append);
 	if (fd_infile == -1 || fd_outfile == -1)
-		return (1);
-	r = ft_choose_command(cmd, &env);
+		exit (1);
+	g_global.status = ft_choose_command(cmd, env);
 	if (cmd.inf && fd_infile != -1)
 		ft_close_inf(fd_infile);
 	if (cmd.outf && fd_outfile != -1)
 		ft_close_mode(fd_outfile);
-		exit(r);
+		exit(0);
 	}
 	waitpid(pid, &status, 0);
 	return (status);
