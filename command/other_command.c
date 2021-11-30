@@ -6,13 +6,13 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/26 16:49:10 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 12:09:33 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_error_other_command(char *cmd, int bool)
+static int	ft_error_other_command(char *cmd, int bool)
 {
 	write(2, "minishell: ", 11);
 	write(2, cmd, ft_strlen(cmd));
@@ -23,7 +23,7 @@ int	ft_error_other_command(char *cmd, int bool)
 	return (127);
 }
 
-char	**ft_find_path(char **env)
+static char	**ft_find_path(char **env)
 {
 	int		i;
 	char	**path;
@@ -42,7 +42,7 @@ char	**ft_find_path(char **env)
 	n existe pas
 */
 
-int	return_of_execve(int i, int status, int access, t_lst_cmd cmd)
+static int	return_of_execve(int i, int status, int access, t_lst_cmd cmd)
 {
 	int	exit_status;
 
@@ -53,7 +53,7 @@ int	return_of_execve(int i, int status, int access, t_lst_cmd cmd)
 	return (exit_status);
 }
 
-int	ft_exec(char **path, t_lst_cmd cmd, int *access, char **env)
+static int	ft_exec(char **path, t_lst_cmd cmd, int *access, char **env)
 {
 	int	i;
 	int	j;
@@ -82,17 +82,24 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 	int		i;
 
 	access = 0;
+	status = 0;
+		//printf("A");
 	pid = fork();
-	if (pid != 0)
+	if (pid < 0)
 		return (0);
-	if (execve(cmd.arg[0], cmd.arg, env) == -1)
+	if (pid == 0)
+	{
+		if (!env)
+			exit(ft_error_other_command(cmd.command, 1));
+		if (execve(cmd.arg[0], cmd.arg, env) == -1)
 			access++;
-	if (!env)
-		return (ft_error_other_command(cmd.command, 1));
-	path = ft_find_path(env);
-	if (!path)
-		return (ft_error_other_command(cmd.command, 1));
-	i = ft_exec(path, cmd, &access, env);
+		path = ft_find_path(env);
+		if (!path)
+			exit(ft_error_other_command(cmd.command, 1));
+		i = ft_exec(path, cmd, &access, env);
+		exit(i);
+	}
 	waitpid(pid, &status, 0);
+		write(1, "A", 1);
 	return (return_of_execve(i, status, access, cmd));
 }

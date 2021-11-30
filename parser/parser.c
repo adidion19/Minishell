@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/26 15:42:56 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:07:57 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ t_lst_cmd	*parser(char *line)
 	}
 	return (ret);
 }
-
+/*
 int	main(int argc, char **argv, char **envp)
 {
 
@@ -248,7 +248,7 @@ int	main(int argc, char **argv, char **envp)
 			temp = temp->next;
 		}
  */
-
+/*
 		printf("\nStarting cleaning the list\n");
 
 		free_words_list(list, 1);
@@ -262,3 +262,4 @@ int	main(int argc, char **argv, char **envp)
 	
 	return (0);
 }
+*/
