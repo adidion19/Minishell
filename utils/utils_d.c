@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:33:20 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 14:28:11 by adidion          ###   ########.fr       */
+/*   Updated: 2021/11/30 15:05:16 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*duplicate_part_of_str(char *from, char *to)
 		i++;
 		from++;
 	}
-	//printf("--------------duplicate_part_of_str : ret : %p\n", ret);
 	int	fd = open("file1", O_WRONLY | O_CREAT | O_TRUNC, 00644);
 	write(fd, ret, nbtowrite);
 	return (ret);

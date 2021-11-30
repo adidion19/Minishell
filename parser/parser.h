@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 16:43:29 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:31:23 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ int	verify_redir_var(t_lst_cmd *cmd_node, char *word);
 char	*remove_quotes_from_word(char *word, int i);
 
 void	clean_cmd_node(t_lst_cmd *node);
+
+void	display_cmd_list(t_lst_cmd *lst);
 
 #endif
