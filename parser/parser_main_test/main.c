@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:29:13 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 13:25:11 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 15:54:21 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **envp)
 	t_lst_cmd	*cmd_list;
 	cmd_list = parser(argv[1]);
 	display_cmd_list(cmd_list);
-	printf("\nFreeing command list...\n");
+	printf("\n\n\nFreeing command list...\n");
 	free_lst_cmd(cmd_list);
 	printf("done !\n");
 
