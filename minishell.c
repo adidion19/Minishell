@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/30 17:35:00 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:08:43 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(int ac, char **av, char **env)
 		if (line && *line)
 			i = add_history(line);
 		cmd = parser(line);
-		g_global.status = ft_pick_pipe(cmd, env);
+		ft_pick_pipe(cmd, &env);
 		free(line);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_c.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:51:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 17:42:49 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:58:26 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,20 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-void	free_tab_char(char **tab, int nb)
+void	free_tab_char(char **tab, int j)
 {
 	int	i;
 
-	i = -1;
-	if (nb < 0)
-		nb = (len_lst(tab)) + 1;
-	if (nb > 0)
+	i = 0;
+	while (i < j && tab[i])
 	{
-		while (nb > 1)
-		{
-			free(tab[++i]);
-			nb--;
-		}
-		free(tab);
+		free(tab[i]);
+		i++;
 	}
+	free(tab);
+	return ;
 }
+
 
 /*
 **	The malagain function allocates enough memory for a copy of string "from"

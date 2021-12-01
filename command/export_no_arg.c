@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 15:28:57 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/26 16:27:09 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:32:41 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,52 @@ void	ft_print_export(char *env)
 	free(tmp);
 }
 
+char	*ft_strcpy(char *dest, char *src)
+{
+	int i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = src[i];
+	return (dest);
+}
+
+char **ft_cpy_tab(char **env)
+{
+	int i;
+	char **tmp;
+
+	i = -1;
+	while (env[++i])
+		;
+	tmp = malloc(sizeof(char *) * (i + 1));
+	if (!tmp)
+		exit(EXIT_FAILURE);
+	tmp[i] = NULL;
+	i = -1;
+	while (env[++i])
+	{
+		tmp[i] = malloc(sizeof(char) * ft_strlen(env[i]) + 1);
+		if (!tmp[i])
+			exit(EXIT_FAILURE);
+		tmp[i] = ft_strcpy(tmp[i], env[i]);
+	}
+	return (tmp);
+}
+
 int	export_no_arg(char **env)
 {
 	int	i;
+	char **export;
 
 	i = -1;
-	env = ft_sort_string_tab(env);
-	while (env[++i])
-		ft_print_export(env[i]);
+	export = ft_cpy_tab(env);
+	export = ft_sort_string_tab(export);
+	while (export[++i])
+		ft_print_export(export[i]);
 	return (0);
 }

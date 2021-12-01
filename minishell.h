@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/01 14:03:39 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:08:23 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,14 +180,14 @@ int				ft_other_command(t_lst_cmd cmd, char **env);
 
 /* FT_ITS */
 
-int				ft_choose_command(t_lst_cmd cmd, char **env);
-int				ft_its_cd(t_lst_cmd cmd, char **env);
+int				ft_choose_command(t_lst_cmd cmd, char ***env);
+int				ft_its_cd(t_lst_cmd cmd, char ***env);
 int				ft_its_echo(t_lst_cmd cmd, int r);
 int				ft_its_env(t_lst_cmd cmd, int r, char **env);
 int				ft_its_exit(t_lst_cmd cmd, int r);
-int				ft_its_export(t_lst_cmd cmd, int r, char **env);
+int				ft_its_export(t_lst_cmd cmd, int r, char ***env);
 int				ft_its_pwd(t_lst_cmd cmd, int r);
-int				ft_its_unset(t_lst_cmd cmd, int r, char **env);
+int				ft_its_unset(t_lst_cmd cmd, int r, char ***env);
 
 /*
 ** ------------------------------------REDIRECTION-----------------------------
@@ -211,19 +211,19 @@ int				ft_heredoc(t_lst_cmd cmd, char **env);
 
 /* FT_VERIFY_REDI */
 
-int				ft_verify_redi(t_lst_cmd cmd, char **env);
+int				ft_verify_redi(t_lst_cmd cmd, char ***env);
 
 /* FT_ONE_PIPE */
 
-int				ft_one_pipe(t_lst_cmd *cmd, char **env);
+int				ft_one_pipe(t_lst_cmd *cmd, char ***env);
 
 /* FT_MULTIPLE_PIPE */
 
-int				ft_multiple_pipe(t_lst_cmd *cmd, char **env, int size);
+int				ft_multiple_pipe(t_lst_cmd *cmd, char ***env, int size);
 
 /* FT_PICK_PIPE */
 
-int				ft_pick_pipe(t_lst_cmd *cmd, char **env);
+int				ft_pick_pipe(t_lst_cmd *cmd, char ***env);
 
 /*
 **-------------------------------------SIGNAL-----------------------------------

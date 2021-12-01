@@ -6,13 +6,13 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:30:23 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 17:45:15 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:01:05 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_one_pipe(t_lst_cmd *cmd, char **env)
+int	ft_one_pipe(t_lst_cmd *cmd, char ***env)
 {
 	int	fd[2];
 	int	pid1;

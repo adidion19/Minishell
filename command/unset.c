@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/11/26 13:39:25 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:12:08 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	ft_unset(t_lst_cmd cmd, char ***env)
 		*env = remove_variable(ret - 1, env);
 		if (!*env)
 			return (1);
-		free_tab_char(oldenv, -1);
+		//free_tab_char(oldenv, -1);
 	}
 	return (0);
 }
