@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:26:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 14:36:02 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:49:10 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	A pipe section can have only one input and one output.
 	Adding a new (in/out)file will then overwrite the one that was there before.
 
-	The (int/out)file is opened and then closed to catch any error.
+	The (int/out)file is opened (created) and then closed.
 
 	The nodes in wordslist that contain the redirections are deleted after they
 	have been handled, so that only the command and its arguments remain in the

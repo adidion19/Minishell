@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:45:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 16:16:45 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:53:13 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	have_only_spaces(char *from, char *to)
 {
 	if (!from)
 		return (0);
-	if (to && to >= from) //////////////
+	if (to && to >= from)
 	{
 		while (from <= to)
 		{

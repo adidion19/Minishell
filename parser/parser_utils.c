@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:04:55 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 15:14:49 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:21:06 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	have_redirection_symbol_not_alone(char	*str)
 {
-	int		have_redirection;
-	int		have_something_else;
+	int				have_redirection;
+	int				have_something_else;
 	t_quote_state	quote;
 
 	have_redirection = 0;
@@ -98,4 +98,30 @@ void	clean_cmd_node(t_lst_cmd *node)
 	node->inf = 0;
 	free(node->outf);
 	node->outf = 0;
+}
+
+/*
+	A word is defined as characters separated by unquoted white spaces.
+	It can also be separated by begining and end of the string.
+	It can be 1 char long.
+	get_end_of_word returns the address of the last char of the word.
+*/
+
+char	*get_end_of_word(char *str)
+{
+	t_quote_state	quote;
+
+	if (!str)
+		return (NULL);
+	if (*str == 0)
+		return (NULL);
+	ft_memset(&quote, 0, sizeof(quote));
+	while (*str)
+	{
+		update_quote_state(str, &quote);
+		if (quote.global_quote == 0 && ft_isspace(*str) == 1)
+			break ;
+		str++;
+	}
+	return (str - 1);
 }

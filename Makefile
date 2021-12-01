@@ -6,7 +6,7 @@
 #    By: artmende <artmende@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/12/01 15:47:59 by artmende         ###   ########.fr        #
+#    Updated: 2021/12/01 18:27:40 by artmende         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,9 +59,9 @@ SRC =	minishell.c\
 		utils/ft_split.c\
 		init_env.c\
 		parser/add_input_output_to_cmd_node.c\
+		parser/add_pipe_section.c\
 		parser/display_error.c\
 		parser/dollar_variables_handling.c\
-		parser/get_end_of_word.c\
 		parser/get_input_output.c\
 		parser/parser.c\
 		parser/parser_utils.c\
@@ -69,7 +69,8 @@ SRC =	minishell.c\
 		parser/update_quote_state.c\
 		parser/verify_pipe_conditions.c\
 		parser/verify_redirections.c\
-		parser/words_list.c\
+		parser/words_list_1.c\
+		parser/words_list_2.c\
 		signal/signal.c\
 		#pipes/ft_multiple_pipe.c\#
 

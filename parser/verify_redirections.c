@@ -6,23 +6,12 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:12:58 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 14:22:38 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:56:00 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
-
-int	have_something_before_pipe(char *str)
-{
-	while (*str && !(*str == '|' || *str == '<' || *str == '>'))
-	{
-		if (!ft_isspace(*str))
-			return (1);
-		str++;
-	}
-	return (0);
-}
 
 /*
 	verify_redirections :
@@ -31,11 +20,11 @@ int	have_something_before_pipe(char *str)
 	we divide in pipe sections etc.
 
 	Possible syntax error :
-	- redirection symbol followed by nothing
-	- redirection symbol followed by pipe symbol
-	- redirection symbol followed by another redirection symbol
-	- more than 2 redirection symbols together
-	- mixed type redirection symbols
+	- redirection symbol followed by nothing.
+	- redirection symbol followed by pipe symbol.
+	- redirection symbol followed by another redirection symbol.
+	- more than 2 redirection symbols together.
+	- mixed type redirection symbols.
 
 	We only consider unquoted redirection symbol here.
 */
@@ -66,30 +55,15 @@ int	verify_redirections(char *line)
 	return (1);
 }
 
-/*
-	redir_var_conditions :
-
-	When a redirection is an unquoted environment variable, the following cases
-	will produce an ambiguous redirect error.
-
-	Possible errors :
-	unquoted var that contains more than one word.
-	unquoted var that starts with spaces and var is preceded by something.
-	unquoted var that finishes with spaces and is followed by something.
-*/
-
-
-int	redir_var_conditions(int i, char *word, char *var_name, char *var_content)
+int	have_something_before_pipe(char *str)
 {
-	if (str_have_more_than_one_word(var_content)
-		|| (i && str_starts_with_space(var_content))
-		|| (word[i + ft_strlen(var_name) + 1]
-			&& str_ends_with_space(var_content)))
+	while (*str && !(*str == '|' || *str == '<' || *str == '>'))
 	{
-		return (0);
+		if (!ft_isspace(*str))
+			return (1);
+		str++;
 	}
-	else
-		return (1);
+	return (0);
 }
 
 /*
@@ -127,4 +101,29 @@ int	verify_redir_var(t_lst_cmd *cmd_node, char *word)
 		i++;
 	}
 	return (1);
+}
+
+/*
+	redir_var_conditions :
+
+	When a redirection is an unquoted environment variable, the following cases
+	will produce an ambiguous redirect error.
+
+	Possible errors :
+	unquoted var that contains more than one word.
+	unquoted var that starts with spaces and var is preceded by something.
+	unquoted var that finishes with spaces and is followed by something.
+*/
+
+int	redir_var_conditions(int i, char *word, char *var_name, char *var_content)
+{
+	if (str_have_more_than_one_word(var_content)
+		|| (i && str_starts_with_space(var_content))
+		|| (word[i + ft_strlen(var_name) + 1]
+			&& str_ends_with_space(var_content)))
+	{
+		return (0);
+	}
+	else
+		return (1);
 }
