@@ -3,61 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   words_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:32:30 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 15:05:40 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 15:32:39 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
-int	have_redirection_symbol_not_alone(char	*str)
-{
-/* 	size_t	len;
 
-	len = ft_strlen(str);
-	if (len < 2 || (!ft_strnstr(str, "<", len) && !ft_strnstr(str, ">", len)))
-		return (0);
-	if (ft_strnstr(str, "<", len))
-	{
-		if (!ft_strnstr(str, "<<", len) && len > 1)
-			return (1);
-		if (ft_strnstr(str, "<<", len) && len > 2)
-			return (1);
-	}
-	if (ft_strnstr(str, ">", len))
-	{
-		if (!ft_strnstr(str, ">>", len) && len > 1)
-			return (1);
-		if (ft_strnstr(str, ">>", len) && len > 2)
-			return (1);
-	}
-	return (0); */
-
-	int		have_redirection;
-	int		have_something_else;
-	t_quote_state	quote;
-
-	have_redirection = 0;
-	have_something_else = 0;
-	ft_memset(&quote, 0, sizeof(quote));
-	while (*str)
-	{
-		update_quote_state(str, &quote);
-		if ((*str == '<' || *str == '>') && quote.global_quote == 0)
-			have_redirection = 1;
-		if (*str != '<' && *str != '>' && *str != ' ')
-			have_something_else = 1;
-		str++;
-	}
-	if (have_redirection && have_something_else)
-		return (1);
-	else
-		return (0);
-
-}
 
 t_words_list	*create_word_node(char	*word)
 {
@@ -274,4 +230,23 @@ int	free_words_list(t_words_list *list, int flag)
 		list = temp;
 	}
 	return (1);
+}
+
+t_words_list	*split_words_with_spaces_in_words_list(t_words_list *list)
+{
+	t_words_list	*temp;
+
+	temp = list;
+	while (temp)
+	{
+		if (have_unquoted_space(temp->word))
+		{
+			insert_nodes_split_word(temp, temp->word, "\t\n\r\v\f ", 0);
+			temp = delete_node_words_list(list, temp);
+			list = temp;
+			continue ;
+		}
+		temp = temp->next;
+	}
+	return (list);
 }

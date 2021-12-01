@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/29 16:13:18 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:26:45 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,64 +127,6 @@ char	*resolve_redir_name(t_lst_cmd *cmd_node, char *word)
 
 
 
-
-t_words_list	*add_output_no_append(t_lst_cmd *cmd_node, t_words_list *node,
-	t_words_list **words_lst)
-{
-	// need to receive the node, to access its next, and free both himself and the next
-	// need to receive the list, to free nodes inside of it, and modify it --> double pointer here !
-	// need to receive the cmd_node 
-
-	free(cmd_node->outf); // will be 0 at first, but can be previous redir
-	cmd_node->outf = resolve_redir_name(cmd_node, node->next->word);
-	cmd_node->append = 0;
-	if (cmd_node->outf)
-		open_outfile(cmd_node); // possible error : no right to open
-	*words_lst = delete_node_words_list(*words_lst, node->next);
-	*words_lst = delete_node_words_list(*words_lst, node);
-	return (*words_lst);
-}
-
-t_words_list	*add_output_append(t_lst_cmd *cmd_node, t_words_list *node,
-	t_words_list **words_lst)
-{
-	free(cmd_node->outf); // will be 0 at first, but can be previous redir
-	cmd_node->outf = resolve_redir_name(cmd_node, node->next->word);
-	cmd_node->append = 1;
-	if (cmd_node->outf)
-		open_outfile(cmd_node);
-	*words_lst = delete_node_words_list(*words_lst, node->next);
-	*words_lst = delete_node_words_list(*words_lst, node);
-	return (*words_lst);
-}
-
-t_words_list	*add_input(t_lst_cmd *cmd_node, t_words_list *node,
-	t_words_list **words_lst)
-{
-	free(cmd_node->inf);
-	cmd_node->inf = resolve_redir_name(cmd_node, node->next->word);
-	if (cmd_node->inf)
-		open_infile(cmd_node);
-	cmd_node->heredoc = 0;
-	*words_lst = delete_node_words_list(*words_lst, node->next);
-	*words_lst = delete_node_words_list(*words_lst, node);
-	return (*words_lst);
-}
-
-t_words_list	*add_heredoc(t_lst_cmd *cmd_node, t_words_list *node,
-	t_words_list **words_lst)
-{
-	char	*temp;
-
-	free(cmd_node->inf);
-	temp = ft_strdup(node->next->word);
-	cmd_node->inf = remove_quotes_from_word(temp, 0);
-	free(temp);
-	cmd_node->heredoc = 1;
-	*words_lst = delete_node_words_list(*words_lst, node->next);
-	*words_lst = delete_node_words_list(*words_lst, node);
-	return (*words_lst);
-}
 
 t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 {

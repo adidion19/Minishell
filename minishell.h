@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 19:33:27 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:03:39 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ typedef struct s_global
 }	t_global;
 
 t_global	g_global;
-
-t_lst_cmd		*parser(char *line);
 
 /*
 **	FT_ATOI
@@ -99,7 +97,6 @@ char			*malagain(char *from, char *add, int len_add);
 */
 char			*duplicate_part_of_str(char *from, char *to);
 void			free_array_of_string(char **array);
-t_lst_cmd		*free_lst_cmd(t_lst_cmd *list); // returns a null pointer
 char			*ft_strnstr(char *str, char *to_find, size_t len);
 int				ft_strncmp_maj(const char *s1, const char *s2, size_t n);
 
@@ -239,5 +236,12 @@ void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
 
 void			rl_replace_line(const char *text, int clear_undo);
+
+/*
+**-------------------------------------PARSER-----------------------------------
+*/
+
+t_lst_cmd		*parser(char *line);
+t_lst_cmd		*free_lst_cmd(t_lst_cmd *list); // returns a null pointer
 
 #endif

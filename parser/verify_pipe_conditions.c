@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:45:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/24 14:12:40 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 14:54:30 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 	That means we need to have something before AND after each unquoted pipe
 	symbol.
 */
-
+//////////////////// need to fix the issue when have only on characted before pipe : "a | cat"
 int	verify_pipe_conditions(char *line)
 {
 	t_quote_state	quote;
@@ -50,6 +50,9 @@ int	verify_pipe_conditions(char *line)
 
 /*
 	have_only_spaces:
+
+	This function checks that the string "from" only contains white spaces.
+	"*from" is not checked.
 
 	"from" has to be non null.
 	If "to" is non null and superior than "from", we check between

@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:33:20 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 15:16:45 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:29:18 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,6 @@ void	free_array_of_string(char **array)
 		i++;
 	}
 	free(array);
-}
-
-t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
-{
-	t_lst_cmd	*temp;
-
-	while (list)
-	{
-		free_array_of_string(list->arg);
-//		free(list->command);
-		free(list->inf);
-		free(list->outf);
-		temp = list->next;
-		free(list);
-		list = temp;
-	}
-	return (NULL);
 }
 
 char	*ft_strnstr(char *str, char *to_find, size_t len)

@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:29:13 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 19:29:06 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:25:11 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **envp)
 
 	
 
-	printf("\nline to parse : '%s'\n\n", argv[1]);
+	printf("\nline to parse : ---%s---\n\n", argv[1]);
 
 
 	if (argc < 2)
