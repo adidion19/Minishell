@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 15:59:55 by artmende         ###   ########.fr       */
+/*   Updated: 2021/11/30 19:26:59 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,23 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*end_of_word;
+
+	if (!s1 || !set)
+		return (NULL);
+	end_of_word = (char *)s1 + ft_strlen((char *)s1);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	while (end_of_word > s1 && ft_strchr(set, *end_of_word))
+		end_of_word--;
+	return (duplicate_part_of_str((char *)s1, end_of_word));
+}
+
+// this ft_strtrim is not working correctly
+/* 
 static int	is_in_base(char str, const char *base)
 {
 	int	i;
@@ -79,6 +96,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	res[k] = 0;
 	return (res);
 }
+
+ */
+
+
 
 /*
 	remove_chars_from_str :

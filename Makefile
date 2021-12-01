@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
+#    By: artmende <artmende@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/11/30 14:26:37 by adidion          ###   ########.fr        #
+#    Updated: 2021/12/01 15:47:59 by artmende         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,16 +53,19 @@ SRC =	minishell.c\
 		utils/utils_d.c\
 		utils/utils_e.c\
 		utils/utils_f.c\
+		utils/utils_g.c\
 		utils/ft_atoi.c\
 		utils/ft_itoa.c\
 		utils/ft_split.c\
 		init_env.c\
+		parser/add_input_output_to_cmd_node.c\
+		parser/display_error.c\
 		parser/dollar_variables_handling.c\
-		parser/extract_cmd_array.c\
 		parser/get_end_of_word.c\
 		parser/get_input_output.c\
 		parser/parser.c\
-		parser/sauv_old.c\
+		parser/parser_utils.c\
+		parser/parsing_debug_functions.c\
 		parser/update_quote_state.c\
 		parser/verify_pipe_conditions.c\
 		parser/verify_redirections.c\

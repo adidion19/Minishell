@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 18:32:12 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 15:32:25 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,36 @@ void	handle_cmd_args_in_list(t_lst_cmd *node, t_words_list *words_list)
 
 
 
-/* 
+
+
+
+
+
+
+/*
+	add_pipe_section :
+
 	First we create the words list.
+	It's a linked list of all the words of that pipe section.
+	A word is defined as a group of chars separated by unquoted white spaces,
+	or by the beginning/end of the string.
+
+	It means that whatever is between quotes is indivisible and stays together.
+
+	Secondly we get the (in/out)files, and we delete the corresponding nodes
+	from the words list.
+
+	All that stays in the words list at this point is the command, and its
+	arguments.
+
+	We expand the environment variables in the list, and if a variable contains
+	more than one word, we separate them and add new nodes in words_list.
+
+	At this point, all that is left is to do is to copy all words from the list
+	into an array of string that will be kept in the command list.
+	We have to remove quotes from words at that stage.
+	
+	
 	While doing that, we do substitution and we group the quoted things together
 	substitution can result in more than one word
 	quoted stuff can be merged with letters before or after it to form 1 word
@@ -49,7 +77,7 @@ void	handle_cmd_args_in_list(t_lst_cmd *node, t_words_list *words_list)
 
 
 
- */
+*/
 
 t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 {
@@ -138,38 +166,21 @@ t_lst_cmd	*parser(char *line)
 
 
 
-void	display_cmd_list(t_lst_cmd *lst)
+
+
+t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
 {
-	int	pipe_nbr;
-	int	i;
+	t_lst_cmd	*temp;
 
-	pipe_nbr = 0;
-	while (lst)
+	while (list)
 	{
-		printf("--------\n");
-		printf("\nPipe %d :\n", pipe_nbr);
-		printf("Args array : \n");
-		i = 0;
-		while (lst->arg && lst->arg[i])
-		{
-			printf("\t%s\n", lst->arg[i]);
-			i++;
-		}
-		printf("\n");
-		if (lst->heredoc)
-			printf("heredoc --> %s\n", lst->inf);
-		else
-			printf("infile --> %s\n", lst->inf);
-		if (lst->append)
-			printf("outfile (append) --> %s\n", lst->outf);
-		else
-			printf("outfile (no append) --> %s\n", lst->outf);
-//		printf("--------\n");
-		pipe_nbr++;
-		lst = lst->next;
+		free_array_of_string(list->arg);
+//		free(list->command);
+		free(list->inf);
+		free(list->outf);
+		temp = list->next;
+		free(list);
+		list = temp;
 	}
+	return (NULL);
 }
-
-
-
-
