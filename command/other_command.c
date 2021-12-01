@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/01 15:51:08 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:36:46 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static char	**ft_find_path(char **env)
 	i = -1;
 	while (env[++i] && ft_strncmp(env[i], "PATH=", 5) != 0)
 		;
+	if (!env[i])
+		return (0);
 	path = ft_split((env[i]) + 5, ':');
 	return (path);
 }

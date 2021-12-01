@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/26 16:28:12 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:10:25 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	nw_env(char ***env, char *str)
 	int		len;
 	int		lenstr;
 	char	**nw_env;
-	char	**oldenv;
+	//char	**oldenv;
 
 	len = len_lst(*env);
-	oldenv = *env;
+	//oldenv = *env;
 	nw_env = malloc(sizeof(char *) * (len + 2));
 	nw_env[len + 1] = NULL;
 	nw_env = cpy_env(nw_env, *env);
@@ -55,9 +55,9 @@ int	nw_env(char ***env, char *str)
 	nw_env[len] = malloc(sizeof(char) * (lenstr + 1));
 	if (!nw_env[len])
 		return (-1);
-	nw_env[len] = ft_strncpy(str, nw_env[len], len);
+	//free_tab_char(*env, len_lst(*env));
+	nw_env[len] = ft_strncpy(str, nw_env[len], lenstr);
 	*env = nw_env;
-	free_tab_char(oldenv, -1);
 	return (0);
 }
 

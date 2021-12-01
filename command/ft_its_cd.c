@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 17:09:36 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:07:29 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_count_arg(char **arg)
 	return (i);
 }
 
-int	ft_its_cd(t_lst_cmd cmd, char **env)
+int	ft_its_cd(t_lst_cmd cmd, char ***env)
 {
 	if (ft_strlen(cmd.command) == 2)
 	{
@@ -50,7 +50,7 @@ int	ft_its_cd(t_lst_cmd cmd, char **env)
 			if (ft_count_arg(cmd.arg) > 1)
 			{
 				if (cmd.arg[1][0] != '-')
-					return (ft_send_to_cd(cmd, &env, 1));
+					return (ft_send_to_cd(cmd, env, 1));
 				else
 				{
 					write(2, "minishell: cd: ", 15);
@@ -60,7 +60,7 @@ int	ft_its_cd(t_lst_cmd cmd, char **env)
 				}
 			}
 			else
-				return (ft_send_to_cd(cmd, &env, 0));
+				return (ft_send_to_cd(cmd, env, 0));
 		}
 	}
 	return (257);

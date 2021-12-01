@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 17:16:18 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:06:50 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	cmd : la structure de commandes du parsing
 	env : un pointeur dereference sur l'environnement
 */
-int	ft_choose_command(t_lst_cmd cmd, char **env)
+int	ft_choose_command(t_lst_cmd cmd, char ***env)
 {
 	int	r;
 
@@ -27,13 +27,13 @@ int	ft_choose_command(t_lst_cmd cmd, char **env)
 		return (0);
 	r = ft_its_cd(cmd, env);
 	r = ft_its_echo(cmd, r);
-	r = ft_its_env(cmd, r, env);
+	r = ft_its_env(cmd, r, *env);
 	r = ft_its_exit(cmd, r);
 	r = ft_its_export(cmd, r, env);
 	r = ft_its_pwd(cmd, r);
 	r = ft_its_unset(cmd, r, env);
 	if (r == 257)
-		return (ft_other_command(cmd, env));
+		return (ft_other_command(cmd, *env));
 	return (r);
 }
 

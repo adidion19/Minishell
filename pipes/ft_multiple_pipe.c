@@ -6,13 +6,13 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/23 16:18:27 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/01 17:01:16 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_multiple_pipe(t_lst_cmd *cmd, char **env, int size)
+int	ft_multiple_pipe(t_lst_cmd *cmd, char ***env, int size)
 {
 	;
 }
