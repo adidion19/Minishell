@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 17:45:17 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 14:54:30 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/01 16:16:45 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@
 	That means we need to have something before AND after each unquoted pipe
 	symbol.
 */
-//////////////////// need to fix the issue when have only on characted before pipe : "a | cat"
+
 int	verify_pipe_conditions(char *line)
 {
 	t_quote_state	quote;
 	char			*last_pipe_symbol;
 
+	if (*line == '|')
+		return (display_syntax_error(*line));
 	last_pipe_symbol = line;
 	ft_memset(&quote, 0, sizeof(quote));
 	while (*line)
@@ -36,8 +38,10 @@ int	verify_pipe_conditions(char *line)
 		update_quote_state(line, &quote);
 		if (*line == '|' && quote.global_quote == 0)
 		{
-			if (have_only_spaces(last_pipe_symbol, line)
-				|| have_only_spaces(line, 0))
+			if (*last_pipe_symbol == '|')
+				last_pipe_symbol++;
+			if (have_only_spaces(last_pipe_symbol, line - 1)
+				|| have_only_spaces(line + 1, 0))
 			{
 				return (display_syntax_error(*line));
 			}
@@ -51,12 +55,11 @@ int	verify_pipe_conditions(char *line)
 /*
 	have_only_spaces:
 
-	This function checks that the string "from" only contains white spaces.
-	"*from" is not checked.
+	Checks that the string "from" only contains white spaces (or nothing).
 
 	"from" has to be non null.
-	If "to" is non null and superior than "from", we check between
-	"from" and "to", not including themselves.
+	If "to" is non null and superior/equal than "from", we check between
+	"from" and "to", including themselves.
 
 	If "to" is null, we check until the end of the string.
 */
@@ -65,10 +68,9 @@ int	have_only_spaces(char *from, char *to)
 {
 	if (!from)
 		return (0);
-	if (to && to > from)
+	if (to && to >= from) //////////////
 	{
-		from++;
-		while (from < to)
+		while (from <= to)
 		{
 			if (!ft_isspace(*from))
 				return (0);
@@ -77,7 +79,6 @@ int	have_only_spaces(char *from, char *to)
 	}
 	if (!to)
 	{
-		from++;
 		while (*from)
 		{
 			if (!ft_isspace(*from))
