@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:30:23 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/01 17:01:05 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 14:05:25 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ int	ft_one_pipe(t_lst_cmd *cmd, char ***env)
 		return (127);
 	if (pid1 == 0)
 	{
+		if (cmd->heredoc)
+			dup2(fd[1], ft_heredoc(*cmd));
+		else
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
-		ft_verify_redi(*cmd, env);
+		ft_verify_redi_2(*cmd, env);
 		close(fd[1]);
 		exit(0);
 	}
 	close(fd[1]);
+	//close (fd[0]);
 	waitpid(pid1, &status, 0);
 	pid2 = fork();
 	if (pid2 < 0)
@@ -42,8 +46,8 @@ int	ft_one_pipe(t_lst_cmd *cmd, char ***env)
 	if (pid2 == 0)
 	{
 		dup2(fd[0], STDIN_FILENO);
-		close(fd[1]);
-		r = ft_verify_redi(*cmd->next, env);
+		//close(fd[1]);
+		r = ft_verify_redi_2(*cmd->next, env);
 		close(fd[0]);
 		exit(0);
 	}

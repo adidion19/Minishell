@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:27:02 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 11:03:26 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 12:08:08 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,10 @@ int	ft_its_env(t_lst_cmd cmd, int r, char **env)
 		{
 			if (!cmd.arg[1])
 			{
-				if (cmd.heredoc)
-					heredoc_2(cmd);
 				return (ft_env(cmd, env));
 			}
 			else
 			{
-				if (cmd.heredoc)
-					heredoc_2(cmd);
 				write(2, "minishell: env: No arguments handeled for env\n", 47);
 				return (127);
 			}

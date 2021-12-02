@@ -6,11 +6,35 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:37:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 10:33:33 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 14:02:46 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h" 
+
+int	ft_verify_redi_2(t_lst_cmd cmd, char ***env)
+{
+	int	fd_infile;
+	int	fd_outfile;
+
+	fd_infile = 0;
+	fd_outfile = 0;
+	if (cmd.inf && cmd.heredoc == 0)
+		fd_infile = ft_open_inf(cmd);
+	// if (cmd.inf && cmd.heredoc)
+		// ft_heredoc(cmd);
+	if (cmd.outf)
+		fd_outfile = ft_open_outf(cmd, cmd.append);
+	if (fd_infile == -1 || fd_outfile == -1)
+		exit (1);
+	if (cmd.command)
+		g_global.status = ft_choose_command(cmd, env);
+	if (cmd.inf && fd_infile != -1 && cmd.heredoc == 0)
+		ft_close_inf(fd_infile);
+	if (cmd.outf && fd_outfile != -1)
+		ft_close_mode(fd_outfile);
+	return (g_global.status);
+}
 
 int	ft_verify_redi(t_lst_cmd cmd, char ***env)
 {
@@ -28,11 +52,14 @@ int	ft_verify_redi(t_lst_cmd cmd, char ***env)
 	{
 		if (cmd.inf && cmd.heredoc == 0)
 			fd_infile = ft_open_inf(cmd);
+		if (cmd.inf && cmd.heredoc)
+			ft_heredoc(cmd);
 		if (cmd.outf)
 			fd_outfile = ft_open_outf(cmd, cmd.append);
 		if (fd_infile == -1 || fd_outfile == -1)
 			exit (1);
-		g_global.status = ft_choose_command(cmd, env);
+		if (cmd.command)
+			g_global.status = ft_choose_command(cmd, env);
 		if (cmd.inf && fd_infile != -1 && cmd.heredoc == 0)
 			ft_close_inf(fd_infile);
 		if (cmd.outf && fd_outfile != -1)

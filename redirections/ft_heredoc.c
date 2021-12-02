@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 14:21:58 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 14:04:04 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,6 @@ int	ft_other_command_2(t_lst_cmd cmd, char **env, int *fd)
 		return (0);
 	if (pid == 0)
 	{
-		errno = 0;
-		if (dup2(fd[0], STDIN_FILENO) == -1)
-			exit(ft_error_dup(errno));
 		if (!env)
 			exit(ft_error_other_command(cmd.command, 1));
 		if (execve(cmd.arg[0], cmd.arg, env) == -1)
@@ -117,7 +114,7 @@ int	ft_other_command_2(t_lst_cmd cmd, char **env, int *fd)
 	return (return_of_execve(i, status, access, cmd));
 }
 
-int	ft_heredoc(t_lst_cmd cmd, char **env)
+int	ft_heredoc(t_lst_cmd cmd)
 {
 	int		pid1;
 //	int		 pid2;
@@ -154,6 +151,9 @@ int	ft_heredoc(t_lst_cmd cmd, char **env)
 	}
 	waitpid(pid1, &status, 0);
 	close(fd[1]);
-	r = ft_other_command_2(cmd, env, fd);
-	return (r);
+	errno = 0;
+	if (dup2(fd[0], STDIN_FILENO) == -1)
+		exit(ft_error_dup(errno));
+	//r = ft_other_command_2(cmd, env, fd);
+	return (fd[1]);
 }
