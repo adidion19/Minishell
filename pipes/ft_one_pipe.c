@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:30:23 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 14:05:25 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 14:40:56 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	ft_one_pipe(t_lst_cmd *cmd, char ***env)
 	{
 		if (cmd->heredoc)
 			dup2(fd[1], ft_heredoc(*cmd));
-		else
+		//else
 		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
 		ft_verify_redi_2(*cmd, env);
+		close(fd[0]);
 		close(fd[1]);
 		exit(0);
 	}
