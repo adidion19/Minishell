@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:00:58 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 17:40:29 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 11:03:37 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_its_exit(t_lst_cmd cmd, int r)
 	{
 		if (ft_strncmp(cmd.command, "exit", 4) == 0)
 		{
+			if (cmd.heredoc)
+				heredoc_2(cmd);
 			return (ft_exit(cmd.arg + 1));
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/01 17:36:46 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 10:36:25 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 	access = 0;
 	status = 0;
 	i = 0;
+	if (cmd.heredoc == 1)
+		return (ft_heredoc(cmd, env));
 	pid = fork();
 	if (pid < 0)
 		return (0);

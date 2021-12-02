@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/01 17:08:23 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 11:04:42 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int				ft_open_inf(t_lst_cmd cmd);
 /* FT_HEREDOC */
 
 int				ft_heredoc(t_lst_cmd cmd, char **env);
+int				heredoc_2(t_lst_cmd cmd);
 
 /*
 **--------------------------------------PIPE------------------------------------

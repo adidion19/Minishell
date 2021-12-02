@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/01 17:07:29 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 11:02:16 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_send_to_cd(t_lst_cmd cmd, char ***env, int bool)
 	char	*old_pwd;
 	int		r;
 
+	if (cmd.heredoc)
+		heredoc_2(cmd);
 	pwd = env_find_the("PWD=", *env);
 	old_pwd = env_find_the("OLDPWD=", *env);
 	if (bool == 1)
@@ -53,6 +55,8 @@ int	ft_its_cd(t_lst_cmd cmd, char ***env)
 					return (ft_send_to_cd(cmd, env, 1));
 				else
 				{
+					if (cmd.heredoc)
+						heredoc_2(cmd);
 					write(2, "minishell: cd: ", 15);
 					write(2, cmd.arg[1], ft_strlen(cmd.arg[1]));
 					write(2, ": No handeled options\n", 23);

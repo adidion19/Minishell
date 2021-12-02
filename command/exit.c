@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:39:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/30 17:40:26 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/02 11:11:03 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	ft_exit(char **arg)
 		exit(0);
 		if (ft_arg_len(arg))
 			return (1);
-	write(1, "A", 1);
 		ft_verify_arg(arg[0]);
 		if (arg[0])
 		{
