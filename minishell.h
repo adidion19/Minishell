@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 13:51:42 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/03 11:57:15 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_lst_cmd
 
 typedef struct s_global
 {
-	t_lst_cmd	*start;
+	int			start;
 	int			status;
 }	t_global;
 

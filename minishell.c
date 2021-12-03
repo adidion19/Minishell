@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/02 13:43:52 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/03 13:39:35 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	main(int ac, char **av, char **env)
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &termios_p);
 	env = init_env(env);
 	ft_minishell_lvl(env, ac, av);
+	//g_global.start = 0;
 	set_signal();
 	while (1)
 	{
@@ -97,7 +98,10 @@ int	main(int ac, char **av, char **env)
 		if (line && *line)
 			i = add_history(line);
 		cmd = parser(line);
+		//display_cmd_list(cmd);
+		//g_global.start = 1;
 		ft_pick_pipe(cmd, &env);
+		//g_global.start = 0;
 		free(line);
 	}
 	return (0);
