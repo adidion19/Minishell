@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:37:14 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/03 13:55:16 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/04 13:34:13 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,18 @@ void	set_signal(void)
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, ctrl_backslach);
 }
+
+void	ctrl_backslash_outside(int sig)
+{
+	rl_on_new_line();
+	rl_redisplay();
+	(void)sig;
+}
+
+void	ctrl_backslash_inside(int sig)
+{
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	(void)sig;
+}
+
