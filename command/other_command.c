@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/04 12:15:01 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/04 14:16:02 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ static int	ft_exec(char **path, t_lst_cmd cmd, int *access, char **env)
 	return (i);
 }
 
+void	testsigquit(int sig)
+{
+	(void)sig;
+	printf("This is the child !\n");
+}
+
 int	ft_other_command(t_lst_cmd cmd, char **env)
 {
 	char	**path;
@@ -92,6 +98,7 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		return (0);
 	if (pid == 0)
 	{
+		
 		if (!env)
 			exit(ft_error_other_command(cmd.command, 1));
 		if (execve(cmd.arg[0], cmd.arg, env) == -1)
@@ -99,7 +106,6 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		path = ft_find_path(env);
 		if (!path)
 			exit(ft_error_other_command(cmd.command, 1));
-		set_signal();
 		i = ft_exec(path, cmd, &access, env);
 		exit(EXIT_FAILURE);
 	}

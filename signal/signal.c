@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:37:14 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/04 13:34:13 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/04 14:39:10 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ctrl_c(int signum)
 	rl_redisplay();
 }
 
-void	ctrl_backslach(int signum)
+/* void	ctrl_backslach(int signum)
 {
 	if (signum == SIGQUIT)
 	{
@@ -36,12 +36,49 @@ void	ctrl_backslach(int signum)
 		//rl_redisplay();
 		}
 	}
-}
+} */
+
+/* void ctrl_backslach(int signum)
+{
+	(void)signum;
+	if (g_global.start == 1)
+	{
+		g_global.start--;
+		return ;
+	}
+	if (g_global.start == 2)
+	{
+		write(2, "Quit: 3\n", 8);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		return ;
+	}
+	if (g_global.start == 0)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+		return ;
+	}
+//	printf("PID is %d and ", getpid());
+//	printf("this is parent\n");
+} */
 
 void	set_signal(void)
 {
 	signal(SIGINT, ctrl_c);
-	signal(SIGQUIT, ctrl_backslach);
+	signal(SIGQUIT, ctrl_backslash_outside);
+}
+
+void	ctrl_c_status_to_130(int sig)
+{
+	(void)sig;
+	g_global.status = 130;
+}
+
+void	ctrl_backslash_status_to_131(int sig)
+{
+	(void)sig;
+	g_global.status = 131;
 }
 
 void	ctrl_backslash_outside(int sig)
@@ -53,6 +90,7 @@ void	ctrl_backslash_outside(int sig)
 
 void	ctrl_backslash_inside(int sig)
 {
+	write(2, "Quit: 3\n", 8);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	(void)sig;

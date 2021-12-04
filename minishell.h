@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/03 11:57:15 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/04 14:39:10 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,11 @@ void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
 
 void			rl_replace_line(const char *text, int clear_undo);
+
+void	ctrl_backslash_outside(int sig);
+void	ctrl_backslash_inside(int sig);
+void	ctrl_backslash_status_to_131(int sig);
+void	ctrl_c_status_to_130(int sig);
 
 /*
 **-------------------------------------PARSER-----------------------------------
