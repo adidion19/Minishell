@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verify_redi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:37:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/03 11:37:29 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/04 14:41:57 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ int	ft_verify_redi(t_lst_cmd cmd, char ***env)
 
 	fd_infile = 0;
 	fd_outfile = 0;
+	signal(SIGQUIT, ctrl_backslash_status_to_131);
+	signal(SIGINT, ctrl_c_status_to_130);
 	pid = fork();
 	if (pid < 0)
 		return (0);
 	if (pid == 0)
 	{
+		signal(SIGQUIT, ctrl_backslash_inside);
+		signal(SIGINT, ctrl_c_status_to_130);
 		if (cmd.inf && cmd.heredoc == 0)
 			fd_infile = ft_open_inf(cmd);
 		if (cmd.inf && cmd.heredoc)
@@ -67,5 +71,6 @@ int	ft_verify_redi(t_lst_cmd cmd, char ***env)
 		exit(0);
 	}
 	waitpid(pid, &status, 0);
+	set_signal();
 	return (status);
 }
