@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/03 13:35:53 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/04 12:15:01 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,15 @@ static char	**ft_find_path(char **env)
 	n existe pas
 */
 
-static int	return_of_execve(int i, int status, int access, t_lst_cmd cmd)
+static int	return_of_execve(int status, t_lst_cmd cmd)
 {
 	int	exit_status;
 
+	exit_status = 0;
+	if (status == 256)
+		return (ft_error_other_command(cmd.command, 0));
 	if (WIFEXITED(status))
 		exit_status = WEXITSTATUS(status);
-	if (i + 1 == access)
-		return (ft_error_other_command(cmd.command, 0));
 	return (exit_status);
 }
 
@@ -86,8 +87,6 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 	access = 0;
 	status = 0;
 	i = 0;
-	// if (cmd.heredoc == 1)
-	// 	return (ft_heredoc(cmd, env));
 	pid = fork();
 	if (pid < 0)
 		return (0);
@@ -102,9 +101,8 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 			exit(ft_error_other_command(cmd.command, 1));
 		set_signal();
 		i = ft_exec(path, cmd, &access, env);
+		exit(EXIT_FAILURE);
 	}
 	waitpid(pid, &status, 0);
-	if (pid == 0)
-		return (return_of_execve(i, status, access, cmd));
-	exit(i);
+	return (return_of_execve(status, cmd));
 }
