@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 11:02:16 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/03 14:02:35 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	ft_send_to_cd(t_lst_cmd cmd, char ***env, int bool)
 
 	if (cmd.heredoc)
 		heredoc_2(cmd);
+	if (!env_find_the("PWD", *env))
+		nw_env(env, "PWD=");
+	if (!env_find_the("OLDPWD", *env))
+		nw_env(env, "OLDPWD=");
 	pwd = env_find_the("PWD=", *env);
 	old_pwd = env_find_the("OLDPWD=", *env);
 	if (bool == 1)

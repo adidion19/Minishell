@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:37:14 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/03 13:55:16 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/03 14:51:24 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ctrl_backslach(int signum)
 			write(2, "Quit: 3\n", 8);
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		//rl_redisplay();
+		rl_redisplay();
 		}
 	}
 }

@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/12/03 11:45:04 by adidion          ###   ########.fr        #
+#    Updated: 2021/12/03 15:39:06 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC =	minishell.c\
 		pipes/ft_one_pipe.c\
 		pipes/ft_pick_pipe.c\
 		pipes/ft_verify_redi.c\
+		pipes/ft_multiple_pipe.c\
 		error/error.c\
 		utils/utils.c\
 		utils/utils_b.c\

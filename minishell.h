@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/03 11:57:15 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/03 15:39:23 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ int				ft_export(t_lst_cmd cmd, char ***env);
 int				export_no_arg(char **env);
 int				env_check_arg(char *arg, char **env);
 int				ft_error_export(char *arg);
+int				nw_env(char ***env, char *str);
 
 /* UNSET */
 
@@ -221,7 +222,7 @@ int				ft_one_pipe(t_lst_cmd *cmd, char ***env);
 
 /* FT_MULTIPLE_PIPE */
 
-int				ft_multiple_pipe(t_lst_cmd *cmd, char ***env, int size);
+int				ft_multiple_pipe(t_lst_cmd *cmd, char ***env);
 
 /* FT_PICK_PIPE */
 
