@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 18:14:21 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:14:21 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ char			*get_end_of_word(char *str);
 
 void			display_words_list(t_words_list	*list);
 void			display_cmd_list(t_lst_cmd *lst);
+t_lst_cmd		*reverse_lst_cmd(t_lst_cmd *list);
 
 #endif

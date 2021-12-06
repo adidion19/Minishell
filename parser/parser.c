@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 18:13:54 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:19:54 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,20 @@ t_lst_cmd	*free_lst_cmd(t_lst_cmd *list)
 		list = temp;
 	}
 	return (NULL);
+}
+
+t_lst_cmd	*reverse_lst_cmd(t_lst_cmd *list)
+{
+	t_lst_cmd	*before;
+	t_lst_cmd	*after;
+
+	before = NULL;
+	while (list)
+	{
+		after = list->next;
+		list->next = before;
+		before = list;
+		list = after;
+	}
+	return (before);
 }
