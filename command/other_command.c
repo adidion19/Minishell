@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/04 14:16:02 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/07 13:13:50 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		return (0);
 	if (pid == 0)
 	{
-		
 		if (!env)
 			exit(ft_error_other_command(cmd.command, 1));
 		if (execve(cmd.arg[0], cmd.arg, env) == -1)
@@ -109,6 +108,6 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		i = ft_exec(path, cmd, &access, env);
 		exit(EXIT_FAILURE);
 	}
-	waitpid(pid, &status, 0);
+	pid = waitpid(pid, &status, 0);
 	return (return_of_execve(status, cmd));
 }

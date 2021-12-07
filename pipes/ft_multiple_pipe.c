@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/04 18:11:32 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:48:20 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	ft_multiple_pipe(t_lst_cmd *cmd, char ***env)
 {
 	int	fd[2];
-	int	pid;
+	pid_t	pid;
+	pid_t	pid2;
+	int		status;
 	int	fd2;
 	int	r;
 
@@ -33,19 +35,28 @@ int	ft_multiple_pipe(t_lst_cmd *cmd, char ***env)
 				dup2(fd[1], ft_heredoc(*cmd));
 			else
 				dup2(fd2, 0);
+			close(fd[0]);
 			if (cmd->next)
 				dup2(fd[1], 1);
-			close(fd[0]);
+			close(fd[1]);
+			//signal(SIGKILL, NULL);
 			r = ft_verify_redi_2(*cmd, env);
 			exit(1);
 		}
 		else
 		{
-			waitpid(pid, 0, 0);
 			close(fd[1]);
+			close(fd[0]);
 			fd2 = fd[0];
 			cmd = cmd->next;
 		}
 	}
+	close(fd[0]);
+	while ((pid2 = waitpid(pid, &status, WNOHANG)) > 0)
+	{
+		;
+	}
+	//if (pid2 <= 0)
+	//	exit(EXIT_FAILURE);
 	return (r);
 }
