@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:39:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 16:52:31 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:05:04 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ int	ft_is_alnum(char *arg)
 	i = -1;
 	while (arg[++i] && arg[i])
 	{
-		if (!((arg[0] >= '0' && arg[0] <= '9') || arg[0] == '+' || arg[0] == '-'))
-		if (!(arg[i] >= '0' && arg[i] <= '9'))
-			return (1);
+		if (!((arg[0] >= '0' && arg[0] <= '9')
+				|| arg[0] == '+' || arg[0] == '-'))
+			if (!(arg[i] >= '0' && arg[i] <= '9'))
+				return (1);
 	}
 	return (0);
 }
@@ -67,14 +68,14 @@ int	ft_exit(char **arg)
 
 	if (!arg[0])
 		exit(0);
-		if (ft_arg_len(arg))
-			return (1);
-		ft_verify_arg(arg[0]);
-		if (arg[0])
-		{
-			i = ft_strtol(arg[0]);
-			i = (unsigned char) i;
-			ft_t_exit(i, 0, NULL);
-		}
+	if (ft_arg_len(arg))
+		return (1);
+	ft_verify_arg(arg[0]);
+	if (arg[0])
+	{
+		i = ft_strtol(arg[0]);
+		i = (unsigned char) i;
+		ft_t_exit(i, 0, NULL);
+	}
 	return (0);
 }
