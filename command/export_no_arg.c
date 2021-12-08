@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 15:28:57 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/01 17:32:41 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 14:49:40 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,6 @@ int	export_no_arg(char **env)
 	export = ft_sort_string_tab(export);
 	while (export[++i])
 		ft_print_export(export[i]);
+	free_tab_char(export, len_lst(export));
 	return (0);
 }

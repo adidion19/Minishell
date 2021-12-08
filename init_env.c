@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 15:05:04 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 16:32:45 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ char	**init_env(char **env)
 	i = -1;
 	if (len < 0)
 		return (NULL);
-	new_env = malloc(sizeof(char *) * len + 1);
+	new_env = malloc(sizeof(char *) * (len + 1));
 	if (!new_env)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	new_env[len] = NULL;
 	while (env[++i])
 	{
@@ -128,10 +128,10 @@ char	**init_env(char **env)
 			return (free_env(new_env, i + 1));
 		new_env[i] = malloc(sizeof(char) * (len + 1));
 		if (!new_env[i])
-			return (free_env(new_env, i + 1));
+			exit(EXIT_FAILURE);
 		new_env[i] = ft_strncpy(env[i], new_env[i], len);
 		if (!new_env[i])
-			return (free_env(new_env, i + 2));
+			exit(EXIT_FAILURE);
 	}
 	return (new_env);
 }

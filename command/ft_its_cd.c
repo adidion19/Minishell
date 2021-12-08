@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 17:06:06 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:10:04 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ int	ft_send_to_cd(t_lst_cmd cmd, char ***env, int bool)
 	char	*pwd;
 	char	*old_pwd;
 	int		r;
+	char	*tst;
 
 	if (cmd.heredoc)
 		heredoc_2(cmd);
-	if (!env_find_the("PWD", *env))
+	if (!(tst = env_find_the("PWD", *env)))
 		nw_env(env, "PWD=");
-	if (!env_find_the("OLDPWD", *env))
+	free(tst);
+	if (!(tst = env_find_the("OLDPWD", *env)))
 		nw_env(env, "OLDPWD=");
+	free(tst);
 	pwd = env_find_the("PWD=", *env);
 	old_pwd = env_find_the("OLDPWD=", *env);
 	if (bool == 1)
@@ -31,7 +34,9 @@ int	ft_send_to_cd(t_lst_cmd cmd, char ***env, int bool)
 	else
 		r = ft_cd(NULL, &pwd, &old_pwd, *env);
 	*env = env_replace(*env, "PWD=", pwd);
+	free(pwd);
 	*env = env_replace(*env, "OLDPWD=", old_pwd);
+	free(old_pwd);
 	return (r);
 }
 

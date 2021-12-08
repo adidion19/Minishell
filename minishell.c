@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 17:02:13 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:10:49 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,40 +67,38 @@ char	**ft_minishell_lvl(char **env, int ac, char **av)
 		ft_error_shlvl(result);
 		result = 1;
 	}
-	free(env[i]);
-	env[i] = ft_strjoin("SHLVL=", ft_itoa(result));
+	//free(env[i]);
+	env[i] = ft_strjoin_2("SHLVL=", ft_itoa(result), 2);
 	return (env);
 }
 
-int	main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **envv)
 {
 	char			*line;
 	int				i;
 	struct termios	termios_p;
 	t_lst_cmd		*cmd;
+	char			**env;
 
 	tcgetattr(STDIN_FILENO, &termios_p);/* gestion de l'affichage du ctrl*/
 	termios_p.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &termios_p);
-	env = init_env(env);
-	ft_minishell_lvl(env, ac, av);
+	env = init_env(envv);
+	ft_minishell_lvl(envv, ac, av);
 	set_signal();
 	while (1)
 	{
-//		set_signal();
-//		line = readline("$> ");
 		line = readline("exotic_shell-1.0$ ");
 		if (!line)
-		{
 			write(1, "exit\n", 5);
-			return (0);
-		}
+		if (!line)
+			exit(0);
 		if (line && *line)
 			i = add_history(line);
 		cmd = parser(line, env);
-		//display_cmd_list(cmd);
-		ft_pick_pipe(cmd, &env);
 		free(line);
+		ft_pick_pipe(cmd, &env);
+		free_lst_cmd(cmd);
 	}
 	return (0);
 }

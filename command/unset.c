@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/12/08 17:04:11 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:10:27 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**remove_variable(int ret, char ***env)
 	len = len_lst(*env);
 	tmp = malloc(sizeof(char *) * len);
 	if (!tmp)
-		return (NULL);
+		exit(EXIT_FAILURE);
 	tmp[len - 1] = NULL;
 	i = -1;
 	j = 0;
@@ -80,10 +80,11 @@ char	**remove_variable(int ret, char ***env)
 		lenstr = ft_strlen((*env)[j]);
 		tmp[i] = malloc(sizeof(char) * (lenstr + 1));
 		if (!tmp[i])
-			return (NULL);
+			exit(EXIT_FAILURE);
 		ft_strncpy((*env)[j], tmp[i], lenstr);
 		j++;
 	}
+	free_tab_char(*env, len);
 	return (tmp);
 }
 
@@ -91,7 +92,6 @@ int	ft_unset(t_lst_cmd cmd, char ***env)
 {
 	int		ret;
 	int		i;
-	char	**oldenv;
 
 	if (!cmd.arg[1])
 		return (0);
@@ -103,11 +103,9 @@ int	ft_unset(t_lst_cmd cmd, char ***env)
 			continue ;
 		if (ret == -1)
 			return (1);
-		oldenv = *env;
 		*env = remove_variable(ret - 1, env);
 		if (!*env)
-			return (1);
-		//free_tab_char(oldenv, -1);
+			exit(EXIT_FAILURE);
 	}
 	return (0);
 }
