@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/08 15:24:49 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 16:26:46 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void			expand_variables_in_words_list(t_words_list *list, char **env);
 char			*expand_variables_in_single_word(char *word, char **env);
 char			*get_var_name(char *str);
 char			*get_var_content(char *var_name, t_quote_state quote, char **env);
+int				is_valid_var_char(char c);
 
 /*
 	verify_pipe_conditions.c

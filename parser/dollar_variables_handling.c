@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:36:46 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/08 15:22:36 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 16:27:25 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ char	*expand_variables_in_single_word(char *word, char **env)
 	while (word && *word)
 	{
 		i = 0;
-		while (word[i] && !(word[i] == '$' && quote.simple_quote == 0
-				&& word[i + 1] && !ft_isspace(word[i + 1])))
+		while (word[i] && !(word[i] == '$' && !quote.simple_quote && word[i + 1]
+				&& is_valid_var_char(word[i + 1])))
 			(void)(update_quote_state(&word[i], &quote) && ++i);
 		ret = malagain(ret, word, i);
 		if (word[i] == 0)
@@ -106,4 +106,9 @@ char	*get_var_content(char *var_name, t_quote_state quote, char **env)
 		return (ft_strdup(raw_value));
 	else
 		return (ft_strtrim(raw_value, "\t\n\r\v\f "));
+}
+
+int	is_valid_var_char(char c)
+{
+	return (ft_isalnum(c) || c == '?' || c == '_');
 }
