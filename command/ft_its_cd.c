@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_its_cd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/03 14:02:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:06:06 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_its_cd(t_lst_cmd cmd, char ***env)
 				{
 					if (cmd.heredoc)
 						heredoc_2(cmd);
-					write(2, "minishell: cd: ", 15);
+					write(2, "exotic_shell: cd: ", 18);
 					write(2, cmd.arg[1], ft_strlen(cmd.arg[1]));
 					write(2, ": No handeled options\n", 23);
 					return (1);

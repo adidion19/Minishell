@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:08:33 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/25 15:08:09 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:03:19 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_update_pwd(char *pwd_2)
 
 void	ft_error_cd(char *path)
 {
-	write(2, "minishell: cd: ", 15);
+	write(2, "exotic_shell: cd: ", 18);
 	write(2, path, ft_strlen(path));
 	write(2, ": ", 2);
 }

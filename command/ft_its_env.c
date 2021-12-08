@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_its_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:27:02 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 12:08:08 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:03:47 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	ft_its_env(t_lst_cmd cmd, int r, char **env)
 			}
 			else
 			{
-				write(2, "minishell: env: No arguments handeled for env\n", 47);
+				write(2, "exotic_shell: env: No arguments handeled for env\n",
+					49);
 				return (127);
 			}
 		}

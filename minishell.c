@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 15:08:11 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:02:13 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_putnbr_fd(int nb, int fd)
 
 void	ft_error_shlvl(int result)
 {
-	write(2, "minishell: warning: shell level (", 33);
+	write(2, "exotic_shell: warning: shell level (", 36);
 	ft_putnbr_fd(result, 2);
 	write(2, ") too high, resetting to 1\n", 28);
 }
@@ -88,7 +88,8 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 //		set_signal();
-		line = readline("$> ");
+//		line = readline("$> ");
+		line = readline("exotic_shell-1.0$ ");
 		if (!line)
 		{
 			write(1, "exit\n", 5);

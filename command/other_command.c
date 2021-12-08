@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 11:13:21 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 16:55:17 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_error_other_command(char *cmd, int bool)
 {
-	write(2, "minishell: ", 11);
+	write(2, "exotic_shell: ", 14);
 	write(2, cmd, ft_strlen(cmd));
 	if (bool == 1)
 		write(2, ": No such file or directory\n", 29);

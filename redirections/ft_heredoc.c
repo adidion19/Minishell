@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/03 11:11:40 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 16:55:17 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error_dup(int error)
 {
-	write(2, "minishell: ", 11);
+	write(2, "exotic_shell: ", 14);
 	write(2, strerror(error), ft_strlen(strerror(error)));
 	write(2, "\n", 1);
 	return (1);

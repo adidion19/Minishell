@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 10:23:02 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:07:25 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ int	ft_open_inf(t_lst_cmd cmd)
 	error = errno;
 	if (fd == -1)
 	{
-		if (error == EISDIR)
-			printf("minishell: %s: Is a directory\n", cmd.inf);
-		if (error == ENAMETOOLONG)
-			printf("minishell: %s: File name too long\n", cmd.inf);
-		else
-			printf("minishell: %s: Permission denied\n", cmd.inf);
+		write(2, "exotic_shell: ", 14);
+		write(2, cmd.outf, ft_strlen(cmd.outf));
+		write (2, ": ", 2);
+		write(2, strerror(error), ft_strlen(strerror(error)));
 		return (-1);
 	}
 	dup2(fd, 0);
@@ -83,7 +81,7 @@ int	ft_open_outf(t_lst_cmd cmd, int bool)
 	error = errno;
 	if (fd == -1)
 	{
-		write(2, "minishell: ", 11);
+		write(2, "exotic_shell: ", 14);
 		write(2, cmd.outf, ft_strlen(cmd.outf));
 		write (2, ": ", 2);
 		write(2, strerror(error), ft_strlen(strerror(error)));

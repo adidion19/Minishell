@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:36:46 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/08 16:27:25 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 16:31:39 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ char	*get_var_content(char *var_name, t_quote_state quote, char **env)
 
 	if (var_name && var_name[0] == '?')
 		return (ft_itoa(g_global.status));
-//	raw_value = getenv(var_name);
 	raw_value = env_find_no_malloc_no_equal(var_name, env);
 	if (ft_strlen(raw_value) == 0)
 		return (ft_strdup(""));

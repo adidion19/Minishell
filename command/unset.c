@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/12/01 17:12:08 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:04:11 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error_unset(char *arg)
 {
-	write(2, "minishell: unset: '", 20);
+	write(2, "exotic_shell: unset: '", 22);
 	write(2, arg, ft_strlen(arg));
 	write(2, "': not a valid identifier\n", 26);
 	return (-1);
