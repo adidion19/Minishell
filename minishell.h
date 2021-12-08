@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 15:07:59 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:34:17 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ int				ft_pick_pipe(t_lst_cmd *cmd, char ***env);
 
 /*	SIGNAL	*/
 
-void			set_signal(void);
+int			set_signal(void);
 void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
 
