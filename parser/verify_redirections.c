@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:12:58 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 17:56:00 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:23:57 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	have_something_before_pipe(char *str)
 	section. The command associated with that pipe section is not executed.
 */
 
-int	verify_redir_var(t_lst_cmd *cmd_node, char *word)
+int	verify_redir_var(t_lst_cmd *cmd_node, char *word, char **env)
 {
 	int				i;
 	char			*var_name;
@@ -89,7 +89,7 @@ int	verify_redir_var(t_lst_cmd *cmd_node, char *word)
 			&& !ft_isspace(word[i + 1]))
 		{
 			var_name = get_var_name(&word[i]);
-			var_content = get_var_content(var_name, (t_quote_state){0, 1, 1});
+			var_content = get_var_content(var_name, (t_quote_state){0, 1, 1}, env);
 			if (!redir_var_conditions(i, word, var_name, var_content))
 				display_ambiguous_redirect(cmd_node, var_name);
 			i += ft_strlen(var_name);

@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/06 17:19:54 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:08:47 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 	list into the final args array for this pipe section.
 */
 
-t_lst_cmd	*parser(char *line)
+t_lst_cmd	*parser(char *line, char **env)
 {
 	t_lst_cmd		*ret;
 	t_quote_state	quote;
@@ -56,7 +56,7 @@ t_lst_cmd	*parser(char *line)
 				break ;
 			cursor++;
 		}
-		ret = add_pipe_section(ret, duplicate_part_of_str(line, cursor - 1));
+		ret = add_pipe_section(ret, duplicate_part_of_str(line, cursor - 1), env);
 		if (*cursor)
 			cursor++;
 		line = cursor;

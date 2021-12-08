@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:04:11 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 18:04:47 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:10:42 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 	We remove quotes from words at that final stage.
 */
 
-t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
+t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str, char **env)
 {
 	t_lst_cmd		*ret;
 	t_lst_cmd		*temp;
@@ -47,13 +47,13 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str)
 	if (!ret)
 		exit(EXIT_FAILURE);
 	words_list = create_words_list(str);
-	words_list = get_input_output(ret, words_list);
+	words_list = get_input_output(ret, words_list, env);
 	if (ret->delete_this_node == 1)
 	{
 		free_words_list(words_list, 1);
 		words_list = 0;
 	}
-	expand_variables_in_words_list(words_list);
+	expand_variables_in_words_list(words_list, env);
 	words_list = split_words_with_spaces_in_words_list(words_list);
 	handle_cmd_args_in_list(ret, words_list);
 	free(str);

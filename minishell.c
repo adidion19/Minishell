@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 16:28:47 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 16:33:26 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int ac, char **av, char **envv)
 			exit(0);
 		if (line && *line)
 			i = add_history(line);
-		cmd = parser(line);
+		cmd = parser(line, env);
 		free(line);
 		ft_pick_pipe(cmd, &env);
 		free_lst_cmd(cmd);

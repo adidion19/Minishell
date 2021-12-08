@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 15:08:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 16:32:45 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,36 @@ char	*env_find_the(char *search, char **src)
 	}
 	return (new);
 }
+
+// a=5
+// len is 1
+// str[len] = '='
+// str[len + 1] = '5'
+
+char	*env_find_no_malloc_no_equal(char *search, char **src)
+{
+	int		i;
+	char	*ret;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(search);
+	ret = NULL;
+	if (!len)
+		return (NULL);
+	while (src[i])
+	{
+		if (len && ft_strncmp(search, src[i], len) == 0 && src[i][len] == '=')
+		{
+			ret = &src[i][len + 1];
+			break ;
+		}
+		i++;
+	}
+	return (ret);
+}
+
+
 
 /*
 **	Initialisation de l'environnement. La fonction reprend
