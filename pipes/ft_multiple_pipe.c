@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 11:17:45 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 14:54:33 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ft_multiple_pipe(t_lst_cmd *cmd, char ***env)
 	int i;
 
 	fd = malloc(sizeof(int) * (2 * ft_lstsize(cmd)));
+	if (!fd)
+		exit(EXIT_FAILURE);
 	fd2 = 50;
 	i = 0;
 	while (cmd)

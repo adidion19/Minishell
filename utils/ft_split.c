@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:45:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/12 11:27:45 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 15:03:29 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,6 @@ static int	count_word(char *str, char charset)
 	return (count);
 }
 
-static char	**free_tab(char **tab, int j)
-{
-	int	i;
-
-	i = 0;
-	while (i < j && tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (0);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -64,14 +50,16 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	j = 0;
 	index = 0;
-	tab = malloc(sizeof(*tab) * (count_word((char *)s, c) + 2));
-	if (!s || !(tab))
+	if (!s)
 		return (0);
+	tab = malloc(sizeof(*tab) * (count_word((char *)s, c) + 2));
+	if (!tab)
+		exit(EXIT_FAILURE);
 	while (index < count_word((char *)s, c))
 	{
 		tab[index] = malloc(sizeof(char) * (ft_strlen((char *)s) + 1));
 		if (!(tab))
-			return (free_tab(tab, i));
+			exit(EXIT_FAILURE);
 		while (s[i] && in_string(((char *)s)[i], c))
 			i++;
 		while (s[i] && !in_string(((char *)s)[i], c))

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:08:33 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/25 15:08:09 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 15:41:00 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,15 @@ int	ft_error(char *path, int error)
 int	ft_cd(char *path, char **pwd, char **oldpwd, char **env)
 {
 	int	error;
+	int	bool;
 
 	errno = 0;
+	bool = 0;
 	if (!path)
+	{
 		path = env_find_the("HOME=", env);
+		bool = 1;
+	}
 	if (path[0] == '\0')
 		return (0);
 	if (chdir(path) == -1)
@@ -86,5 +91,7 @@ int	ft_cd(char *path, char **pwd, char **oldpwd, char **env)
 	}
 	*oldpwd = ft_update_oldpwd(*pwd, *oldpwd);
 	*pwd = ft_update_pwd(*pwd);
+	if (bool == 1)
+		free(path);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/01 17:10:25 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 15:43:19 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,18 @@ int	nw_env(char ***env, char *str)
 	len = len_lst(*env);
 	//oldenv = *env;
 	nw_env = malloc(sizeof(char *) * (len + 2));
+	if (!nw_env)
+		exit(EXIT_FAILURE);
 	nw_env[len + 1] = NULL;
 	nw_env = cpy_env(nw_env, *env);
 	if (!nw_env)
-		return (-1);
+		exit(EXIT_FAILURE);
 	lenstr = ft_strlen(str);
 	nw_env[len] = malloc(sizeof(char) * (lenstr + 1));
 	if (!nw_env[len])
-		return (-1);
-	//free_tab_char(*env, len_lst(*env));
+		exit(EXIT_FAILURE);
 	nw_env[len] = ft_strncpy(str, nw_env[len], lenstr);
+	free_tab_char(*env, len_lst(*env));
 	*env = nw_env;
 	return (0);
 }
@@ -74,7 +76,7 @@ int	env_change(char ***env, char *str, int ret)
 			tmp = (*env)[i];
 			(*env)[i] = malloc(sizeof(char) * (ft_strlen(str) + 1));
 			if (!(*env)[i])
-				return (1);
+				exit(EXIT_FAILURE);
 			(*env)[i] = ft_strncpy(str, (*env)[i], ft_strlen(str));
 			free(tmp);
 			break ;
