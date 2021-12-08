@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/04 15:18:09 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:08:11 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	main(int ac, char **av, char **env)
 		}
 		if (line && *line)
 			i = add_history(line);
-		cmd = parser(line);
+		cmd = parser(line, env);
 		//display_cmd_list(cmd);
 		ft_pick_pipe(cmd, &env);
 		free(line);

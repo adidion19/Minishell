@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:05 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 17:45:55 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:26:12 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 	handled.
 */
 
-t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
+t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst, char **env)
 {
 	t_words_list	*temp;
 
@@ -44,11 +44,11 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 			break ;
 		}
 		if (!ft_strcmp(temp->word, ">"))
-			temp = add_output_no_append(cmd_node, temp, &words_lst);
+			temp = add_output_no_append(cmd_node, temp, &words_lst, env);
 		else if (!ft_strcmp(temp->word, ">>"))
-			temp = add_output_append(cmd_node, temp, &words_lst);
+			temp = add_output_append(cmd_node, temp, &words_lst, env);
 		else if (!ft_strcmp(temp->word, "<"))
-			temp = add_input(cmd_node, temp, &words_lst);
+			temp = add_input(cmd_node, temp, &words_lst, env);
 		else if (!ft_strcmp(temp->word, "<<"))
 			temp = add_heredoc(cmd_node, temp, &words_lst);
 		else
@@ -57,14 +57,14 @@ t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst)
 	return (words_lst);
 }
 
-char	*resolve_redir_name(t_lst_cmd *cmd_node, char *word)
+char	*resolve_redir_name(t_lst_cmd *cmd_node, char *word, char **env)
 {
 	char	*ret;
 	char	*temp;
 
-	if (!verify_redir_var(cmd_node, word))
+	if (!verify_redir_var(cmd_node, word, env))
 		return (NULL);
-	temp = expand_variables_in_single_word(word);
+	temp = expand_variables_in_single_word(word, env);
 	ret = remove_quotes_from_word(temp, 0);
 	free(temp);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/06 17:14:21 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:24:49 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_quote_state
 	add_pipe_section.c
 */
 
-t_lst_cmd		*add_pipe_section(t_lst_cmd *list, char *str);
+t_lst_cmd		*add_pipe_section(t_lst_cmd *list, char *str, char **env);
 void			handle_cmd_args_in_list(t_lst_cmd *node,
 					t_words_list *words_list);
 
@@ -60,8 +60,8 @@ int				ft_lstsize_words(t_words_list *lst);
 	get_input_output.c
 */
 
-t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst);
-char			*resolve_redir_name(t_lst_cmd *cmd_node, char *word);
+t_words_list	*get_input_output(t_lst_cmd *cmd_node, t_words_list *words_lst, char **env);
+char			*resolve_redir_name(t_lst_cmd *cmd_node, char *word, char **env);
 void			open_outfile(t_lst_cmd *cmd_node);
 void			open_infile(t_lst_cmd *cmd_node);
 
@@ -70,11 +70,11 @@ void			open_infile(t_lst_cmd *cmd_node);
 */
 
 t_words_list	*add_output_no_append(t_lst_cmd *cmd_node, t_words_list *node,
-					t_words_list **words_lst);
+					t_words_list **words_lst, char **env);
 t_words_list	*add_output_append(t_lst_cmd *cmd_node, t_words_list *node,
-					t_words_list **words_lst);
+					t_words_list **words_lst, char **env);
 t_words_list	*add_input(t_lst_cmd *cmd_node, t_words_list *node,
-					t_words_list **words_lst);
+					t_words_list **words_lst, char **env);
 t_words_list	*add_heredoc(t_lst_cmd *cmd_node, t_words_list *node,
 					t_words_list **words_lst);
 
@@ -82,10 +82,10 @@ t_words_list	*add_heredoc(t_lst_cmd *cmd_node, t_words_list *node,
 	dollar_variables_handling.c
 */
 
-void			expand_variables_in_words_list(t_words_list *list);
-char			*expand_variables_in_single_word(char *word);
+void			expand_variables_in_words_list(t_words_list *list, char **env);
+char			*expand_variables_in_single_word(char *word, char **env);
 char			*get_var_name(char *str);
-char			*get_var_content(char *var_name, t_quote_state quote);
+char			*get_var_content(char *var_name, t_quote_state quote, char **env);
 
 /*
 	verify_pipe_conditions.c
@@ -100,7 +100,7 @@ int				have_only_spaces(char *from, char *to);
 
 int				verify_redirections(char *line);
 int				have_something_before_pipe(char *str);
-int				verify_redir_var(t_lst_cmd *cmd_node, char *word);
+int				verify_redir_var(t_lst_cmd *cmd_node, char *word, char **env);
 int				redir_var_conditions(int i, char *word, char *var_name,
 					char *var_content);
 

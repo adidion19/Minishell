@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/07 15:25:47 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 15:07:59 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ char			**free_env(char **env, int nb);
 */
 char			**env_replace(char **new_env, char *type, char *replace);
 char			*env_find_the(char *search, char **src);
+char			*env_find_no_malloc_no_equal(char *search, char **src);
 char			**init_env(char **env);
 
 /*
@@ -250,7 +251,7 @@ void	ctrl_c_status_to_130(int sig);
 **-------------------------------------PARSER-----------------------------------
 */
 
-t_lst_cmd		*parser(char *line);
+t_lst_cmd		*parser(char *line, char **env);
 t_lst_cmd		*free_lst_cmd(t_lst_cmd *list); // returns a null pointer
 
 #endif

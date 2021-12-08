@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:26:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/01 17:49:10 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 15:16:56 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 */
 
 t_words_list	*add_output_no_append(t_lst_cmd *cmd_node, t_words_list *node,
-	t_words_list **words_lst)
+	t_words_list **words_lst, char **env)
 {
 	free(cmd_node->outf);
-	cmd_node->outf = resolve_redir_name(cmd_node, node->next->word);
+	cmd_node->outf = resolve_redir_name(cmd_node, node->next->word, env);
 	cmd_node->append = 0;
 	if (cmd_node->outf)
 		open_outfile(cmd_node);
@@ -38,10 +38,10 @@ t_words_list	*add_output_no_append(t_lst_cmd *cmd_node, t_words_list *node,
 }
 
 t_words_list	*add_output_append(t_lst_cmd *cmd_node, t_words_list *node,
-	t_words_list **words_lst)
+	t_words_list **words_lst, char **env)
 {
 	free(cmd_node->outf);
-	cmd_node->outf = resolve_redir_name(cmd_node, node->next->word);
+	cmd_node->outf = resolve_redir_name(cmd_node, node->next->word, env);
 	cmd_node->append = 1;
 	if (cmd_node->outf)
 		open_outfile(cmd_node);
@@ -51,10 +51,10 @@ t_words_list	*add_output_append(t_lst_cmd *cmd_node, t_words_list *node,
 }
 
 t_words_list	*add_input(t_lst_cmd *cmd_node, t_words_list *node,
-	t_words_list **words_lst)
+	t_words_list **words_lst, char **env)
 {
 	free(cmd_node->inf);
-	cmd_node->inf = resolve_redir_name(cmd_node, node->next->word);
+	cmd_node->inf = resolve_redir_name(cmd_node, node->next->word, env);
 	if (cmd_node->inf)
 		open_infile(cmd_node);
 	cmd_node->heredoc = 0;
