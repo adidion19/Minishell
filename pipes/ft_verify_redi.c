@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verify_redi.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:37:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/04 14:41:57 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/08 11:14:11 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ int	ft_verify_redi(t_lst_cmd cmd, char ***env)
 			ft_close_inf(fd_infile);
 		if (cmd.outf && fd_outfile != -1)
 			ft_close_mode(fd_outfile);
-		exit(0);
+		exit(g_global.status);
 	}
 	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		g_global.status = WEXITSTATUS(status);
 	set_signal();
 	return (status);
 }

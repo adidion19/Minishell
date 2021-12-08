@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/07 13:13:50 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 11:13:21 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,34 @@ static int	return_of_execve(int status, t_lst_cmd cmd)
 	int	exit_status;
 
 	exit_status = 0;
-	if (status == 256)
+	if (status == 768)
 		return (ft_error_other_command(cmd.command, 0));
 	if (WIFEXITED(status))
 		exit_status = WEXITSTATUS(status);
 	return (exit_status);
 }
 
-static int	ft_exec(char **path, t_lst_cmd cmd, int *access, char **env)
+static int	ft_exec(char **path, t_lst_cmd cmd, char **env)
 {
 	int	i;
 	int	j;
 
 	i = -1;
+	errno = 0;
 	while (path[++i])
 	{
+		errno = 0;
 		path[i] = ft_strjoin_2(path[i], "/", 0);
 		path[i] = ft_strjoin_2(path[i], cmd.arg[0], 1);
 		if (execve(path[i], cmd.arg, env) == -1)
-			*access = *access + 1;
+			if (errno != ENOENT)
+				return (errno);
 	}
 	j = -1;
 	while (path[++j])
 		free(path[j]);
 	free(path);
-	return (i);
+	return (2);
 }
 
 void	testsigquit(int sig)
@@ -85,14 +88,12 @@ void	testsigquit(int sig)
 int	ft_other_command(t_lst_cmd cmd, char **env)
 {
 	char	**path;
-	int		access;
 	pid_t	pid;
 	int		status;
-	int		i;
+	int r;
 
-	access = 0;
 	status = 0;
-	i = 0;
+	r = 1;
 	pid = fork();
 	if (pid < 0)
 		return (0);
@@ -101,13 +102,14 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		if (!env)
 			exit(ft_error_other_command(cmd.command, 1));
 		if (execve(cmd.arg[0], cmd.arg, env) == -1)
-			access++;
+			if (errno != ENOENT)
+				return (r = errno + 1);
 		path = ft_find_path(env);
 		if (!path)
 			exit(ft_error_other_command(cmd.command, 1));
-		i = ft_exec(path, cmd, &access, env);
-		exit(EXIT_FAILURE);
+			r = ft_exec(path, cmd, env);
+		exit(r + 1);
 	}
 	pid = waitpid(pid, &status, 0);
-	return (return_of_execve(status, cmd));
+	return (g_global.status = return_of_execve(status, cmd));
 }

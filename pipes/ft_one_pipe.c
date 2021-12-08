@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:30:23 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/03 15:38:13 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 11:18:03 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ int	ft_one_pipe(t_lst_cmd *cmd, char ***env)
 			dup2(fd[1], ft_heredoc(*cmd->next));
 		else
 			dup2(fd[0], STDIN_FILENO);
-		ft_verify_redi_2(*cmd->next, env);
+		g_global.status = ft_verify_redi_2(*cmd->next, env);
 		close(fd[1]);
 		close(fd[0]);
-		exit(0);
+		exit(g_global.status);
 	}
 	close(fd[0]);
 	waitpid(pid2, &status, 0);
+	if (WIFEXITED(status))
+		g_global.status = WEXITSTATUS(status);
 	return (r);
 }
