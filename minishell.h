@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 15:45:24 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 20:01:04 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,17 +235,40 @@ int				ft_pick_pipe(t_lst_cmd *cmd, char ***env);
 
 /*	SIGNAL	*/
 
-int				set_signal(void);
+int				set_signal_default(void);
+void			set_signal_outside_cmd_is_running_no_heredoc(void);
+void			set_signal_inside_cmd_is_running_no_heredoc(void);
+void	set_signal_inside_cmd_is_running_heredoc(void);
+
+void	set_signal_heredoc_itself(void);
+
+void	set_signal_inside(t_lst_cmd *cmd);
+void	set_signal_outside(t_lst_cmd *cmd);
+
 void			ctrl_backslach(int signum);
-void			ctrl_c(int signum);
+void			ctrl_c_default(int signum);
 void			ctrl_backslash_inside(int sig);
 
 void			rl_replace_line(const char *text, int clear_undo);
 
-void			ctrl_backslash_outside(int sig);
-void			ctrl_backslash_inside(int sig);
-void			ctrl_backslash_status_to_131(int sig);
-void			ctrl_c_status_to_130(int sig);
+void			ctrl_backslash_default(int sig);
+
+void			ctrl_backslash_outside_no_heredoc(int sig);
+void	ctrl_backslash_outside_heredoc(int sig);
+void			ctrl_c_outside_no_heredoc(int sig);
+
+
+void	call_exit_from_signal(int sig);
+void	ctrl_c_inside_no_heredoc(int sig);
+void	ctrl_c_inside_heredoc(int sig);
+
+
+void	sig_do_nothing(int sig);
+void	ctrl_backslash_status_to_0(int sig);
+
+void	ctrl_c_status_to_1(int sig);
+
+
 
 /*
 **-------------------------------------PARSER-----------------------------------

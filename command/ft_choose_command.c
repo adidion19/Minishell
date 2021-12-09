@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_choose_command.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 10:47:00 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 19:51:15 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	heredoc_2(t_lst_cmd cmd)
 	int		r;
 	int		status;
 
+
+
 	r = 0;
 	status = 0;
 	line2 = NULL;
@@ -35,11 +37,14 @@ int	heredoc_2(t_lst_cmd cmd)
 		return (-1);
 	if (pid1 == 0)
 	{
+		set_signal_heredoc_itself();
 		while (ft_strncmp(line2, cmd.inf, ft_strlen(cmd.inf))
 			|| ft_strlen(line2) != ft_strlen(cmd.inf))
 		{
 			free(line2);
 			line2 = readline("> ");
+			if (!line2)
+				exit(0);
 		}
 		free(line2);
 		exit(0);

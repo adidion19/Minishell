@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_multiple_pipe.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 16:26:00 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 19:26:55 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	ft_loop_pipe(t_lst_cmd *cmd, int *fd, int fd2, char ***env)
 		if (pid < 0)
 			return (0);
 		else if (pid == 0)
+		{
+			set_signal_inside(cmd);
 			ft_child(cmd, fd + i, env, fd2);
+		}
 		else
 		{
 			fd2 = ft_parent(cmd, pid, fd + i, fd2);

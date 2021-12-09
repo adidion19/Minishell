@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 11:24:32 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 19:51:09 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*ft_loop_heredoc(char *line2, int fd)
 	}
 	free(line2);
 	line2 = readline("> ");
+	if (!line2)
+		exit(0);
 	return (line2);
 }
 
@@ -47,6 +49,8 @@ int	ft_heredoc(t_lst_cmd cmd)
 	int		fd[2];
 	int		status;
 
+
+
 	status = 0;
 	if (pipe(fd) == -1)
 		exit(EXIT_FAILURE);
@@ -55,9 +59,12 @@ int	ft_heredoc(t_lst_cmd cmd)
 	if (pid1 < 0)
 		exit(EXIT_FAILURE);
 	if (pid1 == 0)
+	{
+		set_signal_heredoc_itself();
 		while (ft_strncmp(line2, cmd.inf, ft_strlen(cmd.inf))
 			|| ft_strlen(line2) != ft_strlen(cmd.inf))
 			line2 = ft_loop_heredoc(line2, fd[1]);
+	}
 	if (pid1 == 0)
 		exit(ft_close_and_free(line2, fd));
 	waitpid(pid1, &status, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/09 11:28:22 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 18:56:39 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int ac, char **av, char **envv)
 	termios_p.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &termios_p);
 	env = init_env(envv);
-	(void)(ft_minishell_lvl(env, ac, av) && set_signal());
+	(void)(ft_minishell_lvl(env, ac, av) && set_signal_default());
 	while (1)
 	{
 		line = readline("exotic_shell-1.0$ ");

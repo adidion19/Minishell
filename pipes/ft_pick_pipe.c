@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pick_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:56:51 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 15:47:02 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 19:58:06 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int	ft_look_cmd(t_lst_cmd cmd, char ***env)
 
 int	ft_pick_pipe(t_lst_cmd *cmd, char ***env)
 {
+	set_signal_outside_cmd_is_running_no_heredoc();
+	set_signal_outside(cmd);
 	if (!cmd)
 		return (127);
-	if (ft_lstsize(cmd) == 1)
-		return (ft_look_cmd(*cmd, env));
-	if (ft_lstsize(cmd) == 2)
-		return (ft_multiple_pipe(cmd, env));
+	else if (ft_lstsize(cmd) == 1)
+		ft_look_cmd(*cmd, env);
 	else
-		return (ft_multiple_pipe(cmd, env));
+		ft_multiple_pipe(cmd, env);
+	set_signal_default();
 	return (1);
 }
