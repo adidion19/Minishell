@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 16:55:17 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:39:21 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ int	ft_heredoc(t_lst_cmd cmd)
 	int		pid1;
 	char	*line2;
 	int		fd[2];
-	int		r;
 	int		status;
 
-	r = -1;
 	status = 0;
 	if (pipe(fd) == -1)
 		exit(EXIT_FAILURE);

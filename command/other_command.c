@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 16:55:17 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:38:16 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		path = ft_find_path(env);
 		if (!path)
 			exit(ft_error_other_command(cmd.command, 1));
-			r = ft_exec(path, cmd, env);
+		r = ft_exec(path, cmd, env);
 		exit(r + 1);
 	}
 	pid = waitpid(pid, &status, 0);

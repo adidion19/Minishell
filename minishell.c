@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 17:35:27 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:35:18 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	ft_minishell_lvl(char **env, int ac, char **av)
 int	main(int ac, char **av, char **envv)
 {
 	char			*line;
-	int				i;
 	struct termios	termios_p;
 	t_lst_cmd		*cmd;
 	char			**env;
@@ -93,7 +92,7 @@ int	main(int ac, char **av, char **envv)
 		if (!line)
 			exit(EXIT_SUCCESS);
 		if (line && *line)
-			i = add_history(line);
+			add_history(line);
 		cmd = parser(line, env);
 		free(line);
 		ft_pick_pipe(cmd, &env);

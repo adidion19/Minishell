@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 16:32:45 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 10:43:39 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,11 @@
 char	**env_replace(char **new_env, char *type, char *replace)
 {
 	size_t	len_type;
-	size_t	len_replace;
 	int		i;
 
 	if (!new_env || !type || !replace)
 		return (0);
 	len_type = ft_strlen(type);
-	len_replace = ft_strlen(replace);
 	i = 0;
 	while (ft_strncmp(new_env[i], type, len_type) != 0)
 		i++;
@@ -50,12 +48,10 @@ char	**env_replace(char **new_env, char *type, char *replace)
 char	*env_find_the(char *search, char **src)
 {
 	int		i;
-	int		j;
 	size_t	len;
 	char	*new;
 
 	i = 0;
-	j = 0;
 	len = ft_strlen(search);
 	new = NULL;
 	while (src[i])
@@ -115,8 +111,8 @@ char	**init_env(char **env)
 
 	len = len_lst(env);
 	i = -1;
-	if (len < 0)
-		return (NULL);
+//	if (len < 0)
+//		return (NULL);
 	new_env = malloc(sizeof(char *) * (len + 1));
 	if (!new_env)
 		exit(EXIT_FAILURE);
@@ -124,8 +120,8 @@ char	**init_env(char **env)
 	while (env[++i])
 	{
 		len = ft_strlen(env[i]);
-		if (len < 0)
-			return (free_env(new_env, i + 1));
+//		if (len < 0)
+//			return (free_env(new_env, i + 1));
 		new_env[i] = malloc(sizeof(char) * (len + 1));
 		if (!new_env[i])
 			exit(EXIT_FAILURE);
