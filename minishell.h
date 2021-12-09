@@ -6,11 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/12/09 10:46:26 by adidion          ###   ########.fr       */
-=======
-/*   Updated: 2021/12/08 17:34:17 by artmende         ###   ########.fr       */
->>>>>>> 8e69f18795ff9ec32a9a66cf25174f9dc41c108e
+/*   Updated: 2021/12/09 11:29:35 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +31,13 @@
 typedef struct s_lst_cmd
 {
 	char				*command;
-	char				**arg; //arg[0] = nom de la commande
+	char				**arg;
 	char				*inf;
 	char				*outf;
-	int					infd; // probably not needed
-	int					outfd; // probably not needed
-	int					append; // 1 means append mode
-	int					heredoc; // 1 means that inf is not a file, but the keyword for heredoc
+	int					infd;
+	int					outfd;
+	int					append;
+	int					heredoc;
 	int					delete_this_node;
 	struct s_lst_cmd	*next;
 }	t_lst_cmd;
@@ -224,10 +220,6 @@ int				heredoc_2(t_lst_cmd cmd);
 int				ft_verify_redi(t_lst_cmd cmd, char ***env);
 int				ft_verify_redi_2(t_lst_cmd cmd, char ***env);
 
-/* FT_ONE_PIPE */
-
-int				ft_one_pipe(t_lst_cmd *cmd, char ***env);
-
 /* FT_MULTIPLE_PIPE */
 
 int				ft_multiple_pipe(t_lst_cmd *cmd, char ***env);
@@ -242,16 +234,17 @@ int				ft_pick_pipe(t_lst_cmd *cmd, char ***env);
 
 /*	SIGNAL	*/
 
-int			set_signal(void);
+int				set_signal(void);
 void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
+void			ctrl_backslash_inside(int sig);
 
 void			rl_replace_line(const char *text, int clear_undo);
 
-void	ctrl_backslash_outside(int sig);
-void	ctrl_backslash_inside(int sig);
-void	ctrl_backslash_status_to_131(int sig);
-void	ctrl_c_status_to_130(int sig);
+void			ctrl_backslash_outside(int sig);
+void			ctrl_backslash_inside(int sig);
+void			ctrl_backslash_status_to_131(int sig);
+void			ctrl_c_status_to_130(int sig);
 
 /*
 **-------------------------------------PARSER-----------------------------------

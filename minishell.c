@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/09 10:35:18 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:28:22 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int ac, char **av, char **envv)
 	t_lst_cmd		*cmd;
 	char			**env;
 
-	tcgetattr(STDIN_FILENO, &termios_p);/* gestion de l'affichage du ctrl*/
+	tcgetattr(STDIN_FILENO, &termios_p);
 	termios_p.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &termios_p);
 	env = init_env(envv);

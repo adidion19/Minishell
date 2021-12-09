@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:09:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 17:07:25 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:33:06 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	ft_open_inf(t_lst_cmd cmd)
 
 int	ft_close_inf(int fd)
 {
-	//dup2(1, 0);
 	if (close(fd) == -1)
 		return (-1);
 	return (0);
@@ -93,7 +92,6 @@ int	ft_open_outf(t_lst_cmd cmd, int bool)
 
 int	ft_close_mode(int fd)
 {
-	//dup2(0, 1);
 	if (close(fd) == -1)
 		return (-1);
 	return (0);

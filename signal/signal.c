@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 10:37:14 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 17:34:06 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:32:56 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,10 @@ void	ctrl_c(int signum)
 //	printf("this is parent\n");
 } */
 
-void	sigkillhandler(int sig)
-{
-	(void)sig;
-	printf("coucou\n");
-}
-
 int	set_signal(void)
 {
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, ctrl_backslash_outside);
-	signal(SIGKILL, sigkillhandler);
 	return (1);
 }
 
@@ -95,12 +88,3 @@ void	ctrl_backslash_outside(int sig)
 	rl_redisplay();
 	(void)sig;
 }
-
-void	ctrl_backslash_inside(int sig)
-{
-	write(2, "Quit: 3\n", 8);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	(void)sig;
-}
-

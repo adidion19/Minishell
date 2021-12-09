@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/12/09 10:37:22 by adidion          ###   ########.fr       */
-=======
-/*   Updated: 2021/12/09 10:43:39 by artmende         ###   ########.fr       */
->>>>>>> 8e69f18795ff9ec32a9a66cf25174f9dc41c108e
+/*   Updated: 2021/12/09 11:20:47 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +96,6 @@ char	*env_find_no_malloc_no_equal(char *search, char **src)
 	return (ret);
 }
 
-
-
 /*
 **	Initialisation de l'environnement. La fonction reprend
 **	la liste d'environnement reçu en argument pour la recopier
@@ -117,8 +111,6 @@ char	**init_env(char **env)
 
 	len = len_lst(env);
 	i = -1;
-//	if (len < 0)
-//		return (NULL);
 	new_env = malloc(sizeof(char *) * (len + 1));
 	if (!new_env)
 		exit(EXIT_FAILURE);
@@ -126,8 +118,6 @@ char	**init_env(char **env)
 	while (env[++i])
 	{
 		len = ft_strlen(env[i]);
-//		if (len < 0)
-//			return (free_env(new_env, i + 1));
 		new_env[i] = malloc(sizeof(char) * (len + 1));
 		if (!new_env[i])
 			exit(EXIT_FAILURE);

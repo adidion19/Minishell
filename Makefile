@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: artmende <artmende@student.s19.be>         +#+  +:+       +#+         #
+#    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2021/12/09 10:58:21 by adidion          ###   ########.fr        #
-=======
-#    Updated: 2021/12/08 16:59:36 by artmende         ###   ########.fr        #
->>>>>>> 8e69f18795ff9ec32a9a66cf25174f9dc41c108e
+#    Updated: 2021/12/09 11:44:33 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +44,6 @@ SRC =	minishell.c\
 		command/ft_env_check_arg.c\
 		redirections/ft_open.c\
 		redirections/ft_heredoc.c\
-		pipes/ft_one_pipe.c\
 		pipes/ft_pick_pipe.c\
 		pipes/ft_verify_redi.c\
 		pipes/ft_multiple_pipe.c\
@@ -78,7 +73,7 @@ SRC =	minishell.c\
 		parser/words_list_1.c\
 		parser/words_list_2.c\
 		signal/signal.c\
-		#pipes/ft_multiple_pipe.c\#
+		signal/signal_2.c\
 
 OBJ = ${SRC:c=o}
 

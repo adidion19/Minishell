@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_e.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/11/30 19:26:59 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:28:49 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_strcmp(char *s1, char *s2)
 	}
 	return (s1[i] - s2[i]);
 }
-
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -98,8 +97,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 }
 
  */
-
-
 
 /*
 	remove_chars_from_str :
