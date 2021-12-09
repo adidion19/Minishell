@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/12/08 16:25:34 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 10:55:51 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,29 @@ int	check_arg(char *str, char **env)
 {
 	int	i;
 	int	j;
-	int	len;
 
 	i = -1;
-	len = ft_strlen(str);
-	if (!str[0])
-		return (ft_error_unset(str));
 	if (!((str[0] >= 'a' && str[0] <= 'z') || (str[0] >= 'A' && str[0] <= 'Z')
-			|| str[0] == '_'))
+			|| str[0] == '_') || str[0] == '\0')
 		return (ft_error_unset(str));
 	while (str[++i])
-	{
 		if (!((str[i] >= 'a' && str[i] <= 'z')
 				|| (str[i] >= 'A' && str[i] <= 'Z')
 				|| (str[i] >= '0' && str[i] <= '9') || str[i] == '_'))
 			return (ft_error_unset(str));
-	}
 	i = -1;
 	while (env[++i])
 	{
 		j = -1;
-		while (++j < len)
-		{
+		while (++j < (int)ft_strlen(str))
 			if (env[i][j] != str[j])
 				break ;
-		}
-		if (j == len && env[i][j] == '=')
+		if (j == (int)ft_strlen(str) && env[i][j] == '=')
 			break ;
 	}
 	if (!env[i])
 		return (0);
-	else
-		return (1 + i);
+	return (1 + i);
 }
 
 char	**remove_variable(int ret, char ***env)
@@ -72,8 +63,8 @@ char	**remove_variable(int ret, char ***env)
 		exit(EXIT_FAILURE);
 	tmp[len - 1] = NULL;
 	i = -1;
-	j = 0;
-	while (++i < (len - 1))
+	j = -1;
+	while (++i < (len - 1) && ++j != -5)
 	{
 		if (i == ret)
 			j++;
@@ -82,7 +73,6 @@ char	**remove_variable(int ret, char ***env)
 		if (!tmp[i])
 			exit(EXIT_FAILURE);
 		ft_strncpy((*env)[j], tmp[i], lenstr);
-		j++;
 	}
 	free_tab_char(*env, len);
 	return (tmp);

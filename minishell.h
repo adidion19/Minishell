@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 15:07:59 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:46:26 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ int				export_no_arg(char **env);
 int				env_check_arg(char *arg, char **env);
 int				ft_error_export(char *arg);
 int				nw_env(char ***env, char *str);
+char			**ft_cpy_tab(char **env);
+char			*ft_strcpy(char *dest, char *src);
 
 /* UNSET */
 

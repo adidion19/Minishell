@@ -6,7 +6,7 @@
 #    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/12/03 15:39:06 by adidion          ###   ########.fr        #
+#    Updated: 2021/12/09 10:58:21 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC =	minishell.c\
 		command/ft_its_unset.c\
 		command/unset.c\
 		command/export_no_arg.c\
+		command/export_no_arg_2.c\
 		command/ft_env_check_arg.c\
 		redirections/ft_open.c\
 		redirections/ft_heredoc.c\

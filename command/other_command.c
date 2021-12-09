@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 11:13:21 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 10:47:54 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,12 @@ static int	ft_exec(char **path, t_lst_cmd cmd, char **env)
 	return (2);
 }
 
-void	testsigquit(int sig)
-{
-	(void)sig;
-	printf("This is the child !\n");
-}
-
 int	ft_other_command(t_lst_cmd cmd, char **env)
 {
 	char	**path;
 	pid_t	pid;
 	int		status;
-	int r;
+	int		r;
 
 	status = 0;
 	r = 1;

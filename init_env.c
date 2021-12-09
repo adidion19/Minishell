@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 16:32:45 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 10:37:22 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char	*env_find_the(char *search, char **src)
 	j = 0;
 	len = ft_strlen(search);
 	new = NULL;
+	if (!src)
+		return (0);
 	while (src[i])
 	{
 		if (ft_strncmp(search, src[i], len) == 0)

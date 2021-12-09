@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/08 15:43:19 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 10:46:51 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ int	nw_env(char ***env, char *str)
 	int		len;
 	int		lenstr;
 	char	**nw_env;
-	//char	**oldenv;
 
 	len = len_lst(*env);
-	//oldenv = *env;
 	nw_env = malloc(sizeof(char *) * (len + 2));
 	if (!nw_env)
 		exit(EXIT_FAILURE);

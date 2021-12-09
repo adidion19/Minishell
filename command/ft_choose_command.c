@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/02 11:04:27 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 10:47:00 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	ft_choose_command(t_lst_cmd cmd, char ***env)
 		return (ft_other_command(cmd, *env));
 	return (r);
 }
-
 
 /*
 int	main(int ac, char **av, char **envv)
