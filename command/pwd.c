@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybrutout <ybrutout@student.s19.be>         +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:09:14 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/11/23 17:00:36 by ybrutout         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:35:52 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@
 
 int	ft_pwd(void)
 {
-	int		i;
 	char	pwd[PATH_MAX];
 
-	i = -1;
 	if (!getcwd(pwd, PATH_MAX))
 		return (1);
 	printf("%s\n", pwd);

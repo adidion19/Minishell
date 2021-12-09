@@ -6,7 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/12/09 10:46:26 by adidion          ###   ########.fr       */
+=======
+/*   Updated: 2021/12/08 17:34:17 by artmende         ###   ########.fr       */
+>>>>>>> 8e69f18795ff9ec32a9a66cf25174f9dc41c108e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +242,7 @@ int				ft_pick_pipe(t_lst_cmd *cmd, char ***env);
 
 /*	SIGNAL	*/
 
-void			set_signal(void);
+int			set_signal(void);
 void			ctrl_backslach(int signum);
 void			ctrl_c(int signum);
 

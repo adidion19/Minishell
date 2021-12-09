@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 10:47:54 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 11:01:35 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_error_other_command(char *cmd, int bool)
 {
-	write(2, "minishell: ", 11);
+	write(2, "exotic_shell: ", 14);
 	write(2, cmd, ft_strlen(cmd));
 	if (bool == 1)
 		write(2, ": No such file or directory\n", 29);
@@ -101,7 +101,7 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 		path = ft_find_path(env);
 		if (!path)
 			exit(ft_error_other_command(cmd.command, 1));
-			r = ft_exec(path, cmd, env);
+		r = ft_exec(path, cmd, env);
 		exit(r + 1);
 	}
 	pid = waitpid(pid, &status, 0);

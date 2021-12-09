@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:55:48 by yannahbruto       #+#    #+#             */
-/*   Updated: 2021/12/09 10:55:51 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 11:01:47 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error_unset(char *arg)
 {
-	write(2, "minishell: unset: '", 20);
+	write(2, "exotic_shell: unset: '", 22);
 	write(2, arg, ft_strlen(arg));
 	write(2, "': not a valid identifier\n", 26);
 	return (-1);

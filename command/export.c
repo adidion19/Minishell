@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/09 10:46:51 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 11:01:30 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**cpy_env(char	**nw_env, char **env)
 
 int	ft_error_export(char *arg)
 {
-	write(2, "minishell: export: '", 20);
+	write(2, "exotic_shell: export: '", 23);
 	write(2, arg, ft_strlen(arg));
 	write(2, "': not a valid identifier\n", 26);
 	return (-1);

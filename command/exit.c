@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:39:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 17:05:04 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:09:51 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_t_exit(int num, int bool, char *arg)
 	printf("exit\n");
 	if (bool)
 	{
-		write(2, "minishell: exit: ", 17);
+		write(2, "exotic_shell: exit: ", 20);
 		write(2, arg, ft_strlen(arg));
 		write(2, ": numeric argument required\n", 28);
 	}
@@ -56,7 +56,7 @@ int	ft_arg_len(char **arg)
 		;
 	if (i > 1)
 	{
-		write(2, "minishell: exit: too many arguments\n", 36);
+		write(2, "exotic_shell: exit: too many arguments\n", 39);
 		return (1);
 	}
 	return (0);

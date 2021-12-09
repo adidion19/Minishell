@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:05:18 by adidion           #+#    #+#             */
-/*   Updated: 2021/11/09 15:02:50 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 10:39:53 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ long	ft_strtol(const char *str)
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
-		((str[i] == '-') && (neg = neg * -1));
+		(void)((str[i] == '-') && (neg = neg * -1));
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
