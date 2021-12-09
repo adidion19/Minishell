@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:45:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 15:03:29 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 12:04:02 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,23 @@ char	**ft_split(char const *s, char c)
 	char	**tab;
 
 	i = 0;
-	j = 0;
 	index = 0;
 	if (!s)
 		return (0);
-	tab = malloc(sizeof(*tab) * (count_word((char *)s, c) + 2));
+	tab = ft_calloc(sizeof(*tab) * (count_word((char *)s, c) + 2));
 	if (!tab)
 		exit(EXIT_FAILURE);
 	while (index < count_word((char *)s, c))
 	{
+		j = 0;
 		tab[index] = malloc(sizeof(char) * (ft_strlen((char *)s) + 1));
-		if (!(tab))
+		if (!(tab[index]))
 			exit(EXIT_FAILURE);
 		while (s[i] && in_string(((char *)s)[i], c))
 			i++;
 		while (s[i] && !in_string(((char *)s)[i], c))
 			tab[index][j++] = s[i++];
 		tab[index++][j] = '\0';
-		j = 0;
 	}
-	tab[index] = 0;
 	return (tab);
 }

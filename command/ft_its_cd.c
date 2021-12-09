@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_its_cd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:13:26 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 17:10:04 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:15:32 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@ int	ft_send_to_cd(t_lst_cmd cmd, char ***env, int bool)
 	char	*pwd;
 	char	*old_pwd;
 	int		r;
-	char	*tst;
 
 	if (cmd.heredoc)
 		heredoc_2(cmd);
-	if (!(tst = env_find_the("PWD", *env)))
+	if (!(env_find_no_malloc_no_equal("PWD", *env)))
 		nw_env(env, "PWD=");
-	free(tst);
-	if (!(tst = env_find_the("OLDPWD", *env)))
+	if (!(env_find_no_malloc_no_equal("OLDPWD", *env)))
 		nw_env(env, "OLDPWD=");
-	free(tst);
 	pwd = env_find_the("PWD=", *env);
 	old_pwd = env_find_the("OLDPWD=", *env);
 	if (bool == 1)
