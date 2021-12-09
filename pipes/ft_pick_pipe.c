@@ -6,24 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:56:51 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/04 18:02:57 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 15:47:02 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-static int	ft_lstsize(t_lst_cmd *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
 
 int	ft_look_cmd(t_lst_cmd cmd, char ***env)
 {

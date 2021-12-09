@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 11:29:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 15:45:24 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int				is_ptr_in_ptrarray(void **ptrarray, void *ptr);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
+int				ft_lstsize(t_lst_cmd *lst);
 
 /*
 **	FT_SPLIT

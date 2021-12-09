@@ -6,24 +6,11 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 14:33:31 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 16:17:37 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-static int	ft_lstsize(t_lst_cmd *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
 
 void	ft_child(t_lst_cmd *cmd, int *fd, char ***env, int fd2)
 {
@@ -40,42 +27,53 @@ void	ft_child(t_lst_cmd *cmd, int *fd, char ***env, int fd2)
 
 int	ft_parent(t_lst_cmd *cmd, pid_t pid, int *fd, int fd2)
 {
+	int	i;
+	int	status;
+
+	i = -1;
 	if (cmd->heredoc)
-		waitpid(pid, NULL, 0);
+	{
+		waitpid(pid, &status, 0);
+		if (!cmd->next)
+		{
+			while (fd[++i])
+				close(fd[i]);
+			if (WIFEXITED(status))
+			g_global.status = WEXITSTATUS(status);
+			return (0);
+		}
+	}
 	close(fd[1]);
 	fd2 = fd[0];
 	return (fd2);
 }
 
-int	close_all(pid_t pid, int i, int *fd, int status)
+int	close_all(pid_t pid, int i, int *fd)
 {
-	pid_t	pid2;
+	int	status;
+	int	pid2;
 
-	while ((pid2 = waitpid(-1, &status, 0)) > 0)
+	pid2 = waitpid(-1, &status, 0);
+	while (pid2 > 0)
 	{
 		if (pid2 == pid)
 		{
 			while (i--)
 				close(fd[i]);
 			if (WIFEXITED(status))
-				g_global.status = WEXITSTATUS(status);
+			g_global.status = WEXITSTATUS(status);
 		}
+		pid2 = waitpid(-1, &status, 0);
 	}
 	free(fd);
-	return (status);
+	return (0);
 }
 
-int	ft_multiple_pipe(t_lst_cmd *cmd, char ***env)
+int	ft_loop_pipe(t_lst_cmd *cmd, int *fd, int fd2, char ***env)
 {
-	int		*fd;
-	pid_t	pid;
-	int		fd2;
-	int		i;
+	int	i;
+	int	pid;
 
-	fd = malloc(sizeof(int) * (2 * ft_lstsize(cmd)));
-	if (!fd)
-		exit(EXIT_FAILURE);
-	fd2 = 50;
 	i = 0;
 	while (cmd)
 	{
@@ -89,9 +87,25 @@ int	ft_multiple_pipe(t_lst_cmd *cmd, char ***env)
 		else
 		{
 			fd2 = ft_parent(cmd, pid, fd + i, fd2);
+			if (!fd2)
+				free(fd);
+			if (!fd2)
+				return (0);
 			cmd = cmd->next;
 			i += 2;
 		}
 	}
-	return (close_all(pid, i, fd, 0));
+	return (close_all(pid, i, fd));
+}
+
+int	ft_multiple_pipe(t_lst_cmd *cmd, char ***env)
+{
+	int		*fd;
+	int		fd2;
+
+	fd = malloc(sizeof(int) * (2 * ft_lstsize(cmd)));
+	if (!fd)
+		exit(EXIT_FAILURE);
+	fd2 = 50;
+	return (ft_loop_pipe(cmd, fd, fd2, env));
 }
