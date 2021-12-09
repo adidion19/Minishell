@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 16:17:37 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/09 16:26:00 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,7 @@ int	ft_parent(t_lst_cmd *cmd, pid_t pid, int *fd, int fd2)
 	{
 		waitpid(pid, &status, 0);
 		if (!cmd->next)
-		{
-			while (fd[++i])
-				close(fd[i]);
-			if (WIFEXITED(status))
-			g_global.status = WEXITSTATUS(status);
 			return (0);
-		}
 	}
 	close(fd[1]);
 	fd2 = fd[0];
@@ -88,9 +82,7 @@ int	ft_loop_pipe(t_lst_cmd *cmd, int *fd, int fd2, char ***env)
 		{
 			fd2 = ft_parent(cmd, pid, fd + i, fd2);
 			if (!fd2)
-				free(fd);
-			if (!fd2)
-				return (0);
+				return (close_all(pid, i, fd));
 			cmd = cmd->next;
 			i += 2;
 		}
