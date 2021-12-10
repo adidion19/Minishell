@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 19:51:09 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 14:57:14 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	ft_heredoc(t_lst_cmd cmd)
 	int		fd[2];
 	int		status;
 
-
-
 	status = 0;
 	if (pipe(fd) == -1)
 		exit(EXIT_FAILURE);
@@ -60,7 +58,7 @@ int	ft_heredoc(t_lst_cmd cmd)
 		exit(EXIT_FAILURE);
 	if (pid1 == 0)
 	{
-		set_signal_heredoc_itself();
+//		set_signal_heredoc_itself();
 		while (ft_strncmp(line2, cmd.inf, ft_strlen(cmd.inf))
 			|| ft_strlen(line2) != ft_strlen(cmd.inf))
 			line2 = ft_loop_heredoc(line2, fd[1]);

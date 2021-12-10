@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 19:26:55 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:19:39 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	close_all(pid_t pid, int i, int *fd)
 				close(fd[i]);
 			if (WIFEXITED(status))
 			g_global.status = WEXITSTATUS(status);
+			if (g_global.start)
+				g_global.status = 1;
 		}
 		pid2 = waitpid(-1, &status, 0);
 	}
@@ -67,8 +69,10 @@ int	ft_loop_pipe(t_lst_cmd *cmd, int *fd, int fd2, char ***env)
 {
 	int	i;
 	int	pid;
+	t_lst_cmd	*cmd_copy;
 
 	i = 0;
+	cmd_copy = cmd;
 	while (cmd)
 	{
 		if (pipe(&fd[i]) < 0)
@@ -78,7 +82,7 @@ int	ft_loop_pipe(t_lst_cmd *cmd, int *fd, int fd2, char ***env)
 			return (0);
 		else if (pid == 0)
 		{
-			set_signal_inside(cmd);
+			set_signal_inside(cmd_copy);
 			ft_child(cmd, fd + i, env, fd2);
 		}
 		else

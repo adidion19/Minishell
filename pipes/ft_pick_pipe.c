@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:56:51 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 10:54:48 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:18:43 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_look_cmd(t_lst_cmd cmd, char ***env)
 int	ft_pick_pipe(t_lst_cmd *cmd, char ***env)
 {
 	set_signal_outside(cmd);
+	g_global.start = 0;
 	if (cmd && ft_lstsize(cmd) == 1)
 		ft_look_cmd(*cmd, env);
 	else if (cmd)

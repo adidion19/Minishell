@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 11:42:18 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:18:28 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,7 @@ void			ctrl_backslash_default(int sig);
 void			ctrl_backslash_outside_no_heredoc(int sig);
 void	ctrl_backslash_outside_heredoc(int sig);
 void			ctrl_c_outside_no_heredoc(int sig);
+void	ctrl_c_outside_heredoc(int sig);
 
 
 void	call_exit_from_signal(int sig);
