@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 14:50:24 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:20:26 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	heredoc_2(t_lst_cmd cmd)
 	pid1 = fork();
 	if (pid1 < 0)
 		return (-1);
-	if (pid1 == 0)
+	if (pid1 == 0 && set_signal_inside_cmd_is_running_heredoc())
 	{
-		set_signal_heredoc_itself();
 		while (ft_strncmp(line2, cmd.inf, ft_strlen(cmd.inf))
 			|| ft_strlen(line2) != ft_strlen(cmd.inf))
 		{

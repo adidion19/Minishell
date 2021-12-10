@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:52:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 14:57:14 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:21:52 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_error_dup(int error)
 
 char	*ft_loop_heredoc(char *line2, int fd)
 {
+//	printf("coucou\n");
 	if (line2 != NULL)
 	{
 		write(fd, line2, ft_strlen(line2));
@@ -29,6 +30,9 @@ char	*ft_loop_heredoc(char *line2, int fd)
 	}
 	free(line2);
 	line2 = readline("> ");
+//	write(1, "\n", 1); //////////////////
+
+	//set_signal_inside_cmd_is_running_heredoc(); //////////////////
 	if (!line2)
 		exit(0);
 	return (line2);
@@ -56,16 +60,16 @@ int	ft_heredoc(t_lst_cmd cmd)
 	pid1 = fork();
 	if (pid1 < 0)
 		exit(EXIT_FAILURE);
-	if (pid1 == 0)
-	{
-//		set_signal_heredoc_itself();
+	if (pid1 == 0 && set_signal_inside_cmd_is_running_heredoc())
 		while (ft_strncmp(line2, cmd.inf, ft_strlen(cmd.inf))
 			|| ft_strlen(line2) != ft_strlen(cmd.inf))
 			line2 = ft_loop_heredoc(line2, fd[1]);
-	}
 	if (pid1 == 0)
 		exit(ft_close_and_free(line2, fd));
+	if (pid1 > 0) ///////////////
+		signal(SIGQUIT, sig_do_nothing); ////////////////
 	waitpid(pid1, &status, 0);
+	set_signal_inside_cmd_is_running_heredoc(); ////////////////
 	close(fd[1]);
 	errno = 0;
 	if (dup2(fd[0], STDIN_FILENO) == -1)

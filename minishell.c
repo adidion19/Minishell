@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 16:20:35 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/09 18:56:39 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 16:53:33 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,8 @@ int	main(int ac, char **av, char **envv)
 		free_lst_cmd(cmd);
 	}
 }
+
+// echo a "" b
+// exit abc 4
+// echo "" a "" b "" c
+// apres chaque arg il met un espace sauf le dernier
