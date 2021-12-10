@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 17:18:33 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 19:08:59 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,40 +233,40 @@ int				ft_pick_pipe(t_lst_cmd *cmd, char ***env);
 **-------------------------------------SIGNAL-----------------------------------
 */
 
-/*	SIGNAL	*/
-
-int				set_signal_default(void);
-int			set_signal_outside_cmd_is_running_no_heredoc(void);
-int	set_signal_outside_cmd_is_running_heredoc(void);
-int			set_signal_inside_cmd_is_running_no_heredoc(void);
-int	set_signal_inside_cmd_is_running_heredoc(void);
-
-
-int	set_signal_inside(t_lst_cmd *cmd);
-int	set_signal_outside(t_lst_cmd *cmd);
-
-
-void			ctrl_c_default(int signum);
-void			ctrl_backslash_inside_no_heredoc(int sig);
-
-
-
-void			ctrl_backslash_default(int sig);
-
-void			ctrl_backslash_outside_no_heredoc(int sig);
-void	ctrl_backslash_outside_heredoc(int sig);
-void			ctrl_c_outside_no_heredoc(int sig);
-void	ctrl_c_outside_heredoc(int sig);
-
-
-void	ctrl_c_inside_no_heredoc(int sig);
-void	ctrl_c_inside_heredoc(int sig);
-void	ctrl_backslash_inside_heredoc(int sig);
-
-
 void			rl_replace_line(const char *text, int clear_undo);
 
-void	sig_do_nothing(int sig);
+/*	SET_SIGNAL_IN_OUT	*/
+
+int				set_signal_outside(t_lst_cmd *cmd);
+int				set_signal_inside(t_lst_cmd *cmd);
+
+/*	SET_SIGNALS_DIFFERENT_SITUATIONS	*/
+
+int				set_signal_default(void);
+int				set_signal_outside_cmd_is_running_no_heredoc(void);
+int				set_signal_outside_cmd_is_running_heredoc(void);
+int				set_signal_inside_cmd_is_running_no_heredoc(void);
+int				set_signal_inside_cmd_is_running_heredoc(void);
+
+/*	SIGNAL_HANDLERS_DEFAULT	*/
+
+void			sig_do_nothing(int sig);
+void			ctrl_c_default(int signum);
+void			ctrl_backslash_default(int sig);
+
+/*	SIGNAL_HANDLERS_NO_HEREDOC	*/
+
+void			ctrl_c_outside_no_heredoc(int sig);
+void			ctrl_backslash_outside_no_heredoc(int sig);
+void			ctrl_c_inside_no_heredoc(int sig);
+void			ctrl_backslash_inside_no_heredoc(int sig);
+
+/*	SIGNAL_HANDLERS_HEREDOC	*/
+
+void	ctrl_c_outside_heredoc(int sig);
+void	ctrl_backslash_outside_heredoc(int sig);
+void	ctrl_c_inside_heredoc(int sig);
+void	ctrl_backslash_inside_heredoc(int sig);
 
 /*
 **-------------------------------------PARSER-----------------------------------

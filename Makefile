@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adidion <adidion@student.s19.be>           +#+  +:+       +#+         #
+#    By: artmende <artmende@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/12/09 16:00:12 by adidion          ###   ########.fr        #
+#    Updated: 2021/12/10 19:26:24 by artmende         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,11 @@ SRC =	minishell.c\
 		parser/verify_redirections.c\
 		parser/words_list_1.c\
 		parser/words_list_2.c\
-		signal/signal.c\
-		signal/signal_2.c\
+		signal/set_signal_in_out.c\
+		signal/set_signals_different_situations.c\
+		signal/signal_handlers_default.c\
+		signal/signal_handlers_heredoc.c\
+		signal/signal_handlers_no_heredoc.c\
 
 OBJ = ${SRC:c=o}
 
