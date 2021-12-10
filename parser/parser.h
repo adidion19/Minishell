@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/08 16:49:11 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:43:03 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ t_words_list	*add_heredoc(t_lst_cmd *cmd_node, t_words_list *node,
 	dollar_variables_handling.c
 */
 
-void			expand_variables_in_words_list(t_words_list *list, char **env);
+int	have_var_to_expand(char *word);
+t_words_list	*expand_variables_in_words_list(t_words_list *list, char **env);
 char			*expand_variables_in_single_word(char *word, char **env);
 char			*get_var_name(char *str);
 char			*get_var_content(char *var_name, t_quote_state quote,

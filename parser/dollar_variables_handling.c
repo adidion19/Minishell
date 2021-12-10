@@ -6,14 +6,35 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:36:46 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/08 16:31:39 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:40:57 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
-void	expand_variables_in_words_list(t_words_list *list, char **env)
+// expand_variables_in_words_list
+// if length of word in 0 after expanding, delete this word from list
+
+int	have_var_to_expand(char *word)
+{
+	t_quote_state	quote;
+
+	ft_memset(&quote, 0, sizeof(quote));
+	while (word && *word)
+	{
+		update_quote_state(word, &quote);
+		if (*word == '$' && quote.simple_quote == 0 && *(word + 1) &&
+			is_valid_var_char(*(word + 1)))
+		{
+			return (1);
+		}
+		word++;
+	}
+	return (0);
+}
+
+t_words_list	*expand_variables_in_words_list(t_words_list *list, char **env)
 {
 	t_words_list	*temp_list;
 	char			*temp_word;
@@ -22,10 +43,18 @@ void	expand_variables_in_words_list(t_words_list *list, char **env)
 	while (temp_list)
 	{
 		temp_word = expand_variables_in_single_word(temp_list->word, env);
+		if (have_var_to_expand(temp_list->word) && ft_strlen(temp_word) == 0)
+		{
+			free(temp_word);
+			list = delete_node_words_list(list, temp_list);
+			temp_list = list;
+			continue ;
+		}
 		free(temp_list->word);
 		temp_list->word = temp_word;
 		temp_list = temp_list->next;
 	}
+	return (list);
 }
 
 /*

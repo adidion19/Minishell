@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:04:11 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/08 15:10:42 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:05:15 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_lst_cmd	*add_pipe_section(t_lst_cmd *list, char *str, char **env)
 		free_words_list(words_list, 1);
 		words_list = 0;
 	}
-	expand_variables_in_words_list(words_list, env);
+	words_list = expand_variables_in_words_list(words_list, env);
 	words_list = split_words_with_spaces_in_words_list(words_list);
 	handle_cmd_args_in_list(ret, words_list);
 	free(str);
