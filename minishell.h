@@ -6,7 +6,7 @@
 /*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 20:01:04 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/10 11:42:18 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,7 @@ int				ft_pick_pipe(t_lst_cmd *cmd, char ***env);
 
 int				set_signal_default(void);
 void			set_signal_outside_cmd_is_running_no_heredoc(void);
+void	set_signal_outside_cmd_is_running_heredoc(void);
 void			set_signal_inside_cmd_is_running_no_heredoc(void);
 void	set_signal_inside_cmd_is_running_heredoc(void);
 
@@ -261,10 +262,10 @@ void			ctrl_c_outside_no_heredoc(int sig);
 void	call_exit_from_signal(int sig);
 void	ctrl_c_inside_no_heredoc(int sig);
 void	ctrl_c_inside_heredoc(int sig);
-
+void	ctrl_backslash_inside_heredoc(int sig);
 
 void	sig_do_nothing(int sig);
-void	ctrl_backslash_status_to_0(int sig);
+
 
 void	ctrl_c_status_to_1(int sig);
 
