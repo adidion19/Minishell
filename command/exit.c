@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:39:17 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/08 17:09:51 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/11 10:14:06 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	ft_exit(char **arg)
 
 	if (!arg[0])
 		exit(0);
+	ft_verify_arg(arg[0]);
 	if (ft_arg_len(arg))
 		return (1);
-	ft_verify_arg(arg[0]);
 	if (arg[0])
 	{
 		i = ft_strtol(arg[0]);

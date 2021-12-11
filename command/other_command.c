@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 10:33:07 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/09 11:01:35 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/11 10:09:03 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ int	ft_other_command(t_lst_cmd cmd, char **env)
 	{
 		if (!env)
 			exit(ft_error_other_command(cmd.command, 1));
-		if (execve(cmd.arg[0], cmd.arg, env) == -1)
-			if (errno != ENOENT)
-				return (r = errno + 1);
 		path = ft_find_path(env);
 		if (!path)
 			exit(ft_error_other_command(cmd.command, 1));
 		r = ft_exec(path, cmd, env);
+		if (execve(cmd.arg[0], cmd.arg, env) == -1)
+			if (errno != ENOENT)
+				return (r = errno + 1);
 		exit(r + 1);
 	}
 	pid = waitpid(pid, &status, 0);
