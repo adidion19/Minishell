@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/11 12:49:48 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/13 11:02:15 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,75 +47,6 @@ void	neg(int i)
 	if (i < 0)
 		exit(EXIT_FAILURE);
 }
-
-// this ft_strtrim is not working correctly
-/* 
-static int	is_in_base(char str, const char *base)
-{
-	int	i;
-
-	i = 0;
-	while (base[i] != 0)
-	{
-		if (str == base[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static char	*malzero(void)
-{
-	char	*s0;
-
-	s0 = malloc(sizeof(char));
-	if (!s0)
-		exit(EXIT_FAILURE);
-	s0[0] = 0;
-	return (s0);
-}
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	*res;
-
-	if (!s1 || !set)
-		return (0);
-	i = 0;
-	j = ft_strlen((char *)s1) - 1;
-	k = 0;
-	while (is_in_base(s1[i], set))
-		i++;
-	while (is_in_base(s1[j], set))
-		j--;
-	if (j - i <= 0)
-		return (malzero());
-	res = malloc(sizeof(char) * (2 + (j - i)));
-	if (!res)
-		exit(EXIT_FAILURE);
-	while (i++ <= j)
-		res[k++] = s1[i - 1];
-	res[k] = 0;
-	return (res);
-}
-
- */
-
-/*
-	remove_chars_from_str :
-
-	It makes an allocated copy of str without including the chars whose
-	addresses are in ptrarray.
-
-	ptrarray is a null terminated array of pointers. The array can be NULL, in
-	that case, the original string will simply be duplicated.
-
-	The returned string is freeable. However, the original string doesn't need
-	to be.
-*/
 
 char	*remove_chars_from_str(char *str, void **ptrarray)
 {

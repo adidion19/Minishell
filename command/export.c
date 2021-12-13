@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:38:11 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/09 11:01:30 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/13 11:01:04 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**cpy_env(char	**nw_env, char **env)
 		len = ft_strlen(env[i]);
 		nw_env[i] = malloc(sizeof(char) * (len + 1));
 		if (!nw_env)
-			return (NULL);
+			exit(EXIT_FAILURE);
 		nw_env[i] = ft_strncpy(env[i], nw_env[i], ft_strlen(env[i]));
 	}
 	return (nw_env);
