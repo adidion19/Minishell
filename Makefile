@@ -6,7 +6,7 @@
 #    By: artmende <artmende@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 16:20:02 by ybrutout          #+#    #+#              #
-#    Updated: 2021/12/10 19:26:24 by artmende         ###   ########.fr        #
+#    Updated: 2021/12/13 10:55:43 by artmende         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC =	minishell.c\
 		parser/add_pipe_section.c\
 		parser/display_error.c\
 		parser/dollar_variables_handling.c\
+		parser/dollar_variables_handling_2.c\
 		parser/get_input_output.c\
 		parser/parser.c\
 		parser/parser_utils.c\

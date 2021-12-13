@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:17:12 by ybrutout          #+#    #+#             */
-/*   Updated: 2021/12/09 11:20:47 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/13 10:57:44 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,6 @@ char	*env_find_the(char *search, char **src)
 	}
 	return (new);
 }
-
-// a=5
-// len is 1
-// str[len] = '='
-// str[len + 1] = '5'
 
 char	*env_find_no_malloc_no_equal(char *search, char **src)
 {

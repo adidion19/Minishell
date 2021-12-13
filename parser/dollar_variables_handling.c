@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_variables_handling.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:36:46 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/11 10:52:43 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/13 10:48:12 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
-
-// expand_variables_in_words_list
-// if length of word in 0 after expanding, delete this word from list
 
 int	have_var_to_expand(char *word)
 {
@@ -33,6 +30,13 @@ int	have_var_to_expand(char *word)
 	}
 	return (0);
 }
+
+/*
+	expand_variables_in_words_list
+
+	Browse the list and replace each word by a copy with variable expanded.
+	If length of word in 0 after expanding, delete this word from the list.
+*/
 
 t_words_list	*expand_variables_in_words_list(t_words_list *list, char **env)
 {

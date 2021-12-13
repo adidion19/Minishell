@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
+/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:53:08 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/11 10:53:47 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/13 10:54:25 by artmende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,11 @@ char			*expand_variables_in_single_word(char *word, char **env);
 char			*get_var_name(char *str);
 char			*get_var_content(char *var_name, t_quote_state quote,
 					char **env);
+
+/*
+	dollar_variables_handling_2.c
+*/
+
 int				is_valid_var_char(char c);
 
 /*
@@ -114,7 +119,6 @@ int				redir_var_conditions(int i, char *word, char *var_name,
 */
 
 int				update_quote_state(char *str, t_quote_state *state);
-int				is_valid_var_char(char c);
 
 /*
 	display_error.c
