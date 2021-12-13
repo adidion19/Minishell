@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_choose_command.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:58:00 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 17:20:26 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/11 10:51:26 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ int	heredoc_2(t_lst_cmd cmd)
 {
 	int		pid1;
 	char	*line2;
-//	int		r;
 	int		status;
 
-//	r = 0;
 	status = 0;
 	line2 = NULL;
 	pid1 = fork();
@@ -47,8 +45,7 @@ int	heredoc_2(t_lst_cmd cmd)
 		exit(0);
 	}
 	waitpid(pid1, &status, 0);
-//	return (r);
-	return (status % 255); /////////////////
+	return (status % 255);
 }
 
 int	ft_choose_command(t_lst_cmd cmd, char ***env)

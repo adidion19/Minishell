@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:35:03 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 19:30:10 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/11 10:50:28 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_echo(char **arg, int bool)
 		else
 		{
 			bool2 = 1;
-			if (i != 0 && i != (j + 1)/*  && arg[i][0] != '\0' */)
+			if (i != 0 && i != (j + 1))
 				printf(" ");
 			printf("%s", arg[i]);
 		}

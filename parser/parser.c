@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:07:27 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/08 16:48:19 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/11 10:52:54 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,9 @@ t_lst_cmd	*reverse_lst_cmd(t_lst_cmd *list)
 		list = after;
 	}
 	return (before);
+}
+
+int	is_valid_var_char(char c)
+{
+	return (ft_isalnum(c) || c == '?' || c == '_');
 }

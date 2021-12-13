@@ -6,7 +6,7 @@
 /*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:31:03 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/09 11:28:49 by adidion          ###   ########.fr       */
+/*   Updated: 2021/12/11 12:49:48 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (end_of_word > s1 && ft_strchr(set, *end_of_word))
 		end_of_word--;
 	return (duplicate_part_of_str((char *)s1, end_of_word));
+}
+
+void	neg(int i)
+{
+	if (i < 0)
+		exit(EXIT_FAILURE);
 }
 
 // this ft_strtrim is not working correctly

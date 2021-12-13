@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_variables_handling.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:36:46 by artmende          #+#    #+#             */
-/*   Updated: 2021/12/10 18:40:57 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/11 10:52:43 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	have_var_to_expand(char *word)
 	while (word && *word)
 	{
 		update_quote_state(word, &quote);
-		if (*word == '$' && quote.simple_quote == 0 && *(word + 1) &&
-			is_valid_var_char(*(word + 1)))
+		if (*word == '$' && quote.simple_quote == 0 && *(word + 1)
+			&& is_valid_var_char(*(word + 1)))
 		{
 			return (1);
 		}
@@ -134,9 +134,4 @@ char	*get_var_content(char *var_name, t_quote_state quote, char **env)
 		return (ft_strdup(raw_value));
 	else
 		return (ft_strtrim(raw_value, "\t\n\r\v\f "));
-}
-
-int	is_valid_var_char(char c)
-{
-	return (ft_isalnum(c) || c == '?' || c == '_');
 }

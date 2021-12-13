@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_multiple_pipe.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:20:06 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 15:19:39 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/11 12:49:13 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,21 @@ int	close_all(pid_t pid, int i, int *fd)
 
 int	ft_loop_pipe(t_lst_cmd *cmd, int *fd, int fd2, char ***env)
 {
-	int	i;
-	int	pid;
+	int			i;
+	int			pid;
 	t_lst_cmd	*cmd_copy;
 
 	i = 0;
 	cmd_copy = cmd;
 	while (cmd)
 	{
-		if (pipe(&fd[i]) < 0)
-			exit(EXIT_FAILURE);
+		neg(pipe(&fd[i]));
 		pid = fork();
-		if (pid < 0)
-			return (0);
-		else if (pid == 0)
-		{
+		neg(pid < 0);
+		if (pid == 0)
 			set_signal_inside(cmd_copy);
+		if (pid == 0)
 			ft_child(cmd, fd + i, env, fd2);
-		}
 		else
 		{
 			fd2 = ft_parent(cmd, pid, fd + i, fd2);

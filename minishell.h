@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artmende <artmende@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adidion <adidion@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:15:21 by adidion           #+#    #+#             */
-/*   Updated: 2021/12/10 19:08:59 by artmende         ###   ########.fr       */
+/*   Updated: 2021/12/11 12:49:39 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int				ft_strncmp_maj(const char *s1, const char *s2, size_t n);
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*remove_chars_from_str(char *str, void **ptrarray);
+void			neg(int i);
 
 /*
 **	UTILS_F
@@ -263,10 +264,10 @@ void			ctrl_backslash_inside_no_heredoc(int sig);
 
 /*	SIGNAL_HANDLERS_HEREDOC	*/
 
-void	ctrl_c_outside_heredoc(int sig);
-void	ctrl_backslash_outside_heredoc(int sig);
-void	ctrl_c_inside_heredoc(int sig);
-void	ctrl_backslash_inside_heredoc(int sig);
+void			ctrl_c_outside_heredoc(int sig);
+void			ctrl_backslash_outside_heredoc(int sig);
+void			ctrl_c_inside_heredoc(int sig);
+void			ctrl_backslash_inside_heredoc(int sig);
 
 /*
 **-------------------------------------PARSER-----------------------------------
